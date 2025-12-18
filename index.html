@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="TK Fireworks - Premium 3D Fireworks Product Showcase" />
+    <meta property="og:title" content="TK Fireworks" />
+    <meta property="og:description" content="Display-only premium fireworks product catalog with WhatsApp enquiry integration" />
+    <meta property="og:type" content="website" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TK Fireworks" />
+    <link rel="manifest" href="/tk-fireworks-showcase/manifest.json" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🔥</text></svg>" />
+    <title>TK Fireworks | Premium 3D Fireworks Showcase</title>
+  </head>
+  <body class="bg-dark-bg text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/tk-fireworks-showcase/service-worker.js')
+          .then(() => console.log('✅ PWA Service Worker registered'))
+          .catch(err => console.error('❌ PWA Service Worker registration failed:', err));
+      }
+    </script>
+  </body>
+</html>
