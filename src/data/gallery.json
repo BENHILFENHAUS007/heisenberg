@@ -1,0 +1,31 @@
+{
+  "title": "Gallery",
+  "description": "Explore our premium fireworks collection in action",
+  "itemsPerPage": 12,
+  "images": [
+    {
+      "id": "img-1",
+      "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%230a0a0a' width='400' height='300'/%3E%3Ccircle cx='200' cy='150' r='80' fill='%23ff6b00' opacity='0.8'/%3E%3Ccircle cx='200' cy='150' r='60' fill='%23ffd54f' opacity='0.6'/%3E%3Ctext x='200' y='155' font-size='40' text-anchor='middle' fill='%23000'%3E✨%3C/text%3E%3C/svg%3E",
+      "title": "Galaxy Sparkler Display",
+      "caption": "Beautiful golden sparkler effect"
+    },
+    {
+      "id": "img-2",
+      "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%230a0a0a' width='400' height='300'/%3E%3Cpolygon points='200,50 280,120 250,200 150,200 120,120' fill='%23ff9800' opacity='0.8'/%3E%3Ccircle cx='200' cy='120' r='40' fill='%23ffeb3b' opacity='0.9'/%3E%3Ctext x='200' y='260' font-size='24' text-anchor='middle' fill='%23ff6b00'%3ERocket Burst%3C/text%3E%3C/svg%3E",
+      "title": "Sky Rocket Burst",
+      "caption": "Aerial burst with brilliant colors"
+    },
+    {
+      "id": "img-3",
+      "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%230a0a0a' width='400' height='300'/%3E%3Ccircle cx='200' cy='200' r='60' fill='%23ffd54f' opacity='0.7'/%3E%3Cpath d='M 140 160 Q 200 80 260 160' stroke='%23ff9800' stroke-width='4' fill='none' opacity='0.8'/%3E%3Ctext x='200' y='270' font-size='24' text-anchor='middle' fill='%23ff9800'%3EFountain Effect%3C/text%3E%3C/svg%3E",
+      "title": "Rainbow Fountain",
+      "caption": "Cascading fountain effect"
+    },
+    {
+      "id": "img-4",
+      "url": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%230a0a0a' width='400' height='300'/%3E%3Ccircle cx='200' cy='150' r='70' fill='%23c62828' opacity='0.7'/%3E%3Ccircle cx='200' cy='150' r='50' fill='%23ff6b00' opacity='0.8'/%3E%3Ccircle cx='200' cy='150' r='30' fill='%23ffeb3b' opacity='0.9'/%3E%3Ctext x='200' y='260' font-size='24' text-anchor='middle' fill='%23ffeb3b'%3EWinter Lights%3C/text%3E%3C/svg%3E",
+      "title": "Winter Lights",
+      "caption": "Festive holiday display"
+    }
+  ]
+}

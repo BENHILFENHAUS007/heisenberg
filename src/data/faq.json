@@ -1,0 +1,42 @@
+[
+  {
+    "id": "faq-1",
+    "question": "Is this website for buying fireworks?",
+    "answer": "No. This is a display-only catalog. To enquire about products or place an order, please use the WhatsApp button to contact us directly."
+  },
+  {
+    "id": "faq-2",
+    "question": "How do I place an order?",
+    "answer": "Simply click the WhatsApp Enquiry button on any product or use the floating WhatsApp button. Our team will assist you with pricing, delivery, and order details."
+  },
+  {
+    "id": "faq-3",
+    "question": "Are there videos of the products?",
+    "answer": "Yes! Most products have embedded YouTube videos showing the effects. Click 'Watch Video' on any product card to see the display."
+  },
+  {
+    "id": "faq-4",
+    "question": "Can I save my favorite products?",
+    "answer": "Absolutely! Click the heart icon on any product to add it to your shortlist. You can view all favorites and share them via WhatsApp."
+  },
+  {
+    "id": "faq-5",
+    "question": "Do you deliver to my area?",
+    "answer": "Contact us via WhatsApp to check delivery availability for your location. Our team will provide complete details about delivery options and timelines."
+  },
+  {
+    "id": "faq-6",
+    "question": "What about bulk or wholesale orders?",
+    "answer": "We handle bulk orders and dealer partnerships. Visit the 'Bulk Orders' page or WhatsApp us directly for wholesale enquiries."
+  },
+  {
+    "id": "faq-7",
+    "question": "Are your products safe for kids?",
+    "answer": "Many of our products are marked as 'Kids Friendly'. Always supervise children and follow safety instructions. Visit our Safety page for detailed guidelines."
+  },
+  {
+    "id": "faq-8",
+    "question": "Can I use this site as an app on my phone?",
+    "answer": "Yes! This site is PWA-enabled. On Android or Chromium browsers, you can 'Add to Home Screen' and use it like a native app."
+  }
+]

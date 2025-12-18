@@ -1,0 +1,44 @@
+[
+  {
+    "id": "sparklers",
+    "name": "Sparklers",
+    "icon": "✨",
+    "description": "Hand-held sparklers for kids and families"
+  },
+  {
+    "id": "rockets",
+    "name": "Rockets",
+    "icon": "🚀",
+    "description": "Sky rockets and aerial shells"
+  },
+  {
+    "id": "flower-pots",
+    "name": "Flower Pots",
+    "icon": "🌺",
+    "description": "Colorful flower pot effects"
+  },
+  {
+    "id": "fountains",
+    "name": "Fountains",
+    "icon": "🎇",
+    "description": "Spinning fountain fireworks"
+  },
+  {
+    "id": "fancy",
+    "name": "Fancy Items",
+    "icon": "🌟",
+    "description": "Special themed and novelty items"
+  },
+  {
+    "id": "ground-chakkars",
+    "name": "Ground Chakkars",
+    "icon": "🌀",
+    "description": "Spinning ground effects"
+  },
+  {
+    "id": "kids",
+    "name": "Kids Friendly",
+    "icon": "🧒",
+    "description": "Safe options for children"
+  }
+]

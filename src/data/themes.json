@@ -1,0 +1,62 @@
+{
+  "defaultTheme": "normal",
+  "activeByDate": [
+    {
+      "themeId": "diwali",
+      "from": "11-01",
+      "to": "11-20"
+    },
+    {
+      "themeId": "christmas",
+      "from": "12-20",
+      "to": "12-27"
+    },
+    {
+      "themeId": "pongal",
+      "from": "01-10",
+      "to": "01-20"
+    }
+  ],
+  "themes": {
+    "normal": {
+      "id": "normal",
+      "name": "Standard Theme",
+      "background": "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)",
+      "primaryColor": "#ff6b00",
+      "accentColor": "#ffd54f",
+      "secondaryColor": "#ff9800",
+      "gradientFrom": "#ff6b00",
+      "gradientTo": "#ff9800"
+    },
+    "diwali": {
+      "id": "diwali",
+      "name": "Diwali Special",
+      "background": "linear-gradient(135deg, #1a0a00 0%, #330a00 100%)",
+      "primaryColor": "#ff9800",
+      "accentColor": "#ffeb3b",
+      "secondaryColor": "#ff7043",
+      "gradientFrom": "#ff9800",
+      "gradientTo": "#ffeb3b"
+    },
+    "christmas": {
+      "id": "christmas",
+      "name": "Christmas Special",
+      "background": "linear-gradient(135deg, #001a00 0%, #003300 100%)",
+      "primaryColor": "#2e7d32",
+      "accentColor": "#c62828",
+      "secondaryColor": "#66bb6a",
+      "gradientFrom": "#2e7d32",
+      "gradientTo": "#c62828"
+    },
+    "pongal": {
+      "id": "pongal",
+      "name": "Pongal Special",
+      "background": "linear-gradient(135deg, #1a0a00 0%, #330a00 100%)",
+      "primaryColor": "#ffb300",
+      "accentColor": "#8bc34a",
+      "secondaryColor": "#ffa726",
+      "gradientFrom": "#ffb300",
+      "gradientTo": "#8bc34a"
+    }
+  }
+}

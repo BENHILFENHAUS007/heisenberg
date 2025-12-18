@@ -1,0 +1,42 @@
+[
+  {
+    "icon": "⚠️",
+    "title": "Adult Supervision Required",
+    "text": "Always use fireworks under adult supervision. Keep children at safe distance during display."
+  },
+  {
+    "icon": "👁️",
+    "title": "Safe Distance",
+    "text": "Maintain minimum 5-10 meters distance from fireworks. Never throw or aim fireworks at people or animals."
+  },
+  {
+    "icon": "🧯",
+    "title": "Fire Safety",
+    "text": "Keep a water bucket or fire extinguisher nearby. Never use fireworks near flammable materials or in dry conditions."
+  },
+  {
+    "icon": "🏥",
+    "title": "Burn Prevention",
+    "text": "Wear proper clothing. Avoid loose fabrics. Keep hands and face away from burning fireworks. Never re-ignite a dud."
+  },
+  {
+    "icon": "🔇",
+    "title": "Hearing Protection",
+    "text": "Use earplugs for high-noise fireworks. Protect children's ears from loud bursts."
+  },
+  {
+    "icon": "📢",
+    "title": "Legal Compliance",
+    "text": "Check local laws and regulations before purchasing and using fireworks. Follow local timing and area restrictions."
+  },
+  {
+    "icon": "💨",
+    "title": "Wind Conditions",
+    "text": "Avoid using fireworks in strong winds. Sparks can travel unpredictably in windy conditions."
+  },
+  {
+    "icon": "🌙",
+    "title": "Daytime Safety",
+    "text": "Use fireworks in open areas away from buildings, trees, and dry grass. Daytime displays are generally safer."
+  }
+]
