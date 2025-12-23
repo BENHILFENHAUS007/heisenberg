@@ -1,115 +1,96 @@
-﻿# Heisenberg — Product Showcase
+# Heisenberg — Product Showcase
 
-Modern, responsive product showcase built with React, TypeScript and Vite. This repository is a JSON-driven catalog (no checkout), with an enquiry flow via WhatsApp and admin-editable content under `src/data/`.
+A modern, responsive product showcase built with React, TypeScript, and Vite. Designed for display-only catalogs with a WhatsApp enquiry flow, JSON-driven content, and optional PWA support. Deploys to GitHub Pages via GitHub Actions.
 
-Live demo: https://benhilfenhaus007.github.io/heisenberg/
+## Live site
+Production:
+https://benhilfenhaus007.github.io/heisenberg/
 
----
+## Key features
+- Display-only catalog (no prices, no cart)
+- WhatsApp-only enquiry flow
+- JSON-driven content (config, themes, products, FAQ, safety, gallery)
+- Festival auto-themes (e.g., Diwali, Christmas)
+- Search, filters, sort, and shortlist (favorites)
+- Mobile-first responsive design
+- Framer Motion animations and optional Lottie
+- PWA-ready (manifest + service worker)
+- Automatic deployment to GitHub Pages via GitHub Actions
 
-## Quick Start
+## Tech stack
+- React 18, TypeScript
+- Vite 5
+- React Router (HashRouter)
+- Tailwind CSS
+- Framer Motion, Lottie (optional)
+- Lucide React icons
+- Hosted on GitHub Pages; CI via GitHub Actions
 
-Requirements: Node 18+ and npm (or pnpm/yarn).
+## Project layout (high level)
+```
+heisenberg/
+├── public/
+│   ├── manifest.json
+│   └── assets/
+├── src/
+│   ├── data/           # JSON config (edit here)
+│   ├── components/     # layout and UI components
+│   ├── hooks/
+│   ├── pages/
+│   ├── App.tsx
+│   └── main.tsx
+├── .github/workflows/  # CI for deployment
+├── dist/               # build output
+├── index.html
+├── package.json
+├── vite.config.ts
+├── tailwind.config.js
+└── tsconfig.json
+```
 
+## JSON-driven content
+Edit content and configuration under `src/data/`:
+- `config.json` — site metadata, WhatsApp, GA4, PWA
+- `themes.json` — theme rules and festival ranges
+- `categories.json` — categories and icons
+- `products.json` — product catalog
+- `faq.json`, `safety.json`, `gallery.json`
+
+Typical flow:
+1. Edit JSON in `src/data/`.
+2. Commit and push to `main`.
+3. Wait for GitHub Actions to deploy (~2–3 minutes).
+4. Hard-refresh the site (Ctrl+Shift+R) after deployment.
+
+## Development
+Install and run locally:
 ```bash
-# install
-npm install
-
-# start dev server (http://localhost:3000)
-npm run dev
-
-# build for production
+npm install --legacy-peer-deps
+npm run dev      # http://localhost:3000
 npm run build
-
-# preview production build
-npm run preview
+npm run preview  # preview production build (http://localhost:4173)
 ```
 
----
+## Deployment
+Automatic (recommended):
+- Push to `main`. GitHub Actions builds and deploys to GitHub Pages.
 
-## Edit site content
+Manual (fallback):
+- Build (`npm run build`) and deploy `dist/` to `gh-pages` branch.
 
-All site content is JSON-driven. For content changes (products, FAQ, themes, gallery), edit files in `src/data/`:
+## Vite configuration note
+`vite.config.ts` sets base to `/heisenberg/` so assets load correctly on GitHub Pages. Update `base` if you rename the repository.
 
-- `src/data/config.json` — site metadata, WhatsApp number, GA4 id, branches
-- `src/data/products.json` — product catalog (ids, names, tags, descriptions)
-- `src/data/categories.json` — category list and icons
-- `src/data/themes.json` — themes and festival date ranges
-- `src/data/faq.json`, `safety.json`, `gallery.json` — page content
-
-After editing:
-
-1. Commit and push to `main`.
-2. GitHub Actions will build and deploy automatically (see Deploy section).
-
----
-
-## Development notes
-
-- Framework: React 18 + TypeScript
-- Bundler: Vite
-- Styling: Tailwind CSS
-- Animations: Framer Motion
-- Routing: HashRouter (for GitHub Pages)
-
-Project entry points: `src/main.tsx` and `src/App.tsx`.
-
-High-level structure:
-
-```
-src/
-  data/        # JSON content editable by admins
-  components/  # UI and layout components
-  hooks/       # custom hooks
-  pages/       # route pages
-  main.tsx
-```
-
----
-
-## Build & Deployment
-
-This project supports automatic deployment to GitHub Pages via GitHub Actions. The `.github/workflows/deploy.yml` workflow builds the app and publishes the `dist/` output.
-
-If you prefer manual deployment, a helper script `deploy.sh` (at repo root) can push `dist/` to the `gh-pages` branch.
-
-Notes:
-
-- Ensure `vite.config.ts` has the correct `base` setting (e.g. `/heisenberg/`) when serving from a repository subpath.
-- The site is a PWA (see `public/manifest.json` and `service-worker.js`).
-
----
-
-## Troubleshooting
-
-- Blank screen / 404s: check `base` in `vite.config.ts` and ensure assets are served from the correct path.
-- WhatsApp links: configured via `src/data/config.json` — verify the number format.
-- Build failures: run `npm run build` locally to see errors; check Node/npm versions.
-
----
+## Post-deploy checklist
+- Home loads without a blank screen
+- Navigation works across pages
+- No 404 errors for JS/CSS
+- Search, filters, shortlist function as expected
+- WhatsApp buttons open correct number
+- Current theme/date-based styles apply
 
 ## Contributing
-
-Small fixes, data updates, and documentation improvements are welcome. For larger changes, open an issue first so we can discuss scope.
-
-When contributing:
-
-1. Fork the repo and create a feature branch.
-2. Make changes and keep JSON edits minimal and validated.
-3. Run `npm run build` and verify locally.
-4. Open a pull request with a clear description.
-
----
+Edits to content are typically changes to `src/data/*.json`. For code changes, open a PR with clear description and local verification.
 
 ## License
-
-MIT — free to reuse and adapt.
-
----
-
-If you want, I can also:
-
-- add badges (build/deploy) and a short screenshot
-- create a small CONTRIBUTING.md
-- add a GitHub Action status badge pointing to the workflow
-
-File updated: `README.md`
+MIT
