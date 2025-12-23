@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
 
   // Required for GitHub Pages
-  base: '/tk-fireworks-showcase/',
+  base: '/heisenberg/',
 
   // Build optimizations to prevent timeout
   build: {
