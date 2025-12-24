@@ -95,7 +95,7 @@ export function Home({ theme }: { theme?: any }) {
         className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700 relative`}
       >
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
-          {/* Logo - 276px */}
+          {/* Logo - 276px FIXED */}
           <motion.div
             className="flex justify-center mb-8"
             initial={{ scale: 0, opacity: 0 }}
@@ -115,22 +115,22 @@ export function Home({ theme }: { theme?: any }) {
             />
           </motion.div>
 
-          {/* Title - REDUCED BY 7%, using bold stylish font, fits in one line */}
+          {/* Title - WHITE RIGHTEOUS FONT, SIZE FIXED */}
           <motion.h1
-            className="font-black tracking-wider text-white mb-4 whitespace-nowrap overflow-hidden"
-            style={{
+            className="font-black tracking-wider mb-4 whitespace-nowrap overflow-hidden"
+            style={{ 
               fontSize: 'clamp(2.5rem, 10vw, 11rem)',
-              fontFamily: '"Bebas Neue", "Arial Black", sans-serif',
+              fontFamily: '"Righteous", "Arial Black", sans-serif',
               letterSpacing: '0.15em',
-              textShadow: '0 0 40px rgba(255, 150, 50, 0.6), 0 4px 20px rgba(0, 0, 0, 0.8)',
+              color: '#FFFFFF',
+              textShadow: '0 0 40px rgba(255, 255, 255, 0.3), 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 150, 50, 0.4)',
+              WebkitTextStroke: '1px rgba(255, 255, 255, 0.1)',
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <span className="bg-gradient-to-b from-white via-orange-100 to-orange-300 bg-clip-text text-transparent">
-              TK FIREWORKS
-            </span>
+            TK FIREWORKS
           </motion.h1>
 
           {/* Dynamic headline */}
@@ -152,7 +152,7 @@ export function Home({ theme }: { theme?: any }) {
             {activeMood.sub}
           </motion.p>
 
-          {/* CTA - FIXED HYPERLINKS */}
+          {/* CTA */}
           <motion.div
             className="flex flex-col sm:flex-row justify-center gap-4 mb-14"
             initial={{ opacity: 0, y: 20 }}
@@ -211,7 +211,7 @@ export function Home({ theme }: { theme?: any }) {
         </div>
       </section>
 
-      {/* Video Showcase Section - INCREASED VIDEO SIZE */}
+      {/* Video Showcase Section */}
       <section className={`relative py-24 px-6 bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}>
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -229,7 +229,6 @@ export function Home({ theme }: { theme?: any }) {
             </p>
           </motion.div>
 
-          {/* Featured Video - INCREASED SIZE */}
           <div className="mb-16 max-w-5xl mx-auto">
             <YouTubeEmbed
               videoId="6stlCkUDG_s"
@@ -238,7 +237,6 @@ export function Home({ theme }: { theme?: any }) {
             />
           </div>
 
-          {/* Product Showcase Images - LINKED TO CATALOG */}
           <motion.div
             className="mt-16 grid md:grid-cols-2 gap-8"
             initial={{ opacity: 0, y: 30 }}
