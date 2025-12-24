@@ -5,9 +5,10 @@ import configData from '../data/config.json';
 
 interface ContactProps {
   theme: any;
+  activeMood?: { bg: string };
 }
 
-export const Contact: React.FC<ContactProps> = ({ theme }) => {
+export const Contact: React.FC<ContactProps> = ({ theme, activeMood }) => {
   const handleWhatsApp = () => {
     window.open(
       `https://wa.me/${configData.whatsappNumber}`,
@@ -16,8 +17,8 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
   };
 
   return (
-    <div className="min-h-screen pb-20 relative">
-      {/* Fire Particles Background - Only on Contact page */}
+    <div className={`min-h-screen pb-20 relative bg-gradient-to-br ${activeMood?.bg || 'from-gray-900 via-black to-gray-900'} transition-colors duration-700`}>
+      {/* Fire Particles Background - ENABLED */}
       <FireParticlesBackground enabled={true} />
 
       <motion.div
