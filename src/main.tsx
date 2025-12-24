@@ -1,4 +1,5 @@
 import React from 'react'
+import "./styles/fire-animations.css";
 import ReactDOM from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 
@@ -18,3 +19,4 @@ ReactDOM.createRoot(rootElement).render(
     </HashRouter>
   </React.StrictMode>
 )
+
