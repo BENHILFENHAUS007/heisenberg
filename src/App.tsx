@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useFireCursorPro } from './hooks/FireCursorPro';
-import { FireworksBackground } from './components/effects/FireworksBackground';
+import { AuraBackground } from './components/effects/AuraBackground';
 
 import { useTheme } from './hooks/useTheme';
 import { useFavorites } from './hooks/useFavorites';
@@ -35,16 +35,9 @@ function App() {
   const theme = currentTheme as any;
 
   return (
-    <div
-      className="text-white min-h-screen relative"
-      style={{
-        background:
-          theme?.background ??
-          'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
-      }}
-    >
-      {/* Premium Fireworks Background Effect */}
-      <FireworksBackground />
+    <div className="text-white min-h-screen relative bg-black">
+      {/* Premium Interactive Aura Background Effect */}
+      <AuraBackground />
 
       {/* Floating WhatsApp */}
       <FloatingWhatsAppButton />
@@ -57,7 +50,7 @@ function App() {
         fallback={
           <div className="min-h-screen flex items-center justify-center relative z-10">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-orange-500 mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500 mx-auto mb-4"></div>
               <p className="text-gray-400">Loading...</p>
             </div>
           </div>

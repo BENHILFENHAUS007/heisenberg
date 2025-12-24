@@ -18,28 +18,28 @@ const moods: Mood[] = [
     label: '✨ Calm',
     headline: 'Soft sparks. Peaceful vibes.',
     sub: 'Perfect for home & family celebrations',
-    bg: 'from-emerald-950 via-green-900 to-black',
+    bg: 'from-emerald-950/40 via-green-900/30 to-transparent',
   },
   {
     id: 'festive',
     label: '🎉 Festive',
-    headline: 'Celebrate like it’s Diwali night',
+    headline: 'Celebrate like it's Diwali night',
     sub: 'Balanced joy. Crowd-friendly fireworks',
-    bg: 'from-orange-900 via-amber-800 to-black',
+    bg: 'from-orange-900/40 via-amber-800/30 to-transparent',
   },
   {
     id: 'loud',
     label: '💥 Loud',
     headline: 'Make the sky remember you',
     sub: 'High-energy display for big moments',
-    bg: 'from-red-900 via-rose-800 to-black',
+    bg: 'from-red-900/40 via-rose-800/30 to-transparent',
   },
   {
     id: 'kids',
     label: '👶 Kids',
     headline: 'Tiny hands. Big smiles.',
     sub: 'Low-noise, safe & joyful effects',
-    bg: 'from-teal-900 via-cyan-800 to-black',
+    bg: 'from-teal-900/40 via-cyan-800/30 to-transparent',
   },
 ];
 
@@ -98,13 +98,23 @@ export function Home({ theme }: { theme?: any }) {
           {/* Logo */}
           <motion.div
             className="flex justify-center mb-6"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', duration: 0.8 }}
           >
-            <div className="h-20 w-20 rounded-full bg-orange-500/20 flex items-center justify-center text-4xl">
-              🔥
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="TK Fireworks Logo"
+              className="h-24 w-auto object-contain drop-shadow-2xl"
+              onError={(e) => {
+                // Fallback if logo doesn't exist
+                e.currentTarget.style.display = 'none';
+                const fallback = document.createElement('div');
+                fallback.className = 'h-20 w-20 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-4xl shadow-2xl';
+                fallback.textContent = '🔥';
+                e.currentTarget.parentNode?.appendChild(fallback);
+              }}
+            />
           </motion.div>
 
           {/* Title */}
@@ -119,7 +129,7 @@ export function Home({ theme }: { theme?: any }) {
 
           {/* Dynamic headline */}
           <motion.p
-            className="text-xl md:text-2xl font-semibold text-orange-400 mb-2 transition-all duration-500"
+            className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent mb-2 transition-all duration-500"
             key={activeMood.headline}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -145,7 +155,7 @@ export function Home({ theme }: { theme?: any }) {
           >
             <Link
               to="/catalog"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold transition-all duration-200 hover:scale-[1.03] shadow-lg hover:shadow-orange-500/50"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-400 hover:to-pink-400 text-white font-bold transition-all duration-200 hover:scale-[1.03] shadow-lg hover:shadow-orange-500/50"
             >
               Explore Catalog →
             </Link>
@@ -175,7 +185,7 @@ export function Home({ theme }: { theme?: any }) {
                   ${
                     activeMood.id === mood.id
                       ? 'bg-white text-black shadow-lg'
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      : 'bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm'
                   }`}
               >
                 {mood.label}
@@ -196,7 +206,7 @@ export function Home({ theme }: { theme?: any }) {
       </section>
 
       {/* Video Showcase Section */}
-      <section className="relative py-24 px-6 bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="relative py-24 px-6 bg-black/40 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-12"
@@ -205,7 +215,7 @@ export function Home({ theme }: { theme?: any }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
               Experience the Magic
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -228,13 +238,13 @@ export function Home({ theme }: { theme?: any }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
               <img
                 src="/images/little-peacock.jpg"
                 alt="Little Peacock - Premium Crackers"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-6 transition-opacity duration-300">
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-2">
                     Little Peacock Collection
@@ -244,13 +254,13 @@ export function Home({ theme }: { theme?: any }) {
               </div>
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
               <img
-                src="/images/coming-soon.jpg"
+                src="/images/coming soon.png"
                 alt="Coming Soon - New Products"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-blue-900/30 to-transparent flex items-end p-6 transition-opacity duration-300">
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-2">
                     More Exciting Products
@@ -264,7 +274,7 @@ export function Home({ theme }: { theme?: any }) {
       </section>
 
       {/* Features Section */}
-      <section className="relative py-24 px-6 bg-gradient-to-b from-black to-gray-900">
+      <section className="relative py-24 px-6 bg-black/20 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -272,7 +282,7 @@ export function Home({ theme }: { theme?: any }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
               Why Choose TK Fireworks?
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
@@ -284,13 +294,13 @@ export function Home({ theme }: { theme?: any }) {
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-2"
+                className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 hover:bg-white/10"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                <feature.icon className="w-12 h-12 text-orange-500 mb-4" />
+                <feature.icon className="w-12 h-12 text-purple-400 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-3">
                   {feature.title}
                 </h3>
@@ -302,7 +312,7 @@ export function Home({ theme }: { theme?: any }) {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 px-6 bg-gradient-to-br from-orange-900 via-red-900 to-black">
+      <section className="relative py-24 px-6 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -318,7 +328,7 @@ export function Home({ theme }: { theme?: any }) {
             </p>
             <Link
               to="/catalog"
-              className="inline-flex items-center justify-center px-10 py-5 rounded-xl bg-white text-black font-bold text-lg transition-all duration-200 hover:scale-[1.05] shadow-2xl hover:shadow-white/50"
+              className="inline-flex items-center justify-center px-10 py-5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-bold text-lg transition-all duration-200 hover:scale-[1.05] shadow-2xl hover:shadow-purple-500/50"
             >
               View Full Catalog →
             </Link>
