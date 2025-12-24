@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { Award, Users, Heart, Target } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { FireParticlesBackground } from '../components/effects/FireParticlesBackground';
 
 interface AboutProps {
   theme: any;
+  activeMood?: { bg: string };
 }
 
-export const About: React.FC<AboutProps> = ({ theme }) => {
+export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
   const values = [
     {
       icon: Award,
@@ -31,8 +33,8 @@ export const About: React.FC<AboutProps> = ({ theme }) => {
   ];
 
   return (
-    <div className="min-h-screen pb-20 relative">
-      {/* Fire Particles Background - Only on About page */}
+    <div className={`min-h-screen pb-20 relative bg-gradient-to-br ${activeMood?.bg || 'from-gray-900 via-black to-gray-900'} transition-colors duration-700`}>
+      {/* Fire Particles Background - ENABLED */}
       <FireParticlesBackground enabled={true} />
 
       <motion.div
@@ -102,14 +104,13 @@ export const About: React.FC<AboutProps> = ({ theme }) => {
           <p className="text-gray-300 mb-6">
             Experience our wide selection of fireworks in person. Our knowledgeable staff is ready to help you find the perfect products for your celebration.
           </p>
-          <motion.a
-            href="/contact"
-            whileHover={{ scale: 1.05 }}
-            className="inline-block px-8 py-3 rounded-lg font-semibold text-white transition-all"
+          <Link
+            to="/contact"
+            className="inline-block px-8 py-3 rounded-lg font-semibold text-white transition-all hover:scale-105"
             style={{ backgroundColor: theme.primaryColor }}
           >
             Get in Touch
-          </motion.a>
+          </Link>
         </motion.div>
       </motion.div>
     </div>

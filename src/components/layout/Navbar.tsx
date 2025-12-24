@@ -14,7 +14,7 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/catalog', label: 'Catalog' },
+    { path: '/catalog', label: 'Products' },
     { path: '/gallery', label: 'Gallery' },
     { path: '/faq', label: 'FAQ' },
     { path: '/safety', label: 'Safety' },
@@ -61,7 +61,7 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
                 }`}
               >
                 {link.label}
-              </Link>
+              </link>
             ))}
           </div>
 

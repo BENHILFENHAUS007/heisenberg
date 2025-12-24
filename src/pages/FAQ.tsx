@@ -6,9 +6,10 @@ import faqData from '../data/faq.json';
 
 interface FAQProps {
   theme: any;
+  activeMood?: { bg: string };
 }
 
-export const FAQ: React.FC<FAQProps> = ({ theme }) => {
+export const FAQ: React.FC<FAQProps> = ({ theme, activeMood }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -16,8 +17,8 @@ export const FAQ: React.FC<FAQProps> = ({ theme }) => {
   };
 
   return (
-    <div className="min-h-screen pb-20 relative">
-      {/* Fire Particles Background - Only on FAQ page */}
+    <div className={`min-h-screen pb-20 relative bg-gradient-to-br ${activeMood?.bg || 'from-gray-900 via-black to-gray-900'} transition-colors duration-700`}>
+      {/* Fire Particles Background - ENABLED */}
       <FireParticlesBackground enabled={true} />
 
       <motion.div

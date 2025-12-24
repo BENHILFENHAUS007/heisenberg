@@ -90,14 +90,12 @@ export function Home({ theme }: { theme?: any }) {
 
   return (
     <>
-      {/* NO COMET/ASTEROID INTRO - REMOVED */}
-
-      {/* Hero Section */}
+      {/* Hero Section with theme-based background */}
       <section
         className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700 relative`}
       >
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
-          {/* Logo - INCREASED BY 15% (240px → 276px) */}
+          {/* Logo - 276px */}
           <motion.div
             className="flex justify-center mb-8"
             initial={{ scale: 0, opacity: 0 }}
@@ -117,15 +115,22 @@ export function Home({ theme }: { theme?: any }) {
             />
           </motion.div>
 
-          {/* Title - INCREASED SIZE */}
+          {/* Title - REDUCED BY 7%, using bold stylish font, fits in one line */}
           <motion.h1
-            className="font-black tracking-tight text-white mb-4"
-            style={{ fontSize: 'clamp(3rem, 12vw, 14rem)' }}
+            className="font-black tracking-wider text-white mb-4 whitespace-nowrap overflow-hidden"
+            style={{ 
+              fontSize: 'clamp(2.5rem, 10vw, 11rem)',
+              fontFamily: '"Bebas Neue", "Arial Black", sans-serif',
+              letterSpacing: '0.15em',
+              textShadow: '0 0 40px rgba(255, 150, 50, 0.6), 0 4px 20px rgba(0, 0, 0, 0.8)',
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            TK FIREWORKS
+            <span className="bg-gradient-to-b from-white via-orange-100 to-orange-300 bg-clip-text text-transparent">
+              TK FIREWORKS
+            </span>
           </motion.h1>
 
           {/* Dynamic headline */}
@@ -147,7 +152,7 @@ export function Home({ theme }: { theme?: any }) {
             {activeMood.sub}
           </motion.p>
 
-          {/* CTA */}
+          {/* CTA - FIXED HYPERLINKS */}
           <motion.div
             className="flex flex-col sm:flex-row justify-center gap-4 mb-14"
             initial={{ opacity: 0, y: 20 }}
@@ -158,7 +163,7 @@ export function Home({ theme }: { theme?: any }) {
               to="/catalog"
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-400 hover:to-pink-400 text-white font-bold transition-all duration-200 hover:scale-[1.03] shadow-lg hover:shadow-orange-500/50"
             >
-              Explore Catalog →
+              Explore Products →
             </Link>
 
             <a
@@ -168,7 +173,7 @@ export function Home({ theme }: { theme?: any }) {
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black font-semibold transition-all duration-200 hover:scale-[1.03]"
             >
               WhatsApp Us
-            </a>
+            </Link>
           </motion.div>
 
           {/* Mood selector */}
@@ -206,9 +211,9 @@ export function Home({ theme }: { theme?: any }) {
         </div>
       </section>
 
-      {/* Video Showcase Section */}
-      <section className="relative py-24 px-6 bg-black/40 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto">
+      {/* Video Showcase Section - INCREASED VIDEO SIZE */}
+      <section className={`relative py-24 px-6 bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}>
+        <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -224,16 +229,16 @@ export function Home({ theme }: { theme?: any }) {
             </p>
           </motion.div>
 
-          {/* Featured Video */}
-          <div className="mb-16">
+          {/* Featured Video - INCREASED SIZE */}
+          <div className="mb-16 max-w-5xl mx-auto">
             <YouTubeEmbed
               videoId="6stlCkUDG_s"
               title="TK Fireworks - Premium Collection Showcase"
-              className="w-full"
+              className="w-full aspect-video"
             />
           </div>
 
-          {/* Product Showcase Images */}
+          {/* Product Showcase Images - LINKED TO CATALOG */}
           <motion.div
             className="mt-16 grid md:grid-cols-2 gap-8"
             initial={{ opacity: 0, y: 30 }}
@@ -241,7 +246,10 @@ export function Home({ theme }: { theme?: any }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-purple-900/20 to-pink-900/20 min-h-[400px]">
+            <Link
+              to="/catalog"
+              className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-purple-900/20 to-pink-900/20 min-h-[400px] block transition-transform duration-300 hover:scale-[1.02]"
+            >
               <img
                 src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/little-peacock.jpg"
                 alt="Little Peacock - Premium Crackers"
@@ -260,9 +268,12 @@ export function Home({ theme }: { theme?: any }) {
                   <p className="text-gray-300">You can touch the fire for fun</p>
                 </div>
               </div>
-            </div>
+            </Link>
 
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-blue-900/20 to-cyan-900/20 min-h-[400px]">
+            <Link
+              to="/catalog"
+              className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-blue-900/20 to-cyan-900/20 min-h-[400px] block transition-transform duration-300 hover:scale-[1.02]"
+            >
               <img
                 src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/coming%20soon.png"
                 alt="Coming Soon - New Products"
@@ -281,13 +292,13 @@ export function Home({ theme }: { theme?: any }) {
                   <p className="text-gray-300">Stay tuned for new launches!</p>
                 </div>
               </div>
-            </div>
+            </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="relative py-24 px-6 bg-black/20 backdrop-blur-sm">
+      <section className={`relative py-24 px-6 bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -325,7 +336,7 @@ export function Home({ theme }: { theme?: any }) {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-24 px-6 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-transparent">
+      <section className={`relative py-24 px-6 bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -343,7 +354,7 @@ export function Home({ theme }: { theme?: any }) {
               to="/catalog"
               className="inline-flex items-center justify-center px-10 py-5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-bold text-lg transition-all duration-200 hover:scale-[1.05] shadow-2xl hover:shadow-purple-500/50"
             >
-              View Full Catalog →
+              View Full Products →
             </Link>
           </motion.div>
         </div>
