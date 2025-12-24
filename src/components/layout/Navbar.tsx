@@ -61,7 +61,7 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
                 }`}
               >
                 {link.label}
-              </link>
+              </Link>
             ))}
           </div>
 
