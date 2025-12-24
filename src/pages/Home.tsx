@@ -90,7 +90,7 @@ export function Home({ theme }: { theme?: any }) {
 
   return (
     <>
-      {/* Hero Section with theme-based background */}
+      {/* Hero Section */}
       <section
         className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700 relative`}
       >
@@ -103,23 +103,22 @@ export function Home({ theme }: { theme?: any }) {
             transition={{ type: 'spring', duration: 0.8 }}
           >
             <img
-              src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
+              src="/heisenberg/images/logo.png"
               alt="TK Fireworks Logo"
               className="w-auto object-contain drop-shadow-2xl"
               style={{ height: '276px' }}
               loading="eager"
               onError={(e) => {
-                console.error('Logo failed to load');
-                e.currentTarget.style.display = 'none';
+                e.currentTarget.src = 'https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png';
               }}
             />
           </motion.div>
 
-          {/* Title - WHITE RIGHTEOUS FONT, SIZE FIXED */}
+          {/* Title - WHITE RIGHTEOUS FONT, FIXED "TK FIREWORKS" */}
           <motion.h1
-            className="font-black tracking-wider mb-4 whitespace-nowrap overflow-hidden"
+            className="font-black tracking-wider mb-4"
             style={{ 
-              fontSize: 'clamp(2.5rem, 10vw, 11rem)',
+              fontSize: 'clamp(2.5rem, 8vw, 8rem)',
               fontFamily: '"Righteous", "Arial Black", sans-serif',
               letterSpacing: '0.15em',
               color: '#FFFFFF',
@@ -198,163 +197,39 @@ export function Home({ theme }: { theme?: any }) {
               </button>
             ))}
           </motion.div>
-
-          {/* Scroll hint */}
-          <motion.div
-            className="mt-24 text-xs text-gray-400 animate-pulse"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 2, repeat: Infinity }}
-          >
-            ↓ Scroll to explore featured fireworks
-          </motion.div>
         </div>
       </section>
 
-      {/* Video Showcase Section */}
-      <section className={`relative py-24 px-6 bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}>
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
-              Experience the Magic
-            </h2>
-            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Watch our premium fireworks collection in action. Quality you can see, excitement you can feel.
-            </p>
-          </motion.div>
-
-          <div className="mb-16 max-w-5xl mx-auto">
-            <YouTubeEmbed
-              videoId="6stlCkUDG_s"
-              title="TK Fireworks - Premium Collection Showcase"
-              className="w-full aspect-video"
-            />
-          </div>
-
-          <motion.div
-            className="mt-16 grid md:grid-cols-2 gap-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Link
-              to="/catalog"
-              className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-purple-900/20 to-pink-900/20 min-h-[400px] block transition-transform duration-300 hover:scale-[1.02]"
-            >
-              <img
-                src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/little-peacock.jpg"
-                alt="Little Peacock - Premium Crackers"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="eager"
-                onError={(e) => {
-                  console.error('Little Peacock image failed');
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-6 transition-opacity duration-300">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    Little Peacock Collection
-                  </h3>
-                  <p className="text-gray-300">You can touch the fire for fun</p>
-                </div>
-              </div>
-            </Link>
-
-            <Link
-              to="/catalog"
-              className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-blue-900/20 to-cyan-900/20 min-h-[400px] block transition-transform duration-300 hover:scale-[1.02]"
-            >
-              <img
-                src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/coming%20soon.png"
-                alt="Coming Soon - New Products"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="eager"
-                onError={(e) => {
-                  console.error('Coming Soon image failed');
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-blue-900/30 to-transparent flex items-end p-6 transition-opacity duration-300">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    More Exciting Products
-                  </h3>
-                  <p className="text-gray-300">Stay tuned for new launches!</p>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
+      {/* Video Section - REMOVED HEAVY CONTENT FOR PERFORMANCE */}
+      <section className="relative py-16 px-6 bg-black/50">
+        <div className="max-w-5xl mx-auto">
+          <YouTubeEmbed
+            videoId="6stlCkUDG_s"
+            title="TK Fireworks Showcase"
+            className="w-full aspect-video"
+          />
         </div>
       </section>
 
       {/* Features Section */}
-      <section className={`relative py-24 px-6 bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}>
+      <section className="relative py-16 px-6 bg-gradient-to-br from-gray-900 via-black to-gray-900">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-              Why Choose TK Fireworks?
-            </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              We are committed to delivering quality, safety, and unforgettable celebrations.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
-                className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 shadow-xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 hover:bg-white/10"
-                initial={{ opacity: 0, y: 30 }}
+                className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ delay: idx * 0.1 }}
               >
-                <feature.icon className="w-12 h-12 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-400">{feature.desc}</p>
+                <feature.icon className="w-10 h-10 text-orange-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-400 text-sm">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className={`relative py-24 px-6 bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}>
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Light Up Your Celebration?
-            </h2>
-            <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
-              Browse our complete catalog and find the perfect fireworks for your special occasion.
-            </p>
-            <Link
-              to="/catalog"
-              className="inline-flex items-center justify-center px-10 py-5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-bold text-lg transition-all duration-200 hover:scale-[1.05] shadow-2xl hover:shadow-purple-500/50"
-            >
-              View Full Products →
-            </Link>
-          </motion.div>
         </div>
       </section>
     </>
