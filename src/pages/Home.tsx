@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { YouTubeEmbed } from '../components/media/YouTubeEmbed';
-import { AsteroidHero } from '../components/hero/AsteroidHero';
+import { CometHero } from '../components/hero/CometHero';
 import { Sparkles, Rocket, Star, Award } from 'lucide-react';
 
 type Mood = {
@@ -92,17 +92,17 @@ export function Home({ theme }: { theme?: any }) {
 
   return (
     <>
-      {/* Epic Asteroid Hero Animation - 3 seconds */}
-      {showHero && <AsteroidHero onComplete={() => setShowHero(false)} />}
+      {/* Premium HD Comet Hero - 5 seconds */}
+      {showHero && <CometHero onComplete={() => setShowHero(false)} />}
 
       {/* Hero Section */}
       <section
         className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700 relative`}
       >
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
-          {/* Logo - BIG SIZE with absolute path */}
+          {/* Logo - MASSIVE (240px) */}
           <motion.div
-            className="flex justify-center mb-6"
+            className="flex justify-center mb-8"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', duration: 0.8 }}
@@ -110,29 +110,19 @@ export function Home({ theme }: { theme?: any }) {
             <img
               src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
               alt="TK Fireworks Logo"
-              className="h-40 w-auto object-contain drop-shadow-2xl"
+              className="h-60 w-auto object-contain drop-shadow-2xl"
               loading="eager"
               onError={(e) => {
-                console.error('Logo failed to load from GitHub');
-                // Try local path
-                e.currentTarget.src = '/images/logo.png';
-                e.currentTarget.onerror = () => {
-                  console.error('Logo failed to load from local path');
-                  e.currentTarget.style.display = 'none';
-                  const fallback = document.createElement('div');
-                  fallback.className = 'h-32 w-32 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-6xl shadow-2xl animate-pulse';
-                  fallback.innerHTML = '<span style="font-size: 80px;">🔥</span>';
-                  if (e.currentTarget.parentNode) {
-                    e.currentTarget.parentNode.appendChild(fallback);
-                  }
-                };
+                console.error('Logo failed to load');
+                e.currentTarget.style.display = 'none';
               }}
             />
           </motion.div>
 
-          {/* Title */}
+          {/* Title - MASSIVE */}
           <motion.h1
-            className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4"
+            className="font-extrabold tracking-tight text-white mb-4"
+            style={{ fontSize: 'clamp(2.5rem, 10vw, 6rem)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -245,7 +235,7 @@ export function Home({ theme }: { theme?: any }) {
             />
           </div>
 
-          {/* Product Showcase Images - ABSOLUTE PATHS */}
+          {/* Product Showcase Images */}
           <motion.div
             className="mt-16 grid md:grid-cols-2 gap-8"
             initial={{ opacity: 0, y: 30 }}
@@ -260,12 +250,8 @@ export function Home({ theme }: { theme?: any }) {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="eager"
                 onError={(e) => {
-                  console.error('Little Peacock image failed from GitHub, trying local...');
-                  e.currentTarget.src = '/images/little-peacock.jpg';
-                  e.currentTarget.onerror = () => {
-                    console.error('Little Peacock image failed from local too');
-                    e.currentTarget.style.display = 'none';
-                  };
+                  console.error('Little Peacock image failed');
+                  e.currentTarget.style.display = 'none';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-6 transition-opacity duration-300">
@@ -285,12 +271,8 @@ export function Home({ theme }: { theme?: any }) {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="eager"
                 onError={(e) => {
-                  console.error('Coming Soon image failed from GitHub, trying local...');
-                  e.currentTarget.src = '/images/coming soon.png';
-                  e.currentTarget.onerror = () => {
-                    console.error('Coming Soon image failed from local too');
-                    e.currentTarget.style.display = 'none';
-                  };
+                  console.error('Coming Soon image failed');
+                  e.currentTarget.style.display = 'none';
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-blue-900/30 to-transparent flex items-end p-6 transition-opacity duration-300">
