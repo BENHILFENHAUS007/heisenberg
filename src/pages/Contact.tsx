@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
+import { FireParticlesBackground } from '../components/effects/FireParticlesBackground';
 import configData from '../data/config.json';
 
 interface ContactProps {
@@ -15,11 +16,14 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
   };
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 relative">
+      {/* Fire Particles Background - Only on Contact page */}
+      <FireParticlesBackground enabled={true} />
+
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-4xl mx-auto px-4 py-12"
+        className="max-w-4xl mx-auto px-4 py-12 relative z-10"
       >
         <h1 className="text-5xl font-black mb-8 glow-text">Contact Us</h1>
 

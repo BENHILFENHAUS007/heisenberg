@@ -1,82 +1,115 @@
 import { motion } from 'framer-motion';
-import configData from '../data/config.json';
+import { Award, Users, Heart, Target } from 'lucide-react';
+import { FireParticlesBackground } from '../components/effects/FireParticlesBackground';
 
 interface AboutProps {
   theme: any;
 }
 
 export const About: React.FC<AboutProps> = ({ theme }) => {
+  const values = [
+    {
+      icon: Award,
+      title: 'Quality First',
+      description: 'We source only the finest fireworks from certified manufacturers'
+    },
+    {
+      icon: Users,
+      title: 'Customer Focus',
+      description: 'Your satisfaction and safety are our top priorities'
+    },
+    {
+      icon: Heart,
+      title: 'Passion',
+      description: 'We love bringing joy and excitement to every celebration'
+    },
+    {
+      icon: Target,
+      title: 'Reliability',
+      description: 'Trusted by thousands of customers for their special moments'
+    }
+  ];
+
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 relative">
+      {/* Fire Particles Background - Only on About page */}
+      <FireParticlesBackground enabled={true} />
+
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-4xl mx-auto px-4 py-12"
+        className="max-w-6xl mx-auto px-4 py-12 relative z-10"
       >
-        <h1 className="text-5xl font-black mb-8 glow-text">About {configData.siteName}</h1>
+        <h1 className="text-5xl font-black mb-8 glow-text">About TK Fireworks</h1>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-6"
+          >
+            <h2 className="text-3xl font-bold" style={{ color: theme.primaryColor }}>Our Story</h2>
+            <p className="text-gray-300 leading-relaxed">
+              TK Fireworks has been lighting up celebrations across India for years. What started as a small family business has grown into one of the most trusted names in the fireworks industry.
+            </p>
+            <p className="text-gray-300 leading-relaxed">
+              We specialize in providing high-quality, safe, and spectacular fireworks for all occasions - from intimate family gatherings to grand festivals and corporate events.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-6"
+          >
+            <h2 className="text-3xl font-bold" style={{ color: theme.primaryColor }}>Our Mission</h2>
+            <p className="text-gray-300 leading-relaxed">
+              To make every celebration memorable by providing premium quality fireworks, exceptional customer service, and competitive pricing.
+            </p>
+            <p className="text-gray-300 leading-relaxed">
+              We are committed to safety, quality, and customer satisfaction in everything we do.
+            </p>
+          </motion.div>
+        </div>
+
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: theme.primaryColor }}>Our Values</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-effect p-6 rounded-xl text-center border hover:border-primary transition-all"
+              >
+                <value.icon size={48} className="mx-auto mb-4" style={{ color: theme.primaryColor }} />
+                <h3 className="font-bold text-xl mb-2">{value.title}</h3>
+                <p className="text-gray-400 text-sm">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="prose prose-invert max-w-none space-y-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="glass-effect p-8 rounded-xl border text-center"
+          style={{ borderColor: theme.primaryColor }}
         >
-          <div className="glass-effect p-8 rounded-xl">
-            <h2 className="text-3xl font-bold mb-4">Premium Fireworks Display</h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              {configData.siteName} is a showcase of premium fireworks products designed
-              for celebrations, festivals, and special events. Our collection features the
-              finest display-only products sourced from trusted manufacturers.
-            </p>
-          </div>
-
-          <div className="glass-effect p-8 rounded-xl">
-            <h2 className="text-3xl font-bold mb-4">Display-Only Catalog</h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              This website is a display and information platform. To inquire about products,
-              pricing, and orders, please contact us directly via WhatsApp. Our team is
-              available to assist with:
-            </p>
-            <ul className="mt-4 space-y-2 text-gray-300">
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Product Information
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Pricing & Availability
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Bulk Orders & Wholesale
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Delivery & Logistics
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Event Planning
-              </li>
-            </ul>
-          </div>
-
-          <div className="glass-effect p-8 rounded-xl">
-            <h2 className="text-3xl font-bold mb-4">Our Branches</h2>
-            <div className="space-y-4">
-              {configData.branches.map((branch) => (
-                <div key={branch.id} className="border-l-4 pl-4 py-2" style={{ borderColor: theme.primaryColor }}>
-                  <h3 className="font-bold text-lg">{branch.name}</h3>
-                  <p className="text-sm text-gray-400 mt-1">{branch.address}</p>
-                  <p className="text-sm text-gray-400">📍 {branch.landmark}</p>
-                  <p className="text-sm text-gray-400">📞 {branch.phone}</p>
-                  <a
-                    href={branch.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary-dark text-sm mt-2 inline-block"
-                  >
-                    View on Google Maps →
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
+          <h2 className="text-2xl font-bold mb-4">Visit Us Today!</h2>
+          <p className="text-gray-300 mb-6">
+            Experience our wide selection of fireworks in person. Our knowledgeable staff is ready to help you find the perfect products for your celebration.
+          </p>
+          <motion.a
+            href="/contact"
+            whileHover={{ scale: 1.05 }}
+            className="inline-block px-8 py-3 rounded-lg font-semibold text-white transition-all"
+            style={{ backgroundColor: theme.primaryColor }}
+          >
+            Get in Touch
+          </motion.a>
         </motion.div>
       </motion.div>
     </div>

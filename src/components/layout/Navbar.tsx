@@ -1,125 +1,124 @@
-import { motion } from 'framer-motion';
-import { Menu, X, ShoppingBag, Heart, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import configData from '../../data/config.json';
+import { Menu, X, Heart, ShoppingCart } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
-  theme: any;
-  favoritesCount: number;
+  theme?: any;
+  favoritesCount?: number;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ theme, favoritesCount }) => {
+export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const handleWhatsApp = () => {
-    const message = encodeURIComponent(configData.whatsappDefaultMessage);
-    window.open(`https://wa.me/${configData.whatsappNumber}?text=${message}`, '_blank');
-  };
-
-  const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Catalog', path: '/catalog' },
-    { label: 'Gallery', path: '/gallery' },
-    { label: 'FAQ', path: '/faq' },
-    { label: 'Safety', path: '/safety' },
-    { label: 'About', path: '/about' },
-    { label: 'Contact', path: '/contact' },
+  const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/catalog', label: 'Catalog' },
+    { path: '/gallery', label: 'Gallery' },
+    { path: '/faq', label: 'FAQ' },
+    { path: '/safety', label: 'Safety' },
+    { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' },
   ];
 
+  const isActive = (path: string) => location.pathname === path;
+
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="sticky top-0 z-40 bg-dark-bg/95 backdrop-blur border-b"
-      style={{ borderColor: theme.primaryColor }}
-    >
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-3xl">🔥</span>
-            <div>
-              <h1 className="font-bold text-lg glow-text">TK Fireworks</h1>
-              <p className="text-xs text-gray-400">Premium Showcase</p>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo on left side */}
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img
+              src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
+              alt="TK Fireworks"
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <div className="flex flex-col">
+              <span className="text-white font-bold text-lg leading-tight">
+                TK Fireworks
+              </span>
+              <span className="text-orange-400 text-xs leading-tight">
+                Premium Showcase
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            {navLinks.map((link) => (
               <Link
-                key={item.path}
-                to={item.path}
-                className={`px-3 py-2 rounded-lg transition-all duration-300 text-sm font-medium ${
-                  location.pathname === item.path
-                    ? 'text-white bg-dark-surface'
-                    : 'text-gray-400 hover:text-white'
+                key={link.path}
+                to={link.path}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive(link.path)
+                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/50'
+                    : 'text-gray-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
-                {item.label}
+                {link.label}
               </Link>
             ))}
           </div>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            {/* Shortlist */}
+          {/* Right side actions */}
+          <div className="flex items-center space-x-4">
+            {/* Favorites */}
             <Link
               to="/shortlist"
-              className="relative p-2 hover:bg-dark-surface rounded-lg transition-colors"
+              className="relative p-2 text-gray-300 hover:text-orange-400 transition-colors duration-200"
             >
-              <Heart size={20} />
+              <Heart className="w-5 h-5" />
               {favoritesCount > 0 && (
-                <span
-                  className="absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs flex items-center justify-center text-white font-bold"
-                  style={{ backgroundColor: theme.primaryColor }}
-                >
+                <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {favoritesCount}
                 </span>
               )}
             </Link>
 
-            {/* WhatsApp */}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              onClick={handleWhatsApp}
-              className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors font-medium text-sm"
-            >
-              <MessageCircle size={18} /> Chat
-            </motion.button>
-
-            {/* Mobile Menu Button */}
+            {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 hover:bg-dark-surface rounded-lg transition-colors"
+              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors duration-200"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
+      {/* Mobile Navigation */}
+      <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mt-4 space-y-2 pb-4"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-md"
           >
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 rounded-lg hover:bg-dark-surface transition-colors text-sm"
-              >
-                {item.label}
-              </Link>
-            ))}
+            <div className="px-4 py-4 space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isActive(link.path)
+                      ? 'bg-orange-500 text-white shadow-lg'
+                      : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </motion.div>
         )}
-      </div>
-    </motion.nav>
+      </AnimatePresence>
+    </nav>
   );
-};
+}
