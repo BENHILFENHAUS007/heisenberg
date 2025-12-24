@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { YouTubeEmbed } from '../components/media/YouTubeEmbed';
-import { CometHero } from '../components/hero/CometHero';
 import { Sparkles, Rocket, Star, Award } from 'lucide-react';
 
 type Mood = {
@@ -69,7 +68,6 @@ const features = [
 
 export function Home({ theme }: { theme?: any }) {
   const [activeMood, setActiveMood] = useState<Mood>(moods[1]);
-  const [showHero, setShowHero] = useState(true);
   const userInteracted = useRef(false);
 
   useEffect(() => {
@@ -92,15 +90,14 @@ export function Home({ theme }: { theme?: any }) {
 
   return (
     <>
-      {/* Premium HD Comet Hero - 5 seconds */}
-      {showHero && <CometHero onComplete={() => setShowHero(false)} />}
+      {/* NO COMET/ASTEROID INTRO - REMOVED */}
 
       {/* Hero Section */}
       <section
         className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700 relative`}
       >
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
-          {/* Logo - MASSIVE (240px) */}
+          {/* Logo - INCREASED BY 15% (240px → 276px) */}
           <motion.div
             className="flex justify-center mb-8"
             initial={{ scale: 0, opacity: 0 }}
@@ -110,7 +107,8 @@ export function Home({ theme }: { theme?: any }) {
             <img
               src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
               alt="TK Fireworks Logo"
-              className="h-60 w-auto object-contain drop-shadow-2xl"
+              className="w-auto object-contain drop-shadow-2xl"
+              style={{ height: '276px' }}
               loading="eager"
               onError={(e) => {
                 console.error('Logo failed to load');
@@ -119,15 +117,15 @@ export function Home({ theme }: { theme?: any }) {
             />
           </motion.div>
 
-          {/* Title - MASSIVE */}
+          {/* Title - INCREASED SIZE */}
           <motion.h1
-            className="font-extrabold tracking-tight text-white mb-4"
-            style={{ fontSize: 'clamp(2.5rem, 10vw, 6rem)' }}
+            className="font-black tracking-tight text-white mb-4"
+            style={{ fontSize: 'clamp(3rem, 12vw, 14rem)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            TK Fireworks
+            TK FIREWORKS
           </motion.h1>
 
           {/* Dynamic headline */}
@@ -259,7 +257,7 @@ export function Home({ theme }: { theme?: any }) {
                   <h3 className="text-2xl font-bold text-white mb-2">
                     Little Peacock Collection
                   </h3>
-                  <p className="text-gray-300">Premium quality Indian crackers</p>
+                  <p className="text-gray-300">You can touch the fire for fun</p>
                 </div>
               </div>
             </div>
