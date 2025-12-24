@@ -5,12 +5,14 @@ import { useProducts } from '../hooks/useProducts';
 import { useFavorites } from '../hooks/useFavorites';
 import { ProductCard } from '../components/ui/ProductCard';
 import { SearchBox } from '../components/ui/SearchBox';
+import { FireParticlesBackground } from '../components/effects/FireParticlesBackground';
 
 interface CatalogProps {
   theme: any;
+  activeMood?: { bg: string };
 }
 
-export const Catalog: React.FC<CatalogProps> = ({ theme }) => {
+export const Catalog: React.FC<CatalogProps> = ({ theme, activeMood }) => {
   const [showFilters, setShowFilters] = useState(false);
   const products = useProducts();
   const favorites = useFavorites();
@@ -19,20 +21,23 @@ export const Catalog: React.FC<CatalogProps> = ({ theme }) => {
   const noiseLevels = ['low', 'medium', 'high'];
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className={`min-h-screen pb-20 relative bg-gradient-to-br ${activeMood?.bg || 'from-gray-900 via-black to-gray-900'} transition-colors duration-700`}>
+      {/* Fire Particles Background - ENABLED */}
+      <FireParticlesBackground enabled={true} />
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-7xl mx-auto px-4 py-8"
+        className="max-w-7xl mx-auto px-4 py-8 relative z-10"
       >
-        <h1 className="text-4xl md:text-5xl font-black mb-2 glow-text">Product Catalog</h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-2 glow-text">Products</h1>
         <p className="text-gray-400">
           Found {products.products.length} products
         </p>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-8 relative z-10">
         {/* Sidebar Filters */}
         <div className={`lg:col-span-1 ${showFilters ? 'block' : 'hidden'} lg:block`}>
           <motion.div

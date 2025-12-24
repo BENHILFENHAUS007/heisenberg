@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 /**
  * Fire Particles Background Effect
  * Cursor-following particle system
- * Only active on non-home pages
+ * Active on ALL pages EXCEPT home page
  * Reduced opacity for subtle background effect
  */
 
