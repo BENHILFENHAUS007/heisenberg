@@ -118,7 +118,7 @@ export function Home({ theme }: { theme?: any }) {
           {/* Title - REDUCED BY 7%, using bold stylish font, fits in one line */}
           <motion.h1
             className="font-black tracking-wider text-white mb-4 whitespace-nowrap overflow-hidden"
-            style={{ 
+            style={{
               fontSize: 'clamp(2.5rem, 10vw, 11rem)',
               fontFamily: '"Bebas Neue", "Arial Black", sans-serif',
               letterSpacing: '0.15em',
@@ -169,11 +169,11 @@ export function Home({ theme }: { theme?: any }) {
             <a
               href="https://wa.me/919876543210"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black font-semibold transition-all duration-200 hover:scale-[1.03]"
             >
               WhatsApp Us
-            </Link>
+            </a>
           </motion.div>
 
           {/* Mood selector */}
