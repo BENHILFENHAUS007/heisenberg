@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Heart, ShoppingCart } from 'lucide-react';
+import { Menu, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
@@ -28,7 +28,7 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo on left side */}
+          {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <img
               src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
@@ -48,19 +48,46 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          {/* Desktop Navigation - GOOEY STYLE */}
+          <div className="hidden md:flex items-center space-x-2 bg-white/5 backdrop-blur-sm rounded-full p-1.5 border border-white/10 shadow-lg">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`relative px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 overflow-hidden ${
                   isActive(link.path)
-                    ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/50'
-                    : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                    ? 'text-white'
+                    : 'text-gray-300 hover:text-white'
                 }`}
               >
-                {link.label}
+                {/* Gooey blob effect for active link */}
+                {isActive(link.path) && (
+                  <motion.div
+                    layoutId="gooey-nav-bubble"
+                    className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full"
+                    style={{
+                      filter: 'blur(8px)',
+                      opacity: 0.8,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      bounce: 0.2,
+                      duration: 0.6,
+                    }}
+                  />
+                )}
+                {isActive(link.path) && (
+                  <motion.div
+                    layoutId="gooey-nav-solid"
+                    className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full"
+                    transition={{
+                      type: 'spring',
+                      bounce: 0.2,
+                      duration: 0.6,
+                    }}
+                  />
+                )}
+                <span className="relative z-10">{link.label}</span>
               </Link>
             ))}
           </div>
@@ -108,7 +135,7 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive(link.path)
-                      ? 'bg-orange-500 text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg'
                       : 'text-gray-300 hover:bg-white/10 hover:text-white'
                   }`}
                 >
