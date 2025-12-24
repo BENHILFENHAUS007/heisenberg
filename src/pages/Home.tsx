@@ -23,7 +23,7 @@ const moods: Mood[] = [
   {
     id: 'festive',
     label: '🎉 Festive',
-    headline: 'Celebrate like it's Diwali night',
+    headline: 'Celebrate like it is Diwali night',
     sub: 'Balanced joy. Crowd-friendly fireworks',
     bg: 'from-orange-900/40 via-amber-800/30 to-transparent',
   },
@@ -107,12 +107,13 @@ export function Home({ theme }: { theme?: any }) {
               alt="TK Fireworks Logo"
               className="h-24 w-auto object-contain drop-shadow-2xl"
               onError={(e) => {
-                // Fallback if logo doesn't exist
                 e.currentTarget.style.display = 'none';
                 const fallback = document.createElement('div');
                 fallback.className = 'h-20 w-20 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-4xl shadow-2xl';
                 fallback.textContent = '🔥';
-                e.currentTarget.parentNode?.appendChild(fallback);
+                if (e.currentTarget.parentNode) {
+                  e.currentTarget.parentNode.appendChild(fallback);
+                }
               }}
             />
           </motion.div>
@@ -286,7 +287,7 @@ export function Home({ theme }: { theme?: any }) {
               Why Choose TK Fireworks?
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              We're committed to delivering quality, safety, and unforgettable celebrations.
+              We are committed to delivering quality, safety, and unforgettable celebrations.
             </p>
           </motion.div>
 
