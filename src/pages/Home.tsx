@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { YouTubeEmbed } from '../components/media/YouTubeEmbed';
+import { Sparkles, Rocket, Star, Award } from 'lucide-react';
 
 type Mood = {
   id: string;
@@ -11,32 +14,55 @@ type Mood = {
 
 const moods: Mood[] = [
   {
-    id: "calm",
-    label: "✨ Calm",
-    headline: "Soft sparks. Peaceful vibes.",
-    sub: "Perfect for home & family celebrations",
-    bg: "from-emerald-950 via-green-900 to-black",
+    id: 'calm',
+    label: '✨ Calm',
+    headline: 'Soft sparks. Peaceful vibes.',
+    sub: 'Perfect for home & family celebrations',
+    bg: 'from-emerald-950 via-green-900 to-black',
   },
   {
-    id: "festive",
-    label: "🎉 Festive",
-    headline: "Celebrate like it’s Diwali night",
-    sub: "Balanced joy. Crowd-friendly fireworks",
-    bg: "from-orange-900 via-amber-800 to-black",
+    id: 'festive',
+    label: '🎉 Festive',
+    headline: 'Celebrate like it’s Diwali night',
+    sub: 'Balanced joy. Crowd-friendly fireworks',
+    bg: 'from-orange-900 via-amber-800 to-black',
   },
   {
-    id: "loud",
-    label: "💥 Loud",
-    headline: "Make the sky remember you",
-    sub: "High-energy display for big moments",
-    bg: "from-red-900 via-rose-800 to-black",
+    id: 'loud',
+    label: '💥 Loud',
+    headline: 'Make the sky remember you',
+    sub: 'High-energy display for big moments',
+    bg: 'from-red-900 via-rose-800 to-black',
   },
   {
-    id: "kids",
-    label: "👶 Kids",
-    headline: "Tiny hands. Big smiles.",
-    sub: "Low-noise, safe & joyful effects",
-    bg: "from-teal-900 via-cyan-800 to-black",
+    id: 'kids',
+    label: '👶 Kids',
+    headline: 'Tiny hands. Big smiles.',
+    sub: 'Low-noise, safe & joyful effects',
+    bg: 'from-teal-900 via-cyan-800 to-black',
+  },
+];
+
+const features = [
+  {
+    icon: Star,
+    title: 'Premium Quality',
+    desc: 'Hand-selected fireworks from certified manufacturers',
+  },
+  {
+    icon: Award,
+    title: 'Safety First',
+    desc: 'All products meet international safety standards',
+  },
+  {
+    icon: Sparkles,
+    title: 'Wide Selection',
+    desc: '500+ varieties for every occasion and budget',
+  },
+  {
+    icon: Rocket,
+    title: 'Fast Delivery',
+    desc: 'Quick dispatch and reliable delivery across India',
   },
 ];
 
@@ -63,75 +89,243 @@ export function Home({ theme }: { theme?: any }) {
   };
 
   return (
-    <section
-      className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700`}
-    >
-      {/* WRAPPER */}
-      <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
-        {/* Logo */}
-        <div className="flex justify-center mb-6">
-          <div className="h-20 w-20 rounded-full bg-orange-500/20 flex items-center justify-center text-4xl">
-            🔥
+    <>
+      {/* Hero Section */}
+      <section
+        className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700 relative`}
+      >
+        <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
+          {/* Logo */}
+          <motion.div
+            className="flex justify-center mb-6"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', duration: 0.8 }}
+          >
+            <div className="h-20 w-20 rounded-full bg-orange-500/20 flex items-center justify-center text-4xl">
+              🔥
+            </div>
+          </motion.div>
+
+          {/* Title */}
+          <motion.h1
+            className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            TK Fireworks
+          </motion.h1>
+
+          {/* Dynamic headline */}
+          <motion.p
+            className="text-xl md:text-2xl font-semibold text-orange-400 mb-2 transition-all duration-500"
+            key={activeMood.headline}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            {activeMood.headline}
+          </motion.p>
+
+          <motion.p
+            className="text-sm md:text-base text-gray-300 max-w-xl mx-auto mb-10 transition-all duration-500"
+            key={activeMood.sub}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            {activeMood.sub}
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div
+            className="flex flex-col sm:flex-row justify-center gap-4 mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Link
+              to="/catalog"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold transition-all duration-200 hover:scale-[1.03] shadow-lg hover:shadow-orange-500/50"
+            >
+              Explore Catalog →
+            </Link>
+
+            <a
+              href="https://wa.me/919876543210"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black font-semibold transition-all duration-200 hover:scale-[1.03]"
+            >
+              WhatsApp Us
+            </a>
+          </motion.div>
+
+          {/* Mood selector */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            {moods.map((mood) => (
+              <button
+                key={mood.id}
+                onClick={() => handleMoodClick(mood)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
+                  ${
+                    activeMood.id === mood.id
+                      ? 'bg-white text-black shadow-lg'
+                      : 'bg-white/10 text-white hover:bg-white/20'
+                  }`}
+              >
+                {mood.label}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Scroll hint */}
+          <motion.div
+            className="mt-24 text-xs text-gray-400 animate-pulse"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 2, repeat: Infinity }}
+          >
+            ↓ Scroll to explore featured fireworks
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Video Showcase Section */}
+      <section className="relative py-24 px-6 bg-gradient-to-b from-black via-gray-900 to-black">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Experience the Magic
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Watch our premium fireworks collection in action. Quality you can see, excitement you can feel.
+            </p>
+          </motion.div>
+
+          {/* Featured Video */}
+          <YouTubeEmbed
+            videoId="6stlCkUDG_s"
+            title="TK Fireworks - Premium Collection Showcase"
+            className="mb-8"
+          />
+
+          {/* Product Showcase Image */}
+          <motion.div
+            className="mt-16 grid md:grid-cols-2 gap-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="/images/little-peacock.jpg"
+                alt="Little Peacock - Premium Crackers"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    Little Peacock Collection
+                  </h3>
+                  <p className="text-gray-300">Premium quality Indian crackers</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="/images/coming-soon.jpg"
+                alt="Coming Soon - New Products"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    More Exciting Products
+                  </h3>
+                  <p className="text-gray-300">Stay tuned for new launches!</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="relative py-24 px-6 bg-gradient-to-b from-black to-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Why Choose TK Fireworks?
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              We're committed to delivering quality, safety, and unforgettable celebrations.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl shadow-xl hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-2"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                <feature.icon className="w-12 h-12 text-orange-500 mb-4" />
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400">{feature.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Title */}
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4">
-          TK Fireworks
-        </h1>
-
-        {/* Dynamic headline */}
-        <p className="text-xl md:text-2xl font-semibold text-orange-400 mb-2 transition-all duration-500">
-          {activeMood.headline}
-        </p>
-
-        <p className="text-sm md:text-base text-gray-300 max-w-xl mx-auto mb-10 transition-all duration-500">
-          {activeMood.sub}
-        </p>
-
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-14">
-          <Link
-            to="/catalog"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold transition-all duration-200 hover:scale-[1.03]"
+      {/* CTA Section */}
+      <section className="relative py-24 px-6 bg-gradient-to-br from-orange-900 via-red-900 to-black">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            Explore Catalog →
-          </Link>
-
-          <a
-            href="https://wa.me/919876543210"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-green-500 text-green-400 hover:bg-green-500 hover:text-black font-semibold transition-all duration-200 hover:scale-[1.03]"
-          >
-            WhatsApp Us
-          </a>
-        </div>
-
-        {/* Mood selector */}
-        <div className="flex flex-wrap justify-center gap-3">
-          {moods.map((mood) => (
-            <button
-              key={mood.id}
-              onClick={() => handleMoodClick(mood)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
-                ${
-                  activeMood.id === mood.id
-                    ? "bg-white text-black"
-                    : "bg-white/10 text-white hover:bg-white/20"
-                }`}
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Ready to Light Up Your Celebration?
+            </h2>
+            <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+              Browse our complete catalog and find the perfect fireworks for your special occasion.
+            </p>
+            <Link
+              to="/catalog"
+              className="inline-flex items-center justify-center px-10 py-5 rounded-xl bg-white text-black font-bold text-lg transition-all duration-200 hover:scale-[1.05] shadow-2xl hover:shadow-white/50"
             >
-              {mood.label}
-            </button>
-          ))}
+              View Full Catalog →
+            </Link>
+          </motion.div>
         </div>
-
-        {/* Scroll hint */}
-        <div className="mt-24 text-xs text-gray-400 animate-pulse">
-          ↓ Scroll to explore featured fireworks
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
