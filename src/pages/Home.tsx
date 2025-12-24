@@ -206,32 +206,35 @@ export function Home({ theme }: { theme?: any }) {
         </div>
       </section>
 
-      {/* Video Showcase Section */}
+      {/* Video Showcase Section - FIXED SPACING */}
       <section className="relative py-24 px-6 bg-black/40 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
+          {/* Title Section with proper spacing */}
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
               Experience the Magic
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Watch our premium fireworks collection in action. Quality you can see, excitement you can feel.
             </p>
           </motion.div>
 
           {/* Featured Video */}
-          <YouTubeEmbed
-            videoId="6stlCkUDG_s"
-            title="TK Fireworks - Premium Collection Showcase"
-            className="mb-8"
-          />
+          <div className="mb-16">
+            <YouTubeEmbed
+              videoId="6stlCkUDG_s"
+              title="TK Fireworks - Premium Collection Showcase"
+              className="w-full"
+            />
+          </div>
 
-          {/* Product Showcase Image */}
+          {/* Product Showcase Images - Force cache reload */}
           <motion.div
             className="mt-16 grid md:grid-cols-2 gap-8"
             initial={{ opacity: 0, y: 30 }}
@@ -239,11 +242,16 @@ export function Home({ theme }: { theme?: any }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gray-900/50">
               <img
-                src="/images/little-peacock.jpg"
+                src={`/images/little-peacock.jpg?v=${Date.now()}`}
                 alt="Little Peacock - Premium Crackers"
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="eager"
+                onError={(e) => {
+                  console.error('Failed to load little-peacock.jpg');
+                  e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23333"/%3E%3Ctext x="50%25" y="50%25" fill="%23999" text-anchor="middle" dy=".3em" font-family="sans-serif" font-size="18"%3EImage Loading...%3C/text%3E%3C/svg%3E';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-6 transition-opacity duration-300">
                 <div>
@@ -255,11 +263,16 @@ export function Home({ theme }: { theme?: any }) {
               </div>
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gray-900/50">
               <img
-                src="/images/coming soon.png"
+                src={`/images/coming soon.png?v=${Date.now()}`}
                 alt="Coming Soon - New Products"
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="eager"
+                onError={(e) => {
+                  console.error('Failed to load coming soon.png');
+                  e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23333"/%3E%3Ctext x="50%25" y="50%25" fill="%23999" text-anchor="middle" dy=".3em" font-family="sans-serif" font-size="18"%3EImage Loading...%3C/text%3E%3C/svg%3E';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-blue-900/30 to-transparent flex items-end p-6 transition-opacity duration-300">
                 <div>
