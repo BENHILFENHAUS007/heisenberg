@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { YouTubeEmbed } from '../components/media/YouTubeEmbed';
+import { AsteroidHero } from '../components/hero/AsteroidHero';
 import { Sparkles, Rocket, Star, Award } from 'lucide-react';
 
 type Mood = {
@@ -68,6 +69,7 @@ const features = [
 
 export function Home({ theme }: { theme?: any }) {
   const [activeMood, setActiveMood] = useState<Mood>(moods[1]);
+  const [showHero, setShowHero] = useState(true);
   const userInteracted = useRef(false);
 
   useEffect(() => {
@@ -90,12 +92,15 @@ export function Home({ theme }: { theme?: any }) {
 
   return (
     <>
+      {/* Epic Asteroid Hero Animation - 3 seconds */}
+      {showHero && <AsteroidHero onComplete={() => setShowHero(false)} />}
+
       {/* Hero Section */}
       <section
         className={`min-h-screen w-full bg-gradient-to-br ${activeMood.bg} transition-colors duration-700 relative`}
       >
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 text-center">
-          {/* Logo */}
+          {/* Logo - BIG SIZE with absolute path */}
           <motion.div
             className="flex justify-center mb-6"
             initial={{ scale: 0, opacity: 0 }}
@@ -103,17 +108,24 @@ export function Home({ theme }: { theme?: any }) {
             transition={{ type: 'spring', duration: 0.8 }}
           >
             <img
-              src="/images/logo.png"
+              src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
               alt="TK Fireworks Logo"
-              className="h-24 w-auto object-contain drop-shadow-2xl"
+              className="h-40 w-auto object-contain drop-shadow-2xl"
+              loading="eager"
               onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'h-20 w-20 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-4xl shadow-2xl';
-                fallback.textContent = '🔥';
-                if (e.currentTarget.parentNode) {
-                  e.currentTarget.parentNode.appendChild(fallback);
-                }
+                console.error('Logo failed to load from GitHub');
+                // Try local path
+                e.currentTarget.src = '/images/logo.png';
+                e.currentTarget.onerror = () => {
+                  console.error('Logo failed to load from local path');
+                  e.currentTarget.style.display = 'none';
+                  const fallback = document.createElement('div');
+                  fallback.className = 'h-32 w-32 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-6xl shadow-2xl animate-pulse';
+                  fallback.innerHTML = '<span style="font-size: 80px;">🔥</span>';
+                  if (e.currentTarget.parentNode) {
+                    e.currentTarget.parentNode.appendChild(fallback);
+                  }
+                };
               }}
             />
           </motion.div>
@@ -206,10 +218,9 @@ export function Home({ theme }: { theme?: any }) {
         </div>
       </section>
 
-      {/* Video Showcase Section - FIXED SPACING */}
+      {/* Video Showcase Section */}
       <section className="relative py-24 px-6 bg-black/40 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto">
-          {/* Title Section with proper spacing */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -234,7 +245,7 @@ export function Home({ theme }: { theme?: any }) {
             />
           </div>
 
-          {/* Product Showcase Images - Force cache reload */}
+          {/* Product Showcase Images - ABSOLUTE PATHS */}
           <motion.div
             className="mt-16 grid md:grid-cols-2 gap-8"
             initial={{ opacity: 0, y: 30 }}
@@ -242,15 +253,19 @@ export function Home({ theme }: { theme?: any }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gray-900/50">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-purple-900/20 to-pink-900/20 min-h-[400px]">
               <img
-                src={`/images/little-peacock.jpg?v=${Date.now()}`}
+                src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/little-peacock.jpg"
                 alt="Little Peacock - Premium Crackers"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="eager"
                 onError={(e) => {
-                  console.error('Failed to load little-peacock.jpg');
-                  e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23333"/%3E%3Ctext x="50%25" y="50%25" fill="%23999" text-anchor="middle" dy=".3em" font-family="sans-serif" font-size="18"%3EImage Loading...%3C/text%3E%3C/svg%3E';
+                  console.error('Little Peacock image failed from GitHub, trying local...');
+                  e.currentTarget.src = '/images/little-peacock.jpg';
+                  e.currentTarget.onerror = () => {
+                    console.error('Little Peacock image failed from local too');
+                    e.currentTarget.style.display = 'none';
+                  };
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-6 transition-opacity duration-300">
@@ -263,15 +278,19 @@ export function Home({ theme }: { theme?: any }) {
               </div>
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gray-900/50">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-gradient-to-br from-blue-900/20 to-cyan-900/20 min-h-[400px]">
               <img
-                src={`/images/coming soon.png?v=${Date.now()}`}
+                src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/coming%20soon.png"
                 alt="Coming Soon - New Products"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="eager"
                 onError={(e) => {
-                  console.error('Failed to load coming soon.png');
-                  e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23333"/%3E%3Ctext x="50%25" y="50%25" fill="%23999" text-anchor="middle" dy=".3em" font-family="sans-serif" font-size="18"%3EImage Loading...%3C/text%3E%3C/svg%3E';
+                  console.error('Coming Soon image failed from GitHub, trying local...');
+                  e.currentTarget.src = '/images/coming soon.png';
+                  e.currentTarget.onerror = () => {
+                    console.error('Coming Soon image failed from local too');
+                    e.currentTarget.style.display = 'none';
+                  };
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-blue-900/30 to-transparent flex items-end p-6 transition-opacity duration-300">
