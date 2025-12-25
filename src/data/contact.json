@@ -1,0 +1,46 @@
+{
+  "phone": "+91 98765 43210",
+  "email": "info@tkfireworks.com",
+  "addresses": {
+    "corporate": {
+      "label": "Corporate Address",
+      "line1": "Lorem Ipsum Tower, Suite 200",
+      "line2": "Tech Street, Silicon Valley",
+      "city": "Sivakasi",
+      "state": "Tamil Nadu",
+      "pincode": "626123",
+      "country": "India"
+    },
+    "registered": {
+      "label": "Registered Address",
+      "line1": "Dolor Sit Amet Building",
+      "line2": "Consectetur Street, Adipiscing District",
+      "city": "Sivakasi",
+      "state": "Tamil Nadu",
+      "pincode": "626189",
+      "country": "India"
+    },
+    "communications": {
+      "label": "Communications Address",
+      "line1": "Consectetur Adipiscing Tower, 7th Floor",
+      "line2": "Sed Tempor Estate, Ut Labore",
+      "city": "Sivakasi",
+      "state": "Tamil Nadu",
+      "pincode": "626124",
+      "country": "India"
+    }
+  },
+  "socialMedia": {
+    "facebook": "https://facebook.com/tkfireworks",
+    "instagram": "https://instagram.com/tkfireworks",
+    "twitter": "https://twitter.com/tkfireworks",
+    "youtube": "https://youtube.com/@tkfireworks"
+  },
+  "businessHours": {
+    "weekdays": "9:00 AM - 6:00 PM",
+    "weekends": "10:00 AM - 4:00 PM",
+    "timezone": "IST"
+  },
+  "supportEmail": "support@tkfireworks.com",
+  "salesEmail": "sales@tkfireworks.com"
+}
