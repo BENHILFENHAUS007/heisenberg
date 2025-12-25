@@ -1,0 +1,133 @@
+/* Electric Border Component Styles */
+
+@keyframes electricPulse {
+  0% {
+    border-color: var(--border-color, rgb(255, 215, 0));
+    box-shadow: 0 0 5px var(--glow-color, rgba(255, 215, 0, 0.6)),
+                0 0 15px var(--glow-color, rgba(255, 215, 0, 0.3));
+  }
+  50% {
+    border-color: var(--border-color, rgb(255, 215, 0));
+    box-shadow: 0 0 10px var(--glow-color, rgba(255, 215, 0, 0.8)),
+                0 0 25px var(--glow-color, rgba(255, 215, 0, 0.5)),
+                0 0 40px var(--glow-color, rgba(255, 215, 0, 0.2));
+  }
+  100% {
+    border-color: var(--border-color, rgb(255, 215, 0));
+    box-shadow: 0 0 5px var(--glow-color, rgba(255, 215, 0, 0.6)),
+                0 0 15px var(--glow-color, rgba(255, 215, 0, 0.3));
+  }
+}
+
+@keyframes electricShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.electric-border-container {
+  position: relative;
+  border-radius: 12px;
+  border: 2px solid var(--border-color, rgb(255, 215, 0));
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.05)
+  );
+  transition: all 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+.electric-border-container.continuous {
+  animation: electricPulse var(--animation-duration, 3s) ease-in-out infinite;
+}
+
+.electric-border-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.electric-border-line {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-color, rgb(255, 215, 0)),
+    var(--border-color, rgb(255, 215, 0)),
+    transparent
+  );
+  animation: shimmerLine var(--animation-duration, 3s) linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes shimmerLine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Hover state for interactivity */
+.electric-border-container:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-color, rgb(255, 215, 0));
+  box-shadow: 0 0 20px var(--glow-color, rgba(255, 215, 0, 0.8)),
+              0 0 40px var(--glow-color, rgba(255, 215, 0, 0.4)),
+              0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Different color variants */
+.electric-border-container[data-color='gold'] {
+  --border-color: rgb(255, 215, 0);
+  --glow-color: rgba(255, 215, 0, 0.6);
+}
+
+.electric-border-container[data-color='cyan'] {
+  --border-color: rgb(0, 212, 255);
+  --glow-color: rgba(0, 212, 255, 0.6);
+}
+
+.electric-border-container[data-color='purple'] {
+  --border-color: rgb(168, 85, 247);
+  --glow-color: rgba(168, 85, 247, 0.6);
+}
+
+/* Responsive */
+@media (prefers-reduced-motion: reduce) {
+  .electric-border-container.continuous {
+    animation: none;
+    box-shadow: 0 0 10px var(--glow-color, rgba(255, 215, 0, 0.4));
+  }
+
+  .electric-border-line {
+    display: none;
+  }
+}
+
+/* GPU acceleration */
+.electric-border-container {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
