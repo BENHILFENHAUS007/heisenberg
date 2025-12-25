@@ -1,0 +1,190 @@
+/* Gooey Navigation Component Styles */
+
+.gooey-nav-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 40;
+  will-change: transform, filter;
+}
+
+.gooey-nav-bubble {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgb(30, 58, 138) 0%,
+    rgb(15, 23, 42) 100%
+  );
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+              0 0 24px rgba(59, 130, 246, 0.15);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  outline: none;
+}
+
+.gooey-nav-bubble:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3),
+              0 0 32px rgba(59, 130, 246, 0.25);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.gooey-nav-bubble:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 4px;
+}
+
+.gooey-nav-bubble svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+/* Menu Styles */
+.gooey-nav-menu {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  padding: 12px 8px;
+  min-width: 180px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+              0 0 40px rgba(59, 130, 246, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gooey-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.gooey-nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.2),
+    rgba(59, 130, 246, 0)
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.gooey-nav-item:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.gooey-nav-item:hover::before {
+  opacity: 1;
+}
+
+.gooey-nav-item:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: -2px;
+}
+
+/* Animation refinement */
+@keyframes gooeyPulse {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+                0 0 24px rgba(59, 130, 246, 0.15);
+  }
+  50% {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25),
+                0 0 32px rgba(59, 130, 246, 0.25);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gooey-nav-wrapper {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .gooey-nav-bubble {
+    width: 56px;
+    height: 56px;
+  }
+
+  .gooey-nav-bubble svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .gooey-nav-menu {
+    min-width: 160px;
+    bottom: 70px;
+  }
+
+  .gooey-nav-item {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gooey-nav-wrapper {
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .gooey-nav-bubble {
+    width: 50px;
+    height: 50px;
+  }
+
+  .gooey-nav-menu {
+    min-width: 140px;
+    bottom: 60px;
+    padding: 8px 4px;
+  }
+
+  .gooey-nav-item {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .gooey-nav-bubble,
+  .gooey-nav-item {
+    transition: none;
+  }
+
+  .gooey-nav-wrapper {
+    animation: none !important;
+  }
+}
