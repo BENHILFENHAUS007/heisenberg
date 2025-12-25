@@ -1,363 +1,462 @@
-# 🚀 React Bits Upgrade Guide - TK Fireworks
+# 🚀 React Bits Upgrade Guide
 
-**Status**: Work in Progress  
-**Branch**: `feature/react-bits-upgrade`  
-**Date**: December 25, 2025  
+## Overview
 
----
+This guide covers the complete React Bits upgrade for TK Fireworks with 5 new animation components:
 
-## 📋 OVERVIEW
-
-This guide documents the migration of the TK Fireworks website to incorporate advanced React Bits components with animations:
-
-1. **@react-bits/ElectricBorder-JS-CSS** - Electric border effects on product cards
-2. **@react-bits/Stack-JS-CSS** - Gallery image stack animation
-3. **@react-bits/AnimatedList-JS-CSS** - FAQ accordion with animations
-4. **@react-bits/Lightning** - Lightning background effect on Safety page
-5. **Gooey Navigation** - Floating bubble nav with scroll effects (Framer Motion)
+1. **🎯 Gooey Navigation** - Floating bubble that stretches/gooeys when scrolling
+2. **⚡ Electric Border** - Continuous electric animation on product cards (3 color variants)
+3. **🔥 Lightning Background** - Safety page with dynamic lightning animation
+4. **📋 Animated List** - FAQ accordion with smooth animations
+5. **🖼️ Stack Gallery** - Product gallery with drag & swipe support
 
 ---
 
-## 🔧 INSTALLATION SCRIPT
+## Installation
 
-Run this in your terminal from the project root:
+### Quick Setup (Copy-Paste)
 
 ```bash
-#!/bin/bash
-# React Bits Upgrade Installation Script
-
-echo "🚀 Installing React Bits Components..."
-
-# Install react-bits components
-npm install @react-bits/core
-npm install @react-bits/electric-border
-npm install @react-bits/stack
-npm install @react-bits/animated-list
-npm install @react-bits/lightning
-
-# Additional animation dependencies (if needed)
-npm install framer-motion --save
-npm install lottie-react --save
-
-echo "✅ Installation complete!"
-echo "📝 Next steps:"
-echo "  1. Review src/components/ui/electric-border.tsx"
-echo "  2. Update product cards with ElectricBorder component"
-echo "  3. Test animations locally: npm run dev"
+# Copy and paste the entire SETUP_INSTALLATION.sh into your VS Code terminal
+# The script handles all dependencies automatically
 ```
 
-**OR** Copy-paste this single command:
+### Manual Installation
+
+If you prefer manual setup:
 
 ```bash
-npm install @react-bits/core @react-bits/electric-border @react-bits/stack @react-bits/animated-list @react-bits/lightning framer-motion lottie-react && echo "✅ All dependencies installed!"
+# Core dependencies
+npm install framer-motion@latest lottie-react
+
+# Dev dependencies
+npm install --save-dev @types/node
 ```
 
 ---
 
-## 📦 COMPONENT SPECIFICATIONS
+## Component Usage
 
-### 1. ⚡ ELECTRIC BORDER - Product Cards
+### 1. 🔴 Electric Border (Products Page)
 
-**Location**: `src/components/ProductCard.tsx` (to be updated)  
-**File Reference**: `src/components/ui/electric-border.tsx` (to be created)
+**For Magic Peacock Product:**
+```tsx
+import { ElectricBorder } from '@/components/ui';
 
-#### Implementation:
-```typescript
-import { ElectricBorder } from '@/components/ui/electric-border';
-
-interface ProductCardProps {
-  name: string;
-  image: string;
-  tag?: string;
-  borderColor: 'gold' | 'cyan' | 'purple';
-}
-
-export const ProductCard = ({ name, image, tag, borderColor }: ProductCardProps) => (
-  <ElectricBorder color={borderColor} continuous>
-    <div className="product-card">
-      <img src={image} alt={name} />
-      {tag && <span className="tag">{tag}</span>}
-      <h3>{name}</h3>
-    </div>
-  </ElectricBorder>
-);
-```
-
-#### Color Scheme:
-- **Product 1: Magic Peacock** → `#FFD700` (Gold/Yellow - "spark" theme)
-- **Product 2: Mystic Wonder Pack** → `#00D4FF` (Cyan/Turquoise)
-- **Product 3 & 4: Coming Soon** → `#A855F7` (Purple/Violet)
-
----
-
-### 2. 🎞️ STACK ANIMATION - Gallery
-
-**Location**: `src/pages/Gallery.tsx` (to be updated)  
-**File Reference**: `src/components/ui/stack-gallery.tsx` (to be created)
-
-#### Implementation:
-```typescript
-import { Stack } from '@react-bits/stack';
-
-export const GalleryStack = () => (
-  <Stack>
-    {galleryImages.map((img, idx) => (
-      <div key={idx} className="gallery-item">
-        <img src={img.url} alt={img.title} />
-      </div>
-    ))}
-  </Stack>
-);
-```
-
-**Key Requirements**:
-- No image rotation (fixed orientation)
-- Stack animation on scroll/interaction
-- Remove footer from gallery page
-
----
-
-### 3. 📝 ANIMATED LIST - FAQ Accordion
-
-**Location**: `src/pages/FAQ.tsx` (to be updated)  
-**File Reference**: `src/components/ui/animated-list.tsx` (to be created)
-
-#### Implementation:
-```typescript
-import { AnimatedList } from '@react-bits/animated-list';
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-export const FAQAccordion = ({ items }: { items: FAQItem[] }) => (
-  <AnimatedList>
-    {items.map((item, idx) => (
-      <FAQItem key={idx} question={item.question} answer={item.answer} />
-    ))}
-  </AnimatedList>
-);
-```
-
-**Requirements**:
-- Smooth expand/collapse animations
-- Remove footer from FAQ page
-
----
-
-### 4. ⚡ LIGHTNING BACKGROUND - Safety Page
-
-**Location**: `src/pages/Safety.tsx` (to be updated)  
-**File Reference**: `src/components/ui/lightning-bg.tsx` (to be created)
-
-#### Implementation:
-```typescript
-import { LightningBackground } from '@react-bits/lightning';
-
-export const SafetyPage = () => (
-  <div className="relative">
-    <LightningBackground className="absolute inset-0" />
-    <div className="relative z-10">
-      {/* Safety content here */}
-    </div>
+<ElectricBorder color="gold" continuous>
+  <div className="product-card">
+    {/* Product content */}
   </div>
-);
+</ElectricBorder>
 ```
 
-**Special Requirements**:
-- Lightning/electric effect animation in background
-- Reduced cursor brightness
-- Content layered on top (z-index handling)
+**For Mystic Wonder Pack:**
+```tsx
+<ElectricBorder color="cyan" continuous>
+  <div className="product-card">
+    {/* Product content */}
+  </div>
+</ElectricBorder>
+```
+
+**For Remaining Products (3 & 4):**
+```tsx
+<ElectricBorder color="purple" continuous>
+  <div className="product-card">
+    {/* Product content */}
+  </div>
+</ElectricBorder>
+```
+
+#### ElectricBorder Props:
+```tsx
+interface ElectricBorderProps {
+  children: React.ReactNode;           // Your content
+  color?: 'gold' | 'cyan' | 'purple'; // Border color
+  continuous?: boolean;                // Always animate?
+  intensity?: 'low' | 'medium' | 'high'; // Animation speed
+  className?: string;                  // Additional CSS
+}
+```
 
 ---
 
-### 5. 🎈 GOOEY NAVIGATION - Header
+### 2. 🎯 Gooey Navigation (All Pages)
 
-**Location**: `src/components/Navigation.tsx` (to be updated)  
-**File Reference**: `src/components/ui/gooey-nav.tsx` (to be created)
+**Add to Main Layout:**
+```tsx
+import { GooeyNav } from '@/components/ui';
 
-#### Implementation (Framer Motion):
-```typescript
-import { motion } from 'framer-motion';
+<GooeyNav 
+  isOpen={false}
+  onToggle={(open) => console.log('Nav:', open)}
+/>
+```
 
-export const GooeyNav = () => {
-  const [scrollY, setScrollY] = useState(0);
+#### GooeyNav Props:
+```tsx
+interface GooeyNavProps {
+  isOpen?: boolean;                    // Initial state
+  onToggle?: (open: boolean) => void;  // Toggle callback
+}
+```
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+#### Features:
+- ✅ Stretches/gooeys on scroll
+- ✅ Morphs smoothly with scroll position
+- ✅ 6 navigation links built-in
+- ✅ Backdrop blur effect
+- ✅ Smooth spring animations
+- ✅ Mobile responsive
 
-  return (
-    <motion.nav
-      className="floating-bubble-nav"
-      animate={{
-        y: scrollY * 0.5,
-        pathLength: Math.min(1, scrollY / 300),
-      }}
-    >
-      {/* Navigation items */}
-    </motion.nav>
-  );
+---
+
+### 3. ⚡ Lightning Background (Safety Page)
+
+**Usage:**
+```tsx
+import { LightningBackground } from '@/components/ui';
+
+<LightningBackground intensity="medium" animated>
+  <div className="safety-content">
+    {/* Your safety content here */}
+  </div>
+</LightningBackground>
+```
+
+#### LightningBackground Props:
+```tsx
+interface LightningBackgroundProps {
+  intensity?: 'low' | 'medium' | 'high';  // Animation intensity
+  className?: string;                      // Additional CSS
+  animated?: boolean;                      // Enable animation?
+}
+```
+
+#### Features:
+- ✅ Dynamic lightning bolts
+- ✅ Ambient electric glow
+- ✅ Canvas-based rendering
+- ✅ Smooth fade trails
+- ✅ Reduced motion support
+- ✅ Fully responsive
+
+---
+
+### 4. 📋 Animated List (FAQ Page)
+
+**Usage:**
+```tsx
+import { AnimatedList, type AnimatedListItem } from '@/components/ui';
+
+const faqItems: AnimatedListItem[] = [
+  {
+    id: 1,
+    title: 'Are fireworks safe?',
+    content: 'Yes, when used according to local regulations and safety guidelines...'
+  },
+  {
+    id: 2,
+    title: 'What age is required?',
+    content: 'Minimum age varies by location. Always check local laws.'
+  },
+  // ... more items
+];
+
+<AnimatedList 
+  items={faqItems}
+  defaultOpen={1}
+/>
+```
+
+#### AnimatedList Props:
+```tsx
+interface AnimatedListProps {
+  items: AnimatedListItem[];              // Accordion items
+  className?: string;                     // Additional CSS
+  defaultOpen?: string | number;          // Initially open item ID
+}
+
+interface AnimatedListItem {
+  id: string | number;                    // Unique identifier
+  title: string;                          // Question/title
+  content: string | React.ReactNode;      // Answer/content
+}
+```
+
+#### Features:
+- ✅ Smooth expand/collapse
+- ✅ Single item open mode
+- ✅ Staggered entrance animation
+- ✅ Keyboard accessible
+- ✅ Custom HTML content support
+
+---
+
+### 5. 🖼️ Stack Gallery (Gallery Page)
+
+**Usage:**
+```tsx
+import { StackGallery, type StackItem } from '@/components/ui';
+
+const galleryItems: StackItem[] = [
+  {
+    id: 1,
+    image: '/images/peacock.jpg',
+    title: 'Magic Peacock',
+    description: 'Premium fireworks display'
+  },
+  {
+    id: 2,
+    image: '/images/wonder.jpg',
+    title: 'Mystic Wonder Pack',
+    description: 'Complete light show'
+  },
+  // ... more items
+];
+
+<StackGallery 
+  items={galleryItems}
+  autoPlay={false}
+  autoPlayDelay={4000}
+/>
+```
+
+#### StackGallery Props:
+```tsx
+interface StackGalleryProps {
+  items: StackItem[];                     // Gallery items
+  className?: string;                     // Additional CSS
+  autoPlay?: boolean;                     // Auto-rotate?
+  autoPlayDelay?: number;                 // Delay in ms
+}
+
+interface StackItem {
+  id: string | number;                    // Unique identifier
+  image: string;                          // Image URL
+  title: string;                          // Display title
+  description?: string;                   // Display description
+}
+```
+
+#### Features:
+- ✅ Drag and swipe support
+- ✅ Auto-play with configurable delay
+- ✅ Navigation buttons
+- ✅ Dot indicators
+- ✅ Smooth spring transitions
+- ✅ Mobile optimized
+
+---
+
+## Color System
+
+### Electric Border Colors:
+
+| Color | Hex | Use Case |
+|-------|-----|----------|
+| **Gold** | `rgb(255, 215, 0)` | Magic Peacock |
+| **Cyan** | `rgb(0, 212, 255)` | Mystic Wonder Pack |
+| **Purple** | `rgb(168, 85, 247)` | Products 3 & 4 |
+
+### CSS Variables:
+```css
+--border-color: rgb(255, 215, 0);     /* Primary border */
+--glow-color: rgba(255, 215, 0, 0.6); /* Glow effect */
+--animation-duration: 3s;             /* Animation speed */
+```
+
+---
+
+## Customization
+
+### Custom Electric Border Color:
+
+```tsx
+const customColor = {
+  primary: 'rgb(255, 100, 200)',
+  glow: 'rgba(255, 100, 200, 0.6)',
 };
+
+// Extend the component or use inline styles
+<div style={{
+  '--border-color': customColor.primary,
+  '--glow-color': customColor.glow,
+} as CSSProperties}>
+  <ElectricBorder>
+    {/* content */}
+  </ElectricBorder>
+</div>
 ```
 
-**Requirements**:
-- Floating bubble design
-- Stretches/gooeys on scroll
-- Smooth morphing transitions
+### Custom GooeyNav Links:
 
----
-
-## 📄 FILE STRUCTURE CHANGES
-
+Edit `src/components/ui/GooeyNav.tsx` lines 92-115:
+```tsx
+<motion.a href="#/your-route" className="gooey-nav-item">
+  Your Link
+</motion.a>
 ```
-src/
-├── components/
-│   ├── ui/
-│   │   ├── electric-border.tsx          [NEW]
-│   │   ├── stack-gallery.tsx            [NEW]
-│   │   ├── animated-list.tsx            [NEW]
-│   │   ├── lightning-bg.tsx             [NEW]
-│   │   └── gooey-nav.tsx                [NEW]
-│   ├── Navigation.tsx                   [MODIFIED - add gooey effect]
-│   ├── ProductCard.tsx                  [MODIFIED - add electric border]
-│   └── ...
-├── pages/
-│   ├── Gallery.tsx                      [MODIFIED - add stack, remove footer]
-│   ├── FAQ.tsx                          [MODIFIED - add animated list, remove footer]
-│   ├── Safety.tsx                       [MODIFIED - add lightning bg]
-│   ├── Contact.tsx                      [MODIFIED - remove footer]
-│   └── ...
-├── styles/
-│   └── animations.css                   [NEW/UPDATED - keyframes for effects]
-└── ...
+
+### Custom Lightning Intensity:
+
+```tsx
+// Reduce intensity for subtle effect
+<LightningBackground intensity="low" />
+
+// Increase for dramatic effect
+<LightningBackground intensity="high" />
 ```
 
 ---
 
-## ✅ PAGE-BY-PAGE CHECKLIST
+## Integration Checklist
 
-### HOME PAGE
-- [x] Keep existing footer
-- [x] Add gooey navigation bubble (scroll effect)
-- [x] Fix browser tab title (remove "Premium Showcase")
-- [x] Keep all existing components
+### Catalog/Products Page:
+- [ ] Import `ElectricBorder` component
+- [ ] Wrap each product card with ElectricBorder
+- [ ] Apply correct color (gold/cyan/purple)
+- [ ] Test scroll morphing with GooeyNav
+- [ ] Verify animation performance
 
-### PRODUCTS PAGE
-- [ ] Replace placeholder product data with 4 cards:
-  1. Magic Peacock (TRENDING tag) - Gold electric border
-  2. Mystic Wonder Pack - Cyan electric border
-  3. Coming Soon (SURPRISE tag) - Purple electric border
-  4. Coming Soon (FEATURE tag) - Purple electric border
-- [ ] Implement continuous electric border animation
-- [ ] Remove footer
-- [ ] Keep category filters
+### Safety Page:
+- [ ] Import `LightningBackground` component
+- [ ] Replace existing background or wrap content
+- [ ] Set intensity level (low/medium/high)
+- [ ] Add safety content inside
+- [ ] Verify no footer on Contact page ✅ (already configured)
 
-### GALLERY PAGE
-- [ ] Implement Stack animation for images
-- [ ] Remove image rotation
-- [ ] Remove footer
-- [ ] Keep navigation
+### FAQ Page:
+- [ ] Import `AnimatedList` component
+- [ ] Create FAQ items array
+- [ ] Set defaultOpen ID (optional)
+- [ ] Test keyboard navigation
+- [ ] Verify accordion behavior
 
-### SAFETY PAGE
-- [ ] Add Lightning background effect
-- [ ] Reduce cursor brightness
-- [ ] Keep content layout
-- [ ] Keep footer (on this page only besides home)
+### Gallery Page:
+- [ ] Import `StackGallery` component
+- [ ] Prepare gallery items with images
+- [ ] Configure auto-play if desired
+- [ ] Test drag/swipe on mobile
+- [ ] Verify image loading
 
-### FAQ PAGE
-- [ ] Replace static list with AnimatedList accordion
-- [ ] Smooth expand/collapse animations
-- [ ] Remove footer
-
-### CONTACT PAGE
-- [ ] Remove footer (strictly no footer)
-- [ ] Keep form layout
+### Main Layout:
+- [ ] Import `GooeyNav` component
+- [ ] Place in fixed position (bottom-right)
+- [ ] Customize links if needed
+- [ ] Test scroll behavior
+- [ ] Verify z-index layering
 
 ---
 
-## 🚀 DEPLOYMENT WORKFLOW
+## Performance Optimization
 
-1. **Local Development**:
+### Tips for Production:
+
+1. **Image Optimization:**
    ```bash
-   npm install  # Install all dependencies
-   npm run dev  # Start development server
+   # Optimize images for gallery
+   npm install sharp
    ```
 
-2. **Build & Test**:
-   ```bash
-   npm run build  # Build for production
-   npm run preview  # Preview build locally
+2. **Code Splitting:**
+   ```tsx
+   const StackGallery = lazy(() => import('@/components/ui/StackGallery'));
    ```
 
-3. **Git Workflow**:
+3. **Lightning Canvas Throttling:**
+   The LightningBackground already uses requestAnimationFrame for smooth 60fps
+
+4. **Disable animations on low-end devices:**
+   ```tsx
+   const prefersReducedMotion = window.matchMedia(
+     '(prefers-reduced-motion: reduce)'
+   ).matches;
+   ```
+
+---
+
+## Troubleshooting
+
+### GooeyNav not appearing:
+- ✅ Check z-index: should be 40 or higher
+- ✅ Verify position: fixed, bottom-right
+- ✅ Ensure not overflow: hidden on parent
+
+### Electric Border animation stuttering:
+- ✅ Enable GPU acceleration (CSS: `will-change: transform`)
+- ✅ Reduce number of simultaneous animations
+- ✅ Check for other heavy animations on same page
+
+### Lightning Background performance issues:
+- ✅ Reduce `intensity` level
+- ✅ Disable on mobile (use conditional render)
+- ✅ Clear canvas regularly (already implemented)
+
+### Animated List not opening:
+- ✅ Check item IDs are unique
+- ✅ Verify onClick handler is firing
+- ✅ Ensure Framer Motion is installed
+
+### Gallery not responsive:
+- ✅ Use correct aspect ratio in container
+- ✅ Check CSS media queries
+- ✅ Verify parent width is 100%
+
+---
+
+## Browser Support
+
+| Browser | Support | Notes |
+|---------|---------|-------|
+| Chrome | ✅ Full | Perfect support |
+| Firefox | ✅ Full | Perfect support |
+| Safari | ✅ Full | Full GPU acceleration |
+| Edge | ✅ Full | Chromium-based |
+| Mobile | ✅ Optimized | Touch events supported |
+
+---
+
+## Next Steps
+
+1. **Run Installation Script:**
    ```bash
-   # Already on feature/react-bits-upgrade branch
-   git add .
-   git commit -m "feat: implement react-bits components with animations"
+   bash SETUP_INSTALLATION.sh
+   ```
+
+2. **Start Development:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Integrate Components:**
+   - Add ElectricBorder to products
+   - Add Lightning to safety page
+   - Add AnimatedList to FAQ
+   - Add StackGallery to gallery
+   - GooeyNav auto-integrated
+
+4. **Test All Pages:**
+   - Scroll morphing (GooeyNav)
+   - Electric borders animate
+   - Lightning effects smooth
+   - Accordions responsive
+   - Gallery swipe working
+
+5. **Create Pull Request:**
+   ```bash
    git push origin feature/react-bits-upgrade
    ```
-
-4. **GitHub Pages Deployment**:
-   ```bash
-   npm run deploy  # Automatically builds and deploys to gh-pages
-   ```
+   Then open PR on GitHub
 
 ---
 
-## 🧪 TESTING CHECKLIST
+## Support & Documentation
 
-- [ ] All components render without errors
-- [ ] Electric borders animate continuously
-- [ ] Gooey nav stretches on scroll
-- [ ] Stack gallery displays correctly (no rotation)
-- [ ] FAQ accordion expands/collapses smoothly
-- [ ] Lightning background visible on Safety page
-- [ ] Footer removed from all pages except Home & Safety
-- [ ] Browser tab title fixed (no "Premium Showcase")
-- [ ] Build completes successfully
-- [ ] GitHub Pages deployment works
+- **Framer Motion Docs**: https://www.framer.com/motion/
+- **React Best Practices**: https://react.dev
+- **CSS Animations**: https://developer.mozilla.org/en-US/docs/Web/CSS/animation
 
 ---
 
-## 🤝 PR REVIEW CHECKLIST
-
-Before creating PR, verify:
-
-- [ ] All new components created in `src/components/ui/`
-- [ ] TypeScript types properly defined
-- [ ] Tailwind CSS classes used for styling
-- [ ] No breaking changes to existing functionality
-- [ ] Responsive design maintained
-- [ ] Animation performance optimized
-- [ ] Code follows project conventions
-- [ ] README.md updated with new setup
-
----
-
-## 📝 NOTES
-
-- **Electric Border Colors**: RGB hex values for consistency
-- **Animation Timing**: Use Framer Motion defaults or custom easing curves
-- **Footer Removal**: Use CSS `display: none` or conditional rendering
-- **GitHub Pages**: Base path already configured in vite.config
-
----
-
-## 🆘 TROUBLESHOOTING
-
-### Issue: Components not importing
-**Solution**: Ensure all react-bits packages are installed and tsconfig paths are configured
-
-### Issue: Animations laggy
-**Solution**: Use `will-change: transform` and `transform: translateZ(0)` for GPU acceleration
-
-### Issue: Build fails
-**Solution**: Check TypeScript compilation: `npm run build`
-
----
-
-**Next Step**: Run installation script and begin component implementation! 🎉
+**🎉 Ready to upgrade! Let's make TK Fireworks shine!**
