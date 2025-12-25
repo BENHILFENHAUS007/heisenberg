@@ -18,15 +18,16 @@ export const GooeyScrollbar: React.FC<GooeyScrollbarProps> = ({
   });
 
   const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  // Use number type for browser setTimeout (browser returns number, not NodeJS.Timeout)
+  const scrollTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolling(true);
-      if (scrollTimeoutRef.current) {
+      if (scrollTimeoutRef.current !== null) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      scrollTimeoutRef.current = setTimeout(() => {
+      scrollTimeoutRef.current = window.setTimeout(() => {
         setIsScrolling(false);
       }, 1000);
     };
@@ -34,7 +35,7 @@ export const GooeyScrollbar: React.FC<GooeyScrollbarProps> = ({
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeoutRef.current) {
+      if (scrollTimeoutRef.current !== null) {
         clearTimeout(scrollTimeoutRef.current);
       }
     };
