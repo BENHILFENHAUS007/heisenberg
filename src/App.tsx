@@ -74,8 +74,8 @@ function App() {
         </div>
       </Suspense>
 
-      {/* Footer */}
-      <Footer theme={theme} />
+      {/* Footer - No theme prop needed */}
+      <Footer />
     </div>
   );
 }
