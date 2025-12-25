@@ -1,0 +1,85 @@
+.electric-border-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.electric-border-glow {
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    var(--electric-color),
+    var(--electric-color),
+    transparent
+  );
+  border-radius: 12px;
+  animation: electric-flicker 3s infinite;
+}
+
+.electric-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(
+    -135deg,
+    var(--electric-color),
+    transparent,
+    var(--electric-color)
+  );
+  border-radius: 10px;
+  animation: electric-pulse 2s infinite;
+}
+
+.electric-border-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+@keyframes electric-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px var(--electric-color));
+  }
+  25% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 10px var(--electric-color));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 15px var(--electric-color));
+  }
+  75% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px var(--electric-color));
+  }
+}
+
+@keyframes electric-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .electric-border-container {
+    border-radius: 8px;
+  }
+
+  .electric-border-glow {
+    border-radius: 8px;
+  }
+
+  .electric-border-content {
+    border-radius: 6px;
+  }
+}
