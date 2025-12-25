@@ -1,0 +1,228 @@
+/* Animated List Component Styles */
+
+.animated-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.animated-list-item {
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(15, 23, 42, 0.4);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.animated-list-item:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(15, 23, 42, 0.6);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+/* Accordion Header */
+.accordion-header {
+  width: 100%;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  position: relative;
+  text-align: left;
+}
+
+.accordion-header:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.accordion-header:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: -2px;
+}
+
+.accordion-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
+}
+
+.accordion-header:hover::before {
+  opacity: 1;
+}
+
+/* Accordion Title */
+.accordion-title {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.accordion-title::before {
+  content: '?';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.2);
+  color: rgba(59, 130, 246, 0.8);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Accordion Icon */
+.accordion-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: rgba(59, 130, 246, 0.7);
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.accordion-header:hover .accordion-icon {
+  color: rgba(59, 130, 246, 1);
+}
+
+/* Accordion Content Wrapper */
+.accordion-content-wrapper {
+  overflow: hidden;
+  border-top: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+/* Accordion Content */
+.accordion-content {
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.accordion-content p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.accordion-content p + p {
+  margin-top: 12px;
+}
+
+/* List items in content */
+.accordion-content ul,
+.accordion-content ol {
+  margin: 12px 0;
+  padding-left: 20px;
+  list-style-position: inside;
+}
+
+.accordion-content li {
+  margin: 6px 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.accordion-content strong {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+
+.accordion-content em {
+  color: rgba(100, 150, 255, 0.9);
+  font-style: italic;
+}
+
+/* Animation states */
+@media (prefers-reduced-motion: reduce) {
+  .accordion-header,
+  .accordion-icon,
+  .animated-list-item {
+    transition: none;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .animated-list-container {
+    gap: 10px;
+  }
+
+  .accordion-header {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .accordion-content {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .accordion-title::before {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-list-container {
+    gap: 8px;
+  }
+
+  .accordion-header {
+    padding: 12px 14px;
+    font-size: 13px;
+    gap: 10px;
+  }
+
+  .accordion-content {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+
+  .accordion-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .accordion-title::before {
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+  }
+}
+
+/* Accessibility */
+.accordion-header:active {
+  transform: scale(0.98);
+}
+
+.animated-list-item:focus-within {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
