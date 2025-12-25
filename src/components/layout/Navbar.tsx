@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +10,25 @@ interface NavbarProps {
 
 export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  // Navbar scroll effect - hide on scroll down, show on scroll up
+  useEffect(() => {
+    let lastScrollY = 0;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsScrolled(true); // Scroll down - hide
+      } else {
+        setIsScrolled(false); // Scroll up - show
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -25,13 +43,18 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: isScrolled ? -100 : 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <img
-              src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
+              src="/heisenberg/images/logo.png"
               alt="TK Fireworks"
               className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
               onError={(e) => {
@@ -41,9 +64,6 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
             <div className="flex flex-col">
               <span className="text-white font-bold text-lg leading-tight">
                 TK Fireworks
-              </span>
-              <span className="text-orange-400 text-xs leading-tight">
-                Premium Showcase
               </span>
             </div>
           </Link>
@@ -146,6 +166,6 @@ export function Navbar({ theme, favoritesCount = 0 }: NavbarProps) {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }
