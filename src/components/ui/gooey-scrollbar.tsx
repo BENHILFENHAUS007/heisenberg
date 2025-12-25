@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 
 interface GooeyScrollbarProps {
@@ -18,13 +18,15 @@ export const GooeyScrollbar: React.FC<GooeyScrollbarProps> = ({
   });
 
   const [isScrolling, setIsScrolling] = useState(false);
-  let scrollTimeout: NodeJS.Timeout;
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolling(true);
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false);
       }, 1000);
     };
@@ -32,7 +34,9 @@ export const GooeyScrollbar: React.FC<GooeyScrollbarProps> = ({
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
   }, []);
 
