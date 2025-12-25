@@ -1,70 +1,70 @@
-[
-  {
-    "id": "TKF-MAGIC-PEACOCK",
-    "name": "Magic Peacock",
-    "categoryId": "fancy",
-    "thumbnail3D": "/heisenberg/images/little-peacock.jpg",
-    "videoUrl": "https://www.youtube.com/embed/6stlCkUDG_s",
-    "tags": ["trending", "premium", "spectacular"],
-    "descriptionShort": "Magnificent peacock-inspired fireworks with vibrant, cascading colors that mesmerize crowds.",
-    "descriptionLong": "Experience the Magic Peacock collection - a premium fireworks display inspired by the majestic peacock. Features stunning color combinations and spectacular visual effects that light up the sky.",
-    "effectType": "ground",
-    "noiseLevel": "low",
-    "durationSeconds": 60,
-    "hasVideo": true,
-    "isNew": true,
-    "isFeatured": true,
-    "displayOrder": 1
-  },
-  {
-    "id": "TKF-001",
-    "name": "Galaxy Sparkler",
-    "categoryId": "sparklers",
-    "thumbnail3D": "/heisenberg/images/coming soon.png",
-    "videoUrl": "https://www.youtube.com/embed/6stlCkUDG_s",
-    "tags": ["kids-friendly", "low-noise", "ground"],
-    "descriptionShort": "Colorful sparkler with soft golden light, perfect for kids and family celebrations.",
-    "descriptionLong": "Galaxy Sparkler offers mesmerizing golden sparks that fascinate children and adults alike. Safe, low-noise, and perfect for beginners.",
-    "effectType": "ground",
-    "noiseLevel": "low",
-    "durationSeconds": 45,
-    "hasVideo": true,
-    "isNew": false,
-    "isFeatured": false,
-    "displayOrder": 2
-  },
-  {
-    "id": "TKF-COMING-SOON-1",
-    "name": "Will be Revealed Soon",
-    "categoryId": "surprise",
-    "thumbnail3D": "/heisenberg/images/coming soon.png",
-    "videoUrl": "",
-    "tags": ["surprise", "coming-soon"],
-    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "descriptionLong": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-    "effectType": "mixed",
-    "noiseLevel": "medium",
-    "durationSeconds": 50,
-    "hasVideo": false,
-    "isNew": false,
-    "isFeatured": false,
-    "displayOrder": 3
-  },
-  {
-    "id": "TKF-COMING-SOON-2",
-    "name": "Will be Launched Soon",
-    "categoryId": "feature",
-    "thumbnail3D": "/heisenberg/images/coming soon.png",
-    "videoUrl": "",
-    "tags": ["feature", "upcoming"],
-    "descriptionShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "descriptionLong": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.",
-    "effectType": "mixed",
-    "noiseLevel": "medium",
-    "durationSeconds": 55,
-    "hasVideo": false,
-    "isNew": false,
-    "isFeatured": false,
-    "displayOrder": 4
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Magic Peacock",
+      "description": "Magnificent peacock-inspired fireworks with cascading colors that mesmerize crowds. A stunning display of nature's beauty captured in brilliant lights.",
+      "image": "/images/little-peacock.jpg",
+      "tag": "TRENDING",
+      "tagStyle": "trending",
+      "price": "₹599",
+      "category": "Fancy Items",
+      "effectType": "Mixed",
+      "noiseLevel": "Medium",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "Mystic Wonder Pack",
+      "description": "A comprehensive collection of assorted fireworks for every occasion. Perfect for family celebrations with soft sparks and peaceful vibes.",
+      "image": "/images/coming soon.png",
+      "tag": "",
+      "tagStyle": "",
+      "price": "₹799",
+      "category": "Fancy Items",
+      "effectType": "Mixed",
+      "noiseLevel": "Low",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "Coming Soon",
+      "description": "Will be Revealed Soon. An exciting new collection is in the works. Stay tuned for our latest fireworks innovation.",
+      "image": "/images/coming soon.png",
+      "tag": "SURPRISE",
+      "tagStyle": "surprise",
+      "price": "N/A",
+      "category": "Coming Soon",
+      "effectType": "Mixed",
+      "noiseLevel": "TBD",
+      "comingSoon": true
+    },
+    {
+      "id": 4,
+      "name": "Featured Collection",
+      "description": "Will be Launched Soon. A special featured collection designed for premium celebrations. Exceptional quality and stunning visual effects.",
+      "image": "/images/coming soon.png",
+      "tag": "FEATURE",
+      "tagStyle": "feature",
+      "price": "N/A",
+      "category": "Featured",
+      "effectType": "Mixed",
+      "noiseLevel": "TBD",
+      "comingSoon": true
+    }
+  ],
+  "categories": [
+    "All Categories",
+    "Sparklers",
+    "Rockets",
+    "Flower Pots",
+    "Fountains",
+    "Fancy Items",
+    "Ground Chakkars",
+    "Kids Friendly"
+  ],
+  "filters": {
+    "effectType": ["Ground", "Mixed"],
+    "noiseLevel": ["Low", "Medium", "High"]
   }
-]
+}

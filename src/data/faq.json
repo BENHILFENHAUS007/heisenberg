@@ -1,42 +1,44 @@
-[
-  {
-    "id": "faq-1",
-    "question": "Is this website for buying fireworks?",
-    "answer": "No. This is a display-only catalog. To enquire about products or place an order, please use the WhatsApp button to contact us directly."
-  },
-  {
-    "id": "faq-2",
-    "question": "How do I place an order?",
-    "answer": "Simply click the WhatsApp Enquiry button on any product or use the floating WhatsApp button. Our team will assist you with pricing, delivery, and order details."
-  },
-  {
-    "id": "faq-3",
-    "question": "Are there videos of the products?",
-    "answer": "Yes! Most products have embedded YouTube videos showing the effects. Click 'Watch Video' on any product card to see the display."
-  },
-  {
-    "id": "faq-4",
-    "question": "Can I save my favorite products?",
-    "answer": "Absolutely! Click the heart icon on any product to add it to your shortlist. You can view all favorites and share them via WhatsApp."
-  },
-  {
-    "id": "faq-5",
-    "question": "Do you deliver to my area?",
-    "answer": "Contact us via WhatsApp to check delivery availability for your location. Our team will provide complete details about delivery options and timelines."
-  },
-  {
-    "id": "faq-6",
-    "question": "What about bulk or wholesale orders?",
-    "answer": "We handle bulk orders and dealer partnerships. Visit the 'Bulk Orders' page or WhatsApp us directly for wholesale enquiries."
-  },
-  {
-    "id": "faq-7",
-    "question": "Are your products safe for kids?",
-    "answer": "Many of our products are marked as 'Kids Friendly'. Always supervise children and follow safety instructions. Visit our Safety page for detailed guidelines."
-  },
-  {
-    "id": "faq-8",
-    "question": "Can I use this site as an app on my phone?",
-    "answer": "Yes! This site is PWA-enabled. On Android or Chromium browsers, you can 'Add to Home Screen' and use it like a native app."
-  }
-]
+{
+  "faqs": [
+    {
+      "id": 1,
+      "title": "Is this website for buying fireworks?",
+      "content": "Yes! Our website is a comprehensive platform for purchasing premium quality fireworks. We offer a wide selection of 500+ varieties for every occasion and budget. You can browse our catalog, view product details, and place orders directly through our secure platform."
+    },
+    {
+      "id": 2,
+      "title": "How do I place an order?",
+      "content": "Placing an order is simple and secure. Browse our catalog, select your products, add them to your cart, and proceed to checkout. Provide your delivery address and preferred payment method. We accept multiple payment options for your convenience. Your order will be confirmed via email with tracking details."
+    },
+    {
+      "id": 3,
+      "title": "Are there videos of the products?",
+      "content": "Yes! Many of our products have demonstration videos showing the actual fireworks display. You can find these videos on individual product pages. We also have a dedicated Video Tutorials section in our resources where you can learn about product usage, safety guidelines, and the best ways to use our fireworks for maximum enjoyment."
+    },
+    {
+      "id": 4,
+      "title": "Can I save my favorite products?",
+      "content": "Absolutely! You can create a personal shortlist of your favorite products. Click the heart icon on any product to add it to your shortlist. Your saved products will be available in your Shortlist page, making it easier to organize and compare items before making a purchase decision."
+    },
+    {
+      "id": 5,
+      "title": "Do you deliver to my area?",
+      "content": "We provide fast delivery across India with reliable logistics partners. During checkout, you can verify if your area is within our delivery zone. We offer quick dispatch with multiple delivery options. For bulk orders or special delivery requirements, please contact our business inquiry team."
+    },
+    {
+      "id": 6,
+      "title": "What about bulk or wholesale orders?",
+      "content": "We offer special pricing and dedicated support for bulk and wholesale orders. Whether you're an event planner, retailer, or organizing a large celebration, our bulk orders section provides competitive rates. You can request quotations directly through our Bulk Orders page or contact our business team for personalized assistance."
+    },
+    {
+      "id": 7,
+      "title": "Are your products safe for kids?",
+      "content": "All our products meet international safety standards and are certified by relevant authorities. We offer a dedicated 'Kids Friendly' category with age-appropriate fireworks. However, adult supervision is always required. Please review the age restrictions and safety guidelines provided with each product before use."
+    },
+    {
+      "id": 8,
+      "title": "Can I use this site as an app on my phone?",
+      "content": "Yes! Our website is fully responsive and mobile-optimized. You can access all features from your smartphone or tablet. Additionally, you can install our site as a Progressive Web App (PWA) on your phone for quick access. Click on the menu and select 'Install' to add our app to your home screen."
+    }
+  ]
+}

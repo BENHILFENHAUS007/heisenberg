@@ -1,0 +1,164 @@
+.stack-animation-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.stack-animation-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  max-width: 600px;
+  perspective: 1000px;
+}
+
+.stack-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.stack-card.active {
+  z-index: 10;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.stack-card.prev {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stack-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stack-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 24px 16px 16px;
+  font-size: 20px;
+  font-weight: 600;
+  z-index: 5;
+}
+
+.stack-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 20;
+}
+
+.stack-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.stack-button:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.stack-button:active {
+  transform: scale(0.95);
+}
+
+.stack-indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stack-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stack-indicator.active {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+.stack-indicator:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .stack-animation-container {
+    height: 450px;
+  }
+
+  .stack-animation-wrapper {
+    height: 350px;
+    max-width: 100%;
+  }
+
+  .stack-card {
+    border-radius: 12px;
+  }
+
+  .stack-button {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stack-animation-container {
+    height: 400px;
+  }
+
+  .stack-animation-wrapper {
+    height: 300px;
+  }
+
+  .stack-title {
+    font-size: 16px;
+    padding: 20px 12px 12px;
+  }
+
+  .stack-button {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}

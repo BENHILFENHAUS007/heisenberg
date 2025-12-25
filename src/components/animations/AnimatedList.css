@@ -1,0 +1,125 @@
+.animated-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.animated-list-item {
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.animated-list-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.animated-list-header {
+  width: 100%;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.animated-list-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.animated-list-header.expanded {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.animated-list-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.animated-list-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.animated-list-header.expanded .animated-list-icon {
+  transform: rotate(90deg);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.animated-list-content {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.animated-list-body {
+  padding: 0 20px 16px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  font-size: 14px;
+  animation: fadeIn 0.4s ease 0.1s both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .animated-list-header {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .animated-list-body {
+    padding: 0 16px 12px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-list-header {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .animated-list-body {
+    padding: 0 14px 10px 14px;
+    font-size: 12px;
+  }
+}
