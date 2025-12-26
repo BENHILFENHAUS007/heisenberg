@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Zap, Shield, Truck, Star } from 'lucide-react';
+import { Search, Star, Shield, Zap, Facebook, Instagram, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import configData from '../data/config.json';
 import contactData from '../data/contact.json';
@@ -50,34 +50,71 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
   return (
     <div className="relative min-h-screen bg-black">
-      {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 px-4">
+      {/* HERO SECTION - Matches PDF exactly */}
+      <section className="relative pt-40 pb-32 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="text-6xl md:text-7xl font-black mb-4 text-white">
-              {contactData.tagline}
-            </h1>
-            <p className="text-xl text-gray-400 mb-8">{contactData.subtitle}</p>
+            {/* Logo */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="mb-6"
+            >
+              <img
+                src="/heisenberg/images/logo.png"
+                alt="TK Fireworks Logo"
+                className="h-24 w-auto mx-auto drop-shadow-lg"
+              />
+            </motion.div>
+
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-6xl md:text-8xl font-black mb-6 text-white"
+              style={{
+                textShadow: '0 0 30px rgba(249, 115, 22, 0.3), 0 0 60px rgba(249, 115, 22, 0.2)',
+              }}
+            >
+              TK FIREWORKS
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-2xl md:text-3xl text-orange-300 mb-12 font-light tracking-wide"
+            >
+              {contactData.subtitle}
+            </motion.p>
+
+            {/* CTA Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
               onClick={() => navigate('/catalog')}
-              className="px-8 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl transition-all duration-300"
+              className="px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300"
             >
-              Explore Products
+              Explore Our Collection
             </motion.button>
           </motion.div>
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
+      {/* FEATURES SECTION - Only 3 items (removed Fast Delivery) */}
       <section className="py-20 px-4 bg-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: Star,
@@ -93,11 +130,6 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 icon: Zap,
                 title: 'Wide Selection',
                 desc: '500+ varieties for every occasion and budget',
-              },
-              {
-                icon: Truck,
-                title: 'Fast Delivery',
-                desc: 'Quick dispatch and reliable delivery across India',
               },
             ].map((feature, idx) => {
               const Icon = feature.icon;
@@ -168,7 +200,94 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* FOOTER - ONLY ON HOME PAGE */}
+      {/* WELCOME SECTION - Animated content */}
+      <section className="py-32 px-4 bg-gradient-to-b from-transparent via-orange-500/5 to-transparent">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-4xl md:text-5xl font-black mb-8 text-white"
+            >
+              🎉 Welcome to TK Fireworks
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-lg text-gray-300 mb-8 leading-relaxed"
+            >
+              Where Every Spark Has a Story!
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-gray-300 space-y-4 mb-8 text-left max-w-2xl mx-auto"
+            >
+              <p>
+                Born from years of hard work, crazy ideas, and endless testing, TK Fireworks isn't just a brand — it's a bunch of dreamers who decided that festivals should never be boring!
+              </p>
+              <p className="text-xl font-semibold text-orange-400">
+                We don't sell fireworks. We sell moments that make people laugh, cheer, and go "WOW!"
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="bg-white/5 backdrop-blur-sm border border-orange-500/30 rounded-xl p-8 mb-8"
+            >
+              <h3 className="text-xl font-bold text-white mb-6">Our fireworks are:</h3>
+              <div className="space-y-3 text-left">
+                {[
+                  '✅ Kids-safe',
+                  '✅ Eco-conscious',
+                  '✅ Crafted with love and skill',
+                  '✅ Proudly made by real heroes — our factory workers',
+                ].map((item, idx) => (
+                  <motion.p
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + idx * 0.1, duration: 0.6 }}
+                    className="text-lg text-gray-300"
+                  >
+                    {item}
+                  </motion.p>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="text-2xl font-bold text-orange-400"
+            >
+              ✨ Light up your festival — TK Fireworks style!
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FOOTER - ONLY ON HOME PAGE - Clean modern style with social icons */}
       <footer className="relative bg-gradient-to-b from-black to-gray-900 border-t border-white/10 mt-20">
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Content */}
@@ -219,6 +338,35 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
           {/* Divider */}
           <div className="border-t border-white/10 mb-8" />
+
+          {/* Social Icons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex justify-center gap-6 mb-8"
+          >
+            {[
+              { icon: Facebook, label: 'Facebook', href: 'https://facebook.com' },
+              { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
+              { icon: Mail, label: 'Email', href: `mailto:${contactData.contact.email}` },
+            ].map((social, idx) => {
+              const Icon = social.icon;
+              return (
+                <motion.a
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-white/10 hover:bg-orange-500 text-gray-400 hover:text-white transition-all duration-300"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              );
+            })}
+          </motion.div>
 
           {/* Bottom */}
           <div className="text-center text-gray-500 text-sm">
