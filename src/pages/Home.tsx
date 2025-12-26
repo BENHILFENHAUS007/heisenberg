@@ -19,11 +19,11 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
   return (
     <div className="relative w-full min-h-screen bg-black z-0 overflow-visible">
-      {/* HERO SECTION - Clean header with title only */}
+      {/* HERO SECTION - Logo + Title + Subtitle + Button */}
       <section 
-        className="relative w-full pt-20 pb-20 px-4 z-50"
+        className="relative w-full pt-16 pb-20 px-4 z-50"
         style={{
-          display: 'block !important',
+          display: 'block',
           position: 'relative',
           width: '100%',
           backgroundColor: '#000000',
@@ -38,8 +38,37 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* LOGO - REMOVED (will show only in navbar) */}
-            {/* Use only in navbar, not in hero section */}
+            {/* MAIN HERO LOGO - Cross-browser compatible */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="mb-6 flex justify-center"
+              style={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 51
+              }}
+            >
+              <img
+                src="/images/logo.png"
+                alt="TK Fireworks Logo"
+                className="h-24 w-auto"
+                style={{
+                  display: 'block',
+                  maxWidth: '120px',
+                  height: 'auto',
+                  opacity: 1,
+                  visibility: 'visible',
+                  filter: 'drop-shadow(0 0 20px rgba(249, 115, 22, 0.4))',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden'
+                }}
+                loading="eager"
+              />
+            </motion.div>
 
             {/* Title */}
             <motion.h1
@@ -50,7 +79,8 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               style={{
                 textShadow: '0 0 30px rgba(249, 115, 22, 0.3), 0 0 60px rgba(249, 115, 22, 0.2)',
                 opacity: 1,
-                visibility: 'visible'
+                visibility: 'visible',
+                WebkitFontSmoothing: 'antialiased'
               }}
             >
               TK FIREWORKS
@@ -64,7 +94,8 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               className="text-2xl md:text-3xl text-orange-300 mb-12 font-light tracking-wide relative z-50"
               style={{
                 opacity: 1,
-                visibility: 'visible'
+                visibility: 'visible',
+                WebkitFontSmoothing: 'antialiased'
               }}
             >
               {contactData.subtitle}
@@ -78,7 +109,12 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               onClick={() => navigate('/catalog')}
-              className="px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 relative z-50"
+              className="px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 relative z-50 cursor-pointer"
+              style={{
+                border: 'none',
+                WebkitAppearance: 'none',
+                appearance: 'none'
+              }}
             >
               Explore Our Collection
             </motion.button>
@@ -127,11 +163,11 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* WELCOME SECTION - Image appears HERE */}
+      {/* WELCOME SECTION */}
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Animated Child Image - ONLY HERE */}
+            {/* Left: Animated Child Image */}
             <motion.div
               initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -164,13 +200,16 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                       filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))',
                       opacity: 1,
                       visibility: 'visible',
-                      display: 'block !important',
+                      display: 'block',
                       position: 'relative',
                       zIndex: 30,
                       width: '100%',
                       height: 'auto',
-                      borderRadius: '1rem'
+                      borderRadius: '1rem',
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden'
                     }}
+                    loading="lazy"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       if (target.src.includes('animated-image-on-home.png')) {
@@ -179,7 +218,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                     }}
                   />
 
-                  {/* Particles - Only in Welcome section */}
+                  {/* Particles */}
                   {[0, 1, 2, 3, 4].map((idx) => (
                     <motion.div
                       key={idx}
@@ -198,6 +237,8 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                       style={{
                         left: `${20 + idx * 15}%`,
                         top: `-${10 + idx * 5}%`,
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
                       }}
                     />
                   ))}
@@ -295,7 +336,12 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.9, duration: 0.6 }}
                 onClick={() => navigate('/catalog')}
-                className="px-8 py-3 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300"
+                className="px-8 py-3 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 cursor-pointer"
+                style={{
+                  border: '2px solid rgb(249, 115, 22)',
+                  WebkitAppearance: 'none',
+                  appearance: 'none'
+                }}
               >
                 View All Products
               </motion.button>
