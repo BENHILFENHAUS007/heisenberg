@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Star, Shield, Zap, Facebook, Instagram, Mail, Twitter, MessageCircle, Linkedin } from 'lucide-react';
+import { Star, Shield, Zap, Facebook, Instagram, Mail, Twitter, MessageCircle, Linkedin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import configData from '../data/config.json';
 import contactData from '../data/contact.json';
-import productsData from '../data/products.json';
-import { ProductCard } from '../components/ui/ProductCard';
 import { useGA4 } from '../hooks/useGA4';
 import { useFavorites } from '../hooks/useFavorites';
 
@@ -15,38 +13,9 @@ interface HomeProps {
 
 export const Home: React.FC<HomeProps> = ({ theme }) => {
   const navigate = useNavigate();
-  const { favorites, toggleFavorite } = useFavorites();
-  const [products, setProducts] = useState<any[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  const { favorites } = useFavorites();
 
   useGA4();
-
-  useEffect(() => {
-    setProducts(productsData.products);
-    setFilteredProducts(productsData.products.slice(0, 4));
-  }, []);
-
-  useEffect(() => {
-    let filtered = products;
-
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(
-        (p) => p.categoryId.toLowerCase() === selectedCategory.toLowerCase()
-      );
-    }
-
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.descriptionShort.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    setFilteredProducts(filtered.slice(0, 4));
-  }, [selectedCategory, searchQuery, products]);
 
   return (
     <div className="relative min-h-screen bg-black">
@@ -152,138 +121,187 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* PRODUCTS SECTION */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-12">Featured Products</h2>
-
-          {/* Search Bar */}
-          <div className="mb-8 flex items-center relative">
-            <Search className="absolute left-4 text-gray-500" size={20} />
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-orange-400"
-            />
-          </div>
-
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {filteredProducts.map((product, idx) => (
+      {/* WELCOME SECTION - Animated content with child image */}
+      <section className="py-32 px-4 bg-gradient-to-b from-transparent via-orange-500/5 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          {/* Main Grid: Text + Image */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Animated Child Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex justify-center lg:justify-start"
+            >
+              {/* Floating + Bouncing + Glow + Pulse + Parallax Container */}
               <motion.div
-                key={product.id}
+                animate={{
+                  y: [0, -20, 0],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="relative w-full max-w-sm"
+              >
+                {/* Glow Background Effect */}
+                <motion.div
+                  animate={{
+                    boxShadow: [
+                      '0 0 20px rgba(249, 115, 22, 0.2)',
+                      '0 0 40px rgba(249, 115, 22, 0.4)',
+                      '0 0 20px rgba(249, 115, 22, 0.2)',
+                    ],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="absolute inset-0 rounded-3xl blur-3xl opacity-50"
+                />
+
+                {/* Main Image with Parallax */}
+                <motion.div
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative z-10"
+                >
+                  <img
+                    src="/images/animated image on home.png"
+                    alt="Child with Fireworks - TK Fireworks"
+                    className="w-full h-auto drop-shadow-2xl rounded-2xl"
+                    style={{
+                      filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))',
+                    }}
+                  />
+
+                  {/* Floating Particle Effects Around Image */}
+                  {[0, 1, 2, 3, 4].map((idx) => (
+                    <motion.div
+                      key={idx}
+                      animate={{
+                        y: [0, -30, 0],
+                        x: [0, Math.cos(idx) * 20, 0],
+                        opacity: [0.4, 0.8, 0.4],
+                      }}
+                      transition={{
+                        duration: 3 + idx * 0.5,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: idx * 0.2,
+                      }}
+                      className="absolute w-3 h-3 rounded-full bg-orange-400 blur-sm"
+                      style={{
+                        left: `${20 + idx * 15}%`,
+                        top: `-${10 + idx * 5}%`,
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Welcome Text Content */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center lg:text-left"
+            >
+              <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+                className="text-4xl md:text-5xl font-black mb-8 text-white"
               >
-                <ProductCard
-                  product={product}
-                  isFavorite={favorites.includes(product.id)}
-                  onFavoriteToggle={() => toggleFavorite(product.id)}
-                  theme={theme}
-                />
+                🎉 Welcome to TK Fireworks
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="text-2xl text-orange-300 mb-8 font-semibold"
+              >
+                Where Every Spark Has a Story!
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="text-gray-300 space-y-4 mb-8"
+              >
+                <p>
+                  Born from years of hard work, crazy ideas, and endless testing, TK Fireworks isn't just a brand — it's a bunch of dreamers who decided that festivals should never be boring!
+                </p>
+                <p className="text-xl font-semibold text-orange-400">
+                  We don't sell fireworks. We sell moments that make people laugh, cheer, and go "WOW!"
+                </p>
               </motion.div>
-            ))}
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="bg-white/5 backdrop-blur-sm border border-orange-500/30 rounded-xl p-8 mb-8"
+              >
+                <h3 className="text-xl font-bold text-white mb-6">Our fireworks are:</h3>
+                <div className="space-y-3 text-left">
+                  {[
+                    '✅ Kids-safe',
+                    '✅ Eco-conscious',
+                    '✅ Crafted with love and skill',
+                    '✅ Proudly made by real heroes — our factory workers',
+                  ].map((item, idx) => (
+                    <motion.p
+                      key={idx}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 + idx * 0.1, duration: 0.6 }}
+                      className="text-lg text-gray-300"
+                    >
+                      {item}
+                    </motion.p>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="text-2xl font-bold text-orange-400 mb-8"
+              >
+                ✨ Light up your festival — TK Fireworks style!
+              </motion.p>
+
+              {/* View All Products Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.9, duration: 0.6 }}
+                onClick={() => navigate('/catalog')}
+                className="px-8 py-3 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300"
+              >
+                View All Products
+              </motion.button>
+            </motion.div>
           </div>
-
-          <motion.div className="text-center mt-12">
-            <button
-              onClick={() => navigate('/catalog')}
-              className="px-8 py-3 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300"
-            >
-              View All Products
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* WELCOME SECTION - Animated content */}
-      <section className="py-32 px-4 bg-gradient-to-b from-transparent via-orange-500/5 to-transparent">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-4xl md:text-5xl font-black mb-8 text-white"
-            >
-              🎉 Welcome to TK Fireworks
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-2xl text-orange-300 mb-8 font-semibold"
-            >
-              Where Every Spark Has a Story!
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-gray-300 space-y-4 mb-8 text-left max-w-2xl mx-auto"
-            >
-              <p>
-                Born from years of hard work, crazy ideas, and endless testing, TK Fireworks isn't just a brand — it's a bunch of dreamers who decided that festivals should never be boring!
-              </p>
-              <p className="text-xl font-semibold text-orange-400">
-                We don't sell fireworks. We sell moments that make people laugh, cheer, and go "WOW!"
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="bg-white/5 backdrop-blur-sm border border-orange-500/30 rounded-xl p-8 mb-8"
-            >
-              <h3 className="text-xl font-bold text-white mb-6">Our fireworks are:</h3>
-              <div className="space-y-3 text-left">
-                {[
-                  '✅ Kids-safe',
-                  '✅ Eco-conscious',
-                  '✅ Crafted with love and skill',
-                  '✅ Proudly made by real heroes — our factory workers',
-                ].map((item, idx) => (
-                  <motion.p
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 + idx * 0.1, duration: 0.6 }}
-                    className="text-lg text-gray-300"
-                  >
-                    {item}
-                  </motion.p>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="text-2xl font-bold text-orange-400"
-            >
-              ✨ Light up your festival — TK Fireworks style!
-            </motion.p>
-          </motion.div>
         </div>
       </section>
 
