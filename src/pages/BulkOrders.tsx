@@ -7,6 +7,9 @@ interface BulkOrdersProps {
 }
 
 export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
+  const primaryColor = theme?.primaryColor || '#ff6b00';
+  const accentColor = theme?.accentColor || '#ffd700';
+
   const handleBulkEnquiry = () => {
     const message = encodeURIComponent('Hi, I\'m interested in bulk orders for TK Fireworks products. Please provide pricing and MOQ details.');
     window.open(`https://wa.me/${configData.whatsappNumber}?text=${message}`, '_blank');
@@ -35,7 +38,7 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="glass-effect p-8 rounded-xl border-2"
-            style={{ borderColor: theme.primaryColor }}
+            style={{ borderColor: primaryColor }}
           >
             <div className="text-5xl mb-4">📦</div>
             <h2 className="text-3xl font-bold mb-4">Bulk Orders</h2>
@@ -44,16 +47,16 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             </p>
             <ul className="space-y-2 mb-6 text-gray-300">
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.primaryColor }}>✓</span> Custom MOQ
+                <span style={{ color: primaryColor }}>✓</span> Custom MOQ
               </li>
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.primaryColor }}>✓</span> Special Pricing
+                <span style={{ color: primaryColor }}>✓</span> Special Pricing
               </li>
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.primaryColor }}>✓</span> Fast Delivery
+                <span style={{ color: primaryColor }}>✓</span> Fast Delivery
               </li>
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.primaryColor }}>✓</span> Dedicated Support
+                <span style={{ color: primaryColor }}>✓</span> Dedicated Support
               </li>
             </ul>
             <motion.button
@@ -71,7 +74,7 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="glass-effect p-8 rounded-xl border-2"
-            style={{ borderColor: theme.accentColor }}
+            style={{ borderColor: accentColor }}
           >
             <div className="text-5xl mb-4">🤝</div>
             <h2 className="text-3xl font-bold mb-4">Dealer Partnership</h2>
@@ -80,23 +83,23 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             </p>
             <ul className="space-y-2 mb-6 text-gray-300">
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.accentColor }}>✓</span> Wholesale Rates
+                <span style={{ color: accentColor }}>✓</span> Wholesale Rates
               </li>
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.accentColor }}>✓</span> Marketing Support
+                <span style={{ color: accentColor }}>✓</span> Marketing Support
               </li>
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.accentColor }}>✓</span> Territory Rights
+                <span style={{ color: accentColor }}>✓</span> Territory Rights
               </li>
               <li className="flex items-center gap-2">
-                <span style={{ color: theme.accentColor }}>✓</span> Training & Resources
+                <span style={{ color: accentColor }}>✓</span> Training & Resources
               </li>
             </ul>
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={handleDealerEnquiry}
               className="w-full py-3 rounded-lg font-bold text-black flex items-center justify-center gap-2 transition-all"
-              style={{ backgroundColor: theme.accentColor }}
+              style={{ backgroundColor: accentColor }}
             >
               <TrendingUp size={20} /> Dealer Enquiry
             </motion.button>
@@ -115,7 +118,7 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             <div className="flex gap-4">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-black flex-shrink-0"
-                style={{ backgroundColor: theme.primaryColor }}
+                style={{ backgroundColor: primaryColor }}
               >
                 1
               </div>
@@ -127,7 +130,7 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             <div className="flex gap-4">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-black flex-shrink-0"
-                style={{ backgroundColor: theme.primaryColor }}
+                style={{ backgroundColor: primaryColor }}
               >
                 2
               </div>
@@ -139,7 +142,7 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             <div className="flex gap-4">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-black flex-shrink-0"
-                style={{ backgroundColor: theme.primaryColor }}
+                style={{ backgroundColor: primaryColor }}
               >
                 3
               </div>
@@ -151,7 +154,7 @@ export const BulkOrders: React.FC<BulkOrdersProps> = ({ theme }) => {
             <div className="flex gap-4">
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-black flex-shrink-0"
-                style={{ backgroundColor: theme.primaryColor }}
+                style={{ backgroundColor: primaryColor }}
               >
                 4
               </div>
