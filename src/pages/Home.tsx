@@ -4,6 +4,7 @@ import { Search, Zap, Shield, Truck, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import configData from '../data/config.json';
 import contactData from '../data/contact.json';
+import productsData from '../data/products.json';
 import { ProductCard } from '../components/ui/ProductCard';
 import { useGA4 } from '../hooks/useGA4';
 import { useFavorites } from '../hooks/useFavorites';
@@ -23,13 +24,8 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
   useGA4();
 
   useEffect(() => {
-    const loadProducts = async () => {
-      const response = await fetch('/heisenberg/data/products.json');
-      const data = await response.json();
-      setProducts(data);
-      setFilteredProducts(data.slice(0, 4));
-    };
-    loadProducts();
+    setProducts(productsData.products);
+    setFilteredProducts(productsData.products.slice(0, 4));
   }, []);
 
   useEffect(() => {
@@ -65,7 +61,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             <h1 className="text-6xl md:text-7xl font-black mb-4 text-white">
               {contactData.tagline}
             </h1>
-            <p className="text-xl text-gray-400 mb-8">{contactData.description}</p>
+            <p className="text-xl text-gray-400 mb-8">{contactData.subtitle}</p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -130,8 +126,8 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
           <h2 className="text-4xl font-bold text-white mb-12">Featured Products</h2>
 
           {/* Search Bar */}
-          <div className="mb-8 flex items-center">
-            <Search className="absolute ml-4 text-gray-500" size={20} />
+          <div className="mb-8 flex items-center relative">
+            <Search className="absolute left-4 text-gray-500" size={20} />
             <input
               type="text"
               placeholder="Search products..."
