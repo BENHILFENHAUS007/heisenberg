@@ -6,6 +6,7 @@ import configData from '../data/config.json';
 import contactData from '../data/contact.json';
 import { useGA4 } from '../hooks/useGA4';
 import { useFavorites } from '../hooks/useFavorites';
+import { getAssetPath } from '@/utils/getAssetPath';
 
 interface HomeProps {
   theme: any;
@@ -38,7 +39,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* MAIN HERO LOGO - Cross-browser compatible */}
+            {/* MAIN HERO LOGO - Environment-aware path */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -53,7 +54,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               }}
             >
               <img
-                src="/images/logo.png"
+                src={getAssetPath('/images/logo.png')}
                 alt="TK Fireworks Logo"
                 className="h-24 w-auto"
                 style={{
@@ -167,7 +168,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Animated Child Image */}
+            {/* Left: Animated Child Image - Environment-aware path */}
             <motion.div
               initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -194,7 +195,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   className="relative z-30"
                 >
                   <img
-                    src="/images/animated-image-on-home.png"
+                    src={getAssetPath('/images/animated-image-on-home.png')}
                     alt="Child with Fireworks - TK Fireworks"
                     style={{
                       filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))',
@@ -212,8 +213,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                     loading="lazy"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
+                      // Fallback: try with space in filename
                       if (target.src.includes('animated-image-on-home.png')) {
-                        target.src = "/images/animated image on home.png";
+                        target.src = getAssetPath('/images/animated image on home.png');
                       }
                     }}
                   />
