@@ -18,37 +18,39 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
   useGA4();
 
   return (
-    <div className="relative w-full min-h-screen bg-black z-0">
-      {/* HERO SECTION - Matches PDF exactly */}
-      <section className="relative w-full pt-40 pb-32 px-4 z-50 bg-black">
+    <div className="relative w-full min-h-screen bg-black z-0 overflow-x-hidden">
+      {/* HERO SECTION - Removed bg-black from section to prevent layering issues */}
+      <section className="relative w-full pt-40 pb-32 px-4 z-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }} // Force visible
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            {/* Logo */}
+            {/* Logo - Removed opacity animation to guarantee visibility */}
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 1 }} // Start fully visible
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="mb-6"
+              className="mb-6 relative z-50 block" // Added block
             >
               <img
                 src="/images/logo.png"
                 alt="TK Fireworks Logo"
-                className="h-24 w-auto mx-auto drop-shadow-lg relative z-50"
+                className="h-24 w-auto mx-auto drop-shadow-lg relative z-50 block" // Added block
+                style={{ opacity: 1, visibility: 'visible' }} // Inline style failsafe
               />
             </motion.div>
 
-            {/* Title */}
+            {/* Title - Force visible */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }} // Start visible
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-6xl md:text-8xl font-black mb-6 text-white relative z-50"
               style={{
                 textShadow: '0 0 30px rgba(249, 115, 22, 0.3), 0 0 60px rgba(249, 115, 22, 0.2)',
+                opacity: 1, visibility: 'visible' // Inline style failsafe
               }}
             >
               TK FIREWORKS
@@ -56,7 +58,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
             {/* Subtitle */}
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 1, y: 0 }} // Start visible
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="text-2xl md:text-3xl text-orange-300 mb-12 font-light tracking-wide relative z-50"
@@ -68,7 +70,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 1, y: 0 }} // Start visible
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               onClick={() => navigate('/catalog')}
@@ -80,7 +82,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* FEATURES SECTION - Only 3 items (removed Fast Delivery) */}
+      {/* FEATURES SECTION */}
       <section className="w-full py-20 px-4 bg-white/5 relative z-40">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -121,17 +123,15 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* WELCOME SECTION - Animated content with child image */}
+      {/* WELCOME SECTION */}
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
-          {/* Main Grid: Text + Image */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Animated Child Image */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 1, x: 0 }} // Force visible
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
               className="flex justify-center lg:justify-start relative z-30"
             >
               {/* Floating + Bouncing + Parallax Container */}
@@ -147,22 +147,30 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 }}
                 className="relative w-full max-w-sm"
               >
-                {/* Main Image with Parallax - FULLY VISIBLE */}
+                {/* Main Image - Using renamed file for safety */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.3 }}
                   className="relative z-30"
                 >
                   <img
-                    src="/images/animated image on home.png"
+                    src="/images/animated-image-on-home.png" // Renamed to safe filename (hyphens)
                     alt="Child with Fireworks - TK Fireworks"
-                    className="w-full h-auto drop-shadow-2xl rounded-2xl relative z-30"
+                    className="w-full h-auto drop-shadow-2xl rounded-2xl relative z-30 block"
                     style={{
                       filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))',
+                      opacity: 1, visibility: 'visible'
+                    }}
+                    onError={(e) => {
+                      // Fallback to original filename if rename failed
+                      const target = e.target as HTMLImageElement;
+                      if (target.src.includes('animated-image-on-home.png')) {
+                        target.src = "/images/animated image on home.png";
+                      }
                     }}
                   />
 
-                  {/* Floating Particle Effects Around Image */}
+                  {/* Particles */}
                   {[0, 1, 2, 3, 4].map((idx) => (
                     <motion.div
                       key={idx}
