@@ -33,6 +33,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
   const navigate = useNavigate();
   const { isFavorite, toggleFavorite } = useFavorites();
   const [showVideo, setShowVideo] = useState(false);
+  const primaryColor = theme?.primaryColor || '#ff6b00';
+  const accentColor = theme?.accentColor || '#ffd700';
 
   const product = (productsData as any).products.find((p: Product) => p.id === id);
 
@@ -98,7 +100,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
               {!showVideo ? (
                 <div
                   className="w-full h-full flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: theme?.primaryColor || '#ff6b00' }}
+                  style={{ backgroundColor: primaryColor }}
                   onClick={() => setShowVideo(true)}
                 >
                   <div className="text-center">
@@ -134,7 +136,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
               {product.isNew && (
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ backgroundColor: theme?.primaryColor || '#ff6b00' }}
+                  style={{ backgroundColor: primaryColor }}
                 >
                   NEW
                 </span>
@@ -142,7 +144,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
               {product.isFeatured && (
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold"
-                  style={{ backgroundColor: theme?.accentColor || '#ffd700', color: '#000' }}
+                  style={{ backgroundColor: accentColor, color: '#000' }}
                 >
                   FEATURED
                 </span>
@@ -197,8 +199,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
               onClick={() => toggleFavorite(product.id)}
               className="px-6 py-3 rounded-lg font-bold border-2 flex items-center justify-center gap-2 transition-all"
               style={{
-                borderColor: theme?.primaryColor || '#ff6b00',
-                backgroundColor: isFavorite(product.id) ? theme?.primaryColor || '#ff6b00' : 'transparent',
+                borderColor: primaryColor,
+                backgroundColor: isFavorite(product.id) ? primaryColor : 'transparent',
               }}
             >
               <Heart
