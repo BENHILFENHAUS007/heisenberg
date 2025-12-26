@@ -25,14 +25,14 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-12 relative z-20"
           >
             {/* Logo */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="mb-6"
+              className="mb-6 relative z-20"
             >
               <img
                 src="/images/logo.png"
@@ -46,7 +46,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-6xl md:text-8xl font-black mb-6 text-white"
+              className="text-6xl md:text-8xl font-black mb-6 text-white relative z-20"
               style={{
                 textShadow: '0 0 30px rgba(249, 115, 22, 0.3), 0 0 60px rgba(249, 115, 22, 0.2)',
               }}
@@ -59,7 +59,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-2xl md:text-3xl text-orange-300 mb-12 font-light tracking-wide"
+              className="text-2xl md:text-3xl text-orange-300 mb-12 font-light tracking-wide relative z-20"
             >
               {contactData.subtitle}
             </motion.p>
@@ -72,7 +72,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               onClick={() => navigate('/catalog')}
-              className="px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300"
+              className="px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 relative z-20"
             >
               Explore Our Collection
             </motion.button>
@@ -81,7 +81,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       </section>
 
       {/* FEATURES SECTION - Only 3 items (removed Fast Delivery) */}
-      <section className="py-20 px-4 bg-white/5">
+      <section className="py-20 px-4 bg-white/5 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -122,7 +122,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       </section>
 
       {/* WELCOME SECTION - Animated content with child image */}
-      <section className="py-32 px-4 bg-gradient-to-b from-transparent via-orange-500/5 to-transparent">
+      <section className="py-32 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Main Grid: Text + Image */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -132,9 +132,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="flex justify-center lg:justify-start"
+              className="flex justify-center lg:justify-start relative z-10"
             >
-              {/* Floating + Bouncing + Glow + Pulse + Parallax Container */}
+              {/* Floating + Bouncing + Parallax Container */}
               <motion.div
                 animate={{
                   y: [0, -20, 0],
@@ -147,33 +147,16 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 }}
                 className="relative w-full max-w-sm"
               >
-                {/* Glow Background Effect */}
-                <motion.div
-                  animate={{
-                    boxShadow: [
-                      '0 0 20px rgba(249, 115, 22, 0.2)',
-                      '0 0 40px rgba(249, 115, 22, 0.4)',
-                      '0 0 20px rgba(249, 115, 22, 0.2)',
-                    ],
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  className="absolute inset-0 rounded-3xl blur-3xl opacity-50"
-                />
-
-                {/* Main Image with Parallax */}
+                {/* Main Image with Parallax - FULLY VISIBLE */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.3 }}
-                  className="relative z-10"
+                  className="relative z-20"
                 >
                   <img
                     src="/images/animated image on home.png"
                     alt="Child with Fireworks - TK Fireworks"
-                    className="w-full h-auto drop-shadow-2xl rounded-2xl"
+                    className="w-full h-auto drop-shadow-2xl rounded-2xl relative z-20"
                     style={{
                       filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))',
                     }}
@@ -194,7 +177,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                         ease: 'easeInOut',
                         delay: idx * 0.2,
                       }}
-                      className="absolute w-3 h-3 rounded-full bg-orange-400 blur-sm"
+                      className="absolute w-3 h-3 rounded-full bg-orange-400 blur-sm z-30"
                       style={{
                         left: `${20 + idx * 15}%`,
                         top: `-${10 + idx * 5}%`,
@@ -211,7 +194,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left relative z-10"
             >
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -306,7 +289,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       </section>
 
       {/* FOOTER - ONLY ON HOME PAGE - Clean modern style with social icons */}
-      <footer className="relative bg-gradient-to-b from-black to-gray-900 border-t border-white/10 mt-20">
+      <footer className="relative bg-gradient-to-b from-black to-gray-900 border-t border-white/10 mt-20 z-10">
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Content */}
           <motion.div
