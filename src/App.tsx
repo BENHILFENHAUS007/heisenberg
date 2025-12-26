@@ -8,7 +8,6 @@ import { useFavorites } from './hooks/useFavorites';
 import { useGA4 } from './hooks/useGA4';
 
 import { Navbar } from './components/layout/Navbar';
-import { Footer } from './components/layout/Footer';
 
 import { Home } from './pages/Home';
 import { Catalog } from './pages/Catalog';
@@ -73,9 +72,6 @@ function App() {
           </Routes>
         </div>
       </Suspense>
-
-      {/* Footer - No theme prop needed */}
-      <Footer />
     </div>
   );
 }
