@@ -18,39 +18,64 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
   useGA4();
 
   return (
-    <div className="relative w-full min-h-screen bg-black z-0 overflow-x-hidden">
-      {/* HERO SECTION - Removed bg-black from section to prevent layering issues */}
-      <section className="relative w-full pt-40 pb-32 px-4 z-50">
+    <div className="relative w-full min-h-screen bg-black z-0 overflow-visible">
+      {/* HERO SECTION - Force display with inline styles */}
+      <section 
+        className="relative w-full pt-40 pb-32 px-4 z-50"
+        style={{
+          display: 'block !important',
+          position: 'relative',
+          width: '100%',
+          backgroundColor: '#000000',
+          overflow: 'visible',
+          zIndex: 50,
+          minHeight: '100vh'
+        }}
+      >
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 1, y: 0 }} // Force visible
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            {/* Logo - Removed opacity animation to guarantee visibility */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 1 }} // Start fully visible
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1 }}
-              className="mb-6 relative z-50 block" // Added block
+            {/* Logo Container - Force highest z-index */}
+            <div
+              style={{
+                position: 'relative',
+                display: 'block !important',
+                zIndex: 99999,
+                opacity: 1,
+                visibility: 'visible',
+                marginBottom: '1.5rem'
+              }}
             >
               <img
                 src="/images/logo.png"
                 alt="TK Fireworks Logo"
-                className="h-24 w-auto mx-auto drop-shadow-lg relative z-50 block" // Added block
-                style={{ opacity: 1, visibility: 'visible' }} // Inline style failsafe
+                style={{
+                  display: 'block !important',
+                  position: 'relative',
+                  zIndex: 99999,
+                  opacity: 1,
+                  visibility: 'visible',
+                  margin: '0 auto',
+                  height: 'auto',
+                  maxWidth: '100px',
+                  width: 'auto'
+                }}
               />
-            </motion.div>
+            </div>
 
-            {/* Title - Force visible */}
+            {/* Title */}
             <motion.h1
-              initial={{ opacity: 1, y: 0 }} // Start visible
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-6xl md:text-8xl font-black mb-6 text-white relative z-50"
               style={{
                 textShadow: '0 0 30px rgba(249, 115, 22, 0.3), 0 0 60px rgba(249, 115, 22, 0.2)',
-                opacity: 1, visibility: 'visible' // Inline style failsafe
+                opacity: 1,
+                visibility: 'visible'
               }}
             >
               TK FIREWORKS
@@ -58,10 +83,14 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
             {/* Subtitle */}
             <motion.p
-              initial={{ opacity: 1, y: 0 }} // Start visible
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="text-2xl md:text-3xl text-orange-300 mb-12 font-light tracking-wide relative z-50"
+              style={{
+                opacity: 1,
+                visibility: 'visible'
+              }}
             >
               {contactData.subtitle}
             </motion.p>
@@ -70,7 +99,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 1, y: 0 }} // Start visible
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               onClick={() => navigate('/catalog')}
@@ -129,12 +158,12 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Animated Child Image */}
             <motion.div
-              initial={{ opacity: 1, x: 0 }} // Force visible
+              initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="flex justify-center lg:justify-start relative z-30"
             >
-              {/* Floating + Bouncing + Parallax Container */}
+              {/* Floating + Bouncing Container */}
               <motion.div
                 animate={{
                   y: [0, -20, 0],
@@ -147,22 +176,27 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 }}
                 className="relative w-full max-w-sm"
               >
-                {/* Main Image - Using renamed file for safety */}
+                {/* Main Image */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.3 }}
                   className="relative z-30"
                 >
                   <img
-                    src="/images/animated-image-on-home.png" // Renamed to safe filename (hyphens)
+                    src="/images/animated-image-on-home.png"
                     alt="Child with Fireworks - TK Fireworks"
-                    className="w-full h-auto drop-shadow-2xl rounded-2xl relative z-30 block"
                     style={{
                       filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))',
-                      opacity: 1, visibility: 'visible'
+                      opacity: 1,
+                      visibility: 'visible',
+                      display: 'block !important',
+                      position: 'relative',
+                      zIndex: 30,
+                      width: '100%',
+                      height: 'auto',
+                      borderRadius: '1rem'
                     }}
                     onError={(e) => {
-                      // Fallback to original filename if rename failed
                       const target = e.target as HTMLImageElement;
                       if (target.src.includes('animated-image-on-home.png')) {
                         target.src = "/images/animated image on home.png";
@@ -278,7 +312,6 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 ✨ Light up your festival — TK Fireworks style!
               </motion.p>
 
-              {/* View All Products Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -296,7 +329,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* FOOTER - ONLY ON HOME PAGE - Clean modern style with social icons */}
+      {/* FOOTER */}
       <footer className="relative w-full bg-gradient-to-b from-black to-gray-900 border-t border-white/10 mt-20 z-20">
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Content */}
@@ -348,7 +381,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
           {/* Divider */}
           <div className="border-t border-white/10 mb-8" />
 
-          {/* Social Icons - Latest icons only */}
+          {/* Social Icons */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
