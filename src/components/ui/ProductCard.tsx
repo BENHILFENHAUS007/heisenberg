@@ -20,6 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const [imgSrc, setImgSrc] = useState(product.thumbnail3D);
+  const primaryColor = theme?.primaryColor || '#ff6b00';
 
   const handleWhatsApp = () => {
     const message = `Hi, I'm interested in ${product.name} (${product.id}). Please share details.`;
@@ -101,8 +102,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           >
             <Heart
               size={18}
-              fill={isFavorite ? theme.primaryColor : 'none'}
-              stroke={isFavorite ? theme.primaryColor : '#fff'}
+              fill={isFavorite ? primaryColor : 'none'}
+              stroke={isFavorite ? primaryColor : '#fff'}
             />
           </motion.button>
         </div>
