@@ -7,6 +7,8 @@ interface EventsProps {
 }
 
 export const Events: React.FC<EventsProps> = ({ theme }) => {
+  const primaryColor = theme?.primaryColor || '#ff6b00';
+
   const eventTypes = [
     { icon: '💒', title: 'Weddings', desc: 'Grand fireworks displays for your special day' },
     { icon: '🎂', title: 'Birthdays', desc: 'Celebrate milestones with dazzling effects' },
@@ -42,7 +44,7 @@ export const Events: React.FC<EventsProps> = ({ theme }) => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               className="glass-effect p-6 rounded-xl border text-center hover:shadow-xl transition-all duration-300"
-              style={{ borderColor: theme.primaryColor }}
+              style={{ borderColor: primaryColor }}
             >
               <div className="text-5xl mb-4">{event.icon}</div>
               <h3 className="text-xl font-bold mb-2">{event.title}</h3>
@@ -59,17 +61,17 @@ export const Events: React.FC<EventsProps> = ({ theme }) => {
           className="glass-effect p-8 rounded-xl mb-12 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           <div className="text-center">
-            <Heart size={40} className="mx-auto mb-4" style={{ color: theme.primaryColor }} />
+            <Heart size={40} className="mx-auto mb-4" style={{ color: primaryColor }} />
             <h3 className="font-bold text-lg mb-2">Custom Solutions</h3>
             <p className="text-gray-400">Tailored packages for your specific event needs</p>
           </div>
           <div className="text-center">
-            <Zap size={40} className="mx-auto mb-4" style={{ color: theme.primaryColor }} />
+            <Zap size={40} className="mx-auto mb-4" style={{ color: primaryColor }} />
             <h3 className="font-bold text-lg mb-2">Professional Planning</h3>
             <p className="text-gray-400">Expert guidance for safe and memorable displays</p>
           </div>
           <div className="text-center">
-            <Gift size={40} className="mx-auto mb-4" style={{ color: theme.primaryColor }} />
+            <Gift size={40} className="mx-auto mb-4" style={{ color: primaryColor }} />
             <h3 className="font-bold text-lg mb-2">Special Packages</h3>
             <p className="text-gray-400">Exclusive offers for events and celebrations</p>
           </div>
