@@ -4,17 +4,33 @@ import { useNavigate } from 'react-router-dom';
 import { useFavorites } from '../hooks/useFavorites';
 import productsData from '../data/products.json';
 import configData from '../data/config.json';
-import { Product } from '../types';
 
 interface ShortlistProps {
   theme: any;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  categoryId: string;
+  thumbnail3D: string;
+  descriptionShort: string;
+  descriptionLong: string;
+  effectType: string;
+  noiseLevel: string;
+  durationSeconds: number;
+  tags: string[];
+  isNew?: boolean;
+  isFeatured?: boolean;
+  hasVideo?: boolean;
+  displayOrder: number;
 }
 
 export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
   const navigate = useNavigate();
   const favorites = useFavorites();
 
-  const favoriteProducts = (productsData as Product[]).filter((p) =>
+  const favoriteProducts = ((productsData as any).products as Product[]).filter((p) =>
     favorites.favorites.includes(p.id)
   );
 
@@ -50,7 +66,7 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
                   animate={{ opacity: 1, y: 0 }}
                   className="glass-effect p-4 rounded-lg flex items-center gap-4 hover:shadow-lg transition-all duration-300"
                   style={{
-                    borderColor: theme.primaryColor,
+                    borderColor: theme?.primaryColor || '#ff6b00',
                     borderWidth: '1px',
                   }}
                 >
@@ -68,7 +84,7 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
                     onClick={() => navigate(`/product/${product.id}`)}
                     className="px-4 py-2 rounded-lg transition-all flex items-center gap-2"
                     style={{
-                      backgroundColor: theme.primaryColor,
+                      backgroundColor: theme?.primaryColor || '#ff6b00',
                       color: '#000',
                     }}
                   >
@@ -93,8 +109,8 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
                 onClick={() => favorites.clearFavorites()}
                 className="flex-1 py-3 rounded-lg font-bold border-2 transition-all"
                 style={{
-                  borderColor: theme.primaryColor,
-                  color: theme.primaryColor,
+                  borderColor: theme?.primaryColor || '#ff6b00',
+                  color: theme?.primaryColor || '#ff6b00',
                 }}
               >
                 Clear Shortlist
@@ -114,7 +130,7 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
               whileHover={{ scale: 1.05 }}
               onClick={() => navigate('/catalog')}
               className="px-6 py-3 rounded-lg font-bold text-white transition-all"
-              style={{ backgroundColor: theme.primaryColor }}
+              style={{ backgroundColor: theme?.primaryColor || '#ff6b00' }}
             >
               Browse Catalog
             </motion.button>
