@@ -29,6 +29,7 @@ interface Product {
 export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
   const navigate = useNavigate();
   const favorites = useFavorites();
+  const primaryColor = theme?.primaryColor || '#ff6b00';
 
   const favoriteProducts = ((productsData as any).products as Product[]).filter((p) =>
     favorites.favorites.includes(p.id)
@@ -66,7 +67,7 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
                   animate={{ opacity: 1, y: 0 }}
                   className="glass-effect p-4 rounded-lg flex items-center gap-4 hover:shadow-lg transition-all duration-300"
                   style={{
-                    borderColor: theme?.primaryColor || '#ff6b00',
+                    borderColor: primaryColor,
                     borderWidth: '1px',
                   }}
                 >
@@ -84,7 +85,7 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
                     onClick={() => navigate(`/product/${product.id}`)}
                     className="px-4 py-2 rounded-lg transition-all flex items-center gap-2"
                     style={{
-                      backgroundColor: theme?.primaryColor || '#ff6b00',
+                      backgroundColor: primaryColor,
                       color: '#000',
                     }}
                   >
@@ -109,8 +110,8 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
                 onClick={() => favorites.clearFavorites()}
                 className="flex-1 py-3 rounded-lg font-bold border-2 transition-all"
                 style={{
-                  borderColor: theme?.primaryColor || '#ff6b00',
-                  color: theme?.primaryColor || '#ff6b00',
+                  borderColor: primaryColor,
+                  color: primaryColor,
                 }}
               >
                 Clear Shortlist
@@ -130,7 +131,7 @@ export const Shortlist: React.FC<ShortlistProps> = ({ theme }) => {
               whileHover={{ scale: 1.05 }}
               onClick={() => navigate('/catalog')}
               className="px-6 py-3 rounded-lg font-bold text-white transition-all"
-              style={{ backgroundColor: theme?.primaryColor || '#ff6b00' }}
+              style={{ backgroundColor: primaryColor }}
             >
               Browse Catalog
             </motion.button>
