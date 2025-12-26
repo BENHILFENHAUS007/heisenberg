@@ -3,12 +3,29 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, MessageCircle, Heart } from 'lucide-react';
 import productsData from '../data/products.json';
-import { Product } from '../types';
 import configData from '../data/config.json';
 import { useFavorites } from '../hooks/useFavorites';
 
 interface ProductDetailProps {
   theme: any;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  categoryId: string;
+  thumbnail3D: string;
+  videoUrl?: string;
+  tags: string[];
+  descriptionShort: string;
+  descriptionLong: string;
+  effectType: string;
+  noiseLevel: string;
+  durationSeconds: number;
+  hasVideo?: boolean;
+  isNew?: boolean;
+  isFeatured?: boolean;
+  displayOrder: number;
 }
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
@@ -17,7 +34,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
   const { isFavorite, toggleFavorite } = useFavorites();
   const [showVideo, setShowVideo] = useState(false);
 
-  const product = (productsData.products as Product[]).find((p) => p.id === id);
+  const product = (productsData as any).products.find((p: Product) => p.id === id);
 
   if (!product) {
     return (
@@ -76,12 +93,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
             />
           </div>
 
-          {product.hasVideo && (
+          {product.hasVideo && product.videoUrl && (
             <div className="bg-dark-surface rounded-xl overflow-hidden h-96 relative">
               {!showVideo ? (
                 <div
                   className="w-full h-full flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: theme.primaryColor }}
+                  style={{ backgroundColor: theme?.primaryColor || '#ff6b00' }}
                   onClick={() => setShowVideo(true)}
                 >
                   <div className="text-center">
@@ -117,7 +134,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
               {product.isNew && (
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ backgroundColor: theme.primaryColor }}
+                  style={{ backgroundColor: theme?.primaryColor || '#ff6b00' }}
                 >
                   NEW
                 </span>
@@ -125,7 +142,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
               {product.isFeatured && (
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold"
-                  style={{ backgroundColor: theme.accentColor, color: '#000' }}
+                  style={{ backgroundColor: theme?.accentColor || '#ffd700', color: '#000' }}
                 >
                   FEATURED
                 </span>
@@ -158,7 +175,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
           <div>
             <p className="text-sm text-gray-500 mb-3">Tags</p>
             <div className="flex flex-wrap gap-2">
-              {product.tags.map((tag) => (
+              {product.tags.map((tag: string) => (
                 <span key={tag} className="px-3 py-1 bg-dark-surface rounded-full text-sm">
                   {tag}
                 </span>
@@ -180,8 +197,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
               onClick={() => toggleFavorite(product.id)}
               className="px-6 py-3 rounded-lg font-bold border-2 flex items-center justify-center gap-2 transition-all"
               style={{
-                borderColor: theme.primaryColor,
-                backgroundColor: isFavorite(product.id) ? theme.primaryColor : 'transparent',
+                borderColor: theme?.primaryColor || '#ff6b00',
+                backgroundColor: isFavorite(product.id) ? theme?.primaryColor || '#ff6b00' : 'transparent',
               }}
             >
               <Heart
