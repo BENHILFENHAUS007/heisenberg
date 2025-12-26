@@ -1,119 +1,26 @@
 {
   "contact": {
-    "businessInquiry": {
-      "title": "Business Inquiry",
-      "description": "Have business questions or wholesale inquiries? We're here to help.",
-      "phone": "+1 (234) 567-890",
-      "email": "info@tkfireworks.com",
-      "form": {
-        "fields": [
-          {
-            "name": "fullName",
-            "label": "Full Name",
-            "type": "text",
-            "placeholder": "Your name",
-            "required": true
-          },
-          {
-            "name": "phone",
-            "label": "Phone Number",
-            "type": "tel",
-            "placeholder": "+1 (234) 567-890",
-            "required": true
-          },
-          {
-            "name": "state",
-            "label": "State",
-            "type": "select",
-            "placeholder": "Select your state",
-            "required": true,
-            "options": [
-              "Andhra Pradesh",
-              "Arunachal Pradesh",
-              "Assam",
-              "Bihar",
-              "Chhattisgarh",
-              "Goa",
-              "Gujarat",
-              "Haryana",
-              "Himachal Pradesh",
-              "Jharkhand",
-              "Karnataka",
-              "Kerala",
-              "Madhya Pradesh",
-              "Maharashtra",
-              "Manipur",
-              "Meghalaya",
-              "Mizoram",
-              "Nagaland",
-              "Odisha",
-              "Punjab",
-              "Rajasthan",
-              "Sikkim",
-              "Tamil Nadu",
-              "Telangana",
-              "Tripura",
-              "Uttar Pradesh",
-              "Uttarakhand",
-              "West Bengal"
-            ]
-          },
-          {
-            "name": "email",
-            "label": "Email",
-            "type": "email",
-            "placeholder": "info@tkfireworks.com",
-            "required": true
-          },
-          {
-            "name": "address",
-            "label": "Address",
-            "type": "text",
-            "placeholder": "Lorem Ipsum Tower",
-            "required": true
-          },
-          {
-            "name": "inquiry",
-            "label": "Inquiry Type",
-            "type": "select",
-            "placeholder": "Select inquiry type",
-            "required": true,
-            "options": ["General Inquiry", "Bulk Orders", "Partnership", "Other"]
-          },
-          {
-            "name": "message",
-            "label": "Enquiry",
-            "type": "textarea",
-            "placeholder": "Describe your business inquiry...",
-            "required": true
-          }
-        ]
-      }
-    },
-    "addresses": {
-      "corporate": {
-        "title": "Corporate Address",
-        "address": "Lorem Ipsum Tower, Suite 200, Tech Street, Silicon Valley, CA 94025",
-        "phone": "+1 (234) 567-890",
-        "email": "info@tkfireworks.com"
-      },
-      "registered": {
-        "title": "Registered Address",
-        "address": "Dolor sit amet building, Consectetur Street, Adipiscing District, Sed Tempor 45001"
-      },
-      "communications": {
-        "title": "Communications Address",
-        "address": "Consectetur Adipiscing Tower, 7th Floor, Sed Tempor Estate, Ut Labore 67890"
-      }
-    },
-    "company": {
-      "name": "TK Fireworks",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "tagline": "The Spark of Tradition"
-    },
-    "social": {
-      "whatsapp": "+918888888888",
-      "phone": "+1 (234) 567-890"
-    }
+    "phone": "+918888888888",
+    "phoneFormatted": "918888888888",
+    "email": "info@tkfireworks.com"
+  },
+  "corporate": {
+    "label": "Corporate Address",
+    "address": "Lorem Ipsum Tower, Suite 200, Tech Street, Silicon Valley, CA 94025",
+    "phone": "+1 (234) 567-890",
+    "email": "info@tkfireworks.com"
+  },
+  "registered": {
+    "label": "Registered Address",
+    "address": "Dolor sit amet building, Consectetur Street, Adipiscing District, Sed Tempor 45001"
+  },
+  "communications": {
+    "label": "Communications Address",
+    "address": "Consectetur Adipiscing Tower, 7th Floor, Sed Tempor Estate, Ut Labore 67890"
+  },
+  "company": {
+    "name": "TK Fireworks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "tagline": "The Spark of Tradition"
   }
 }
