@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getAssetPath } from '@/utils/getAssetPath';
 
 interface NavbarProps {
   theme: any;
@@ -52,10 +53,10 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, favoritesCount }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - Fixed path */}
+          {/* Logo - Environment-aware path */}
           <Link to="/" className="flex items-center space-x-3 group">
             <motion.img
-              src="/images/logo.png"
+              src={getAssetPath('/images/logo.png')}
               alt="TK Fireworks Logo"
               className="h-10 w-auto"
               whileHover={{ scale: 1.05 }}
