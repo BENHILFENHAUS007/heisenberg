@@ -18,9 +18,8 @@
     "label": "Communications Address",
     "address": "Consectetur Adipiscing Tower, 7th Floor, Sed Tempor Estate, Ut Labore 67890"
   },
-  "company": {
-    "name": "TK Fireworks",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "tagline": "The Spark of Tradition"
-  }
+  "company": "TK Fireworks",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "tagline": "TK FIREWORKS",
+  "subtitle": "The Spark of Traditions"
 }
