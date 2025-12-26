@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Search, Filter } from 'lucide-react';
 import { ProductCard } from '../components/ui/ProductCard';
 import { useFavorites } from '../hooks/useFavorites';
+import productsData from '../data/products.json';
 
 interface CatalogProps {
   theme: any;
@@ -25,13 +26,8 @@ export const Catalog: React.FC<CatalogProps> = ({ theme }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const loadProducts = async () => {
-      const response = await fetch('/heisenberg/data/products.json');
-      const data = await response.json();
-      setProducts(data);
-      setFilteredProducts(data);
-    };
-    loadProducts();
+    setProducts(productsData.products);
+    setFilteredProducts(productsData.products);
   }, []);
 
   useEffect(() => {
