@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Star, Shield, Zap, Facebook, Instagram, Mail } from 'lucide-react';
+import { Search, Star, Shield, Zap, Facebook, Instagram, Mail, Twitter, MessageCircle, Linkedin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import configData from '../data/config.json';
 import contactData from '../data/contact.json';
@@ -66,7 +66,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               className="mb-6"
             >
               <img
-                src="/heisenberg/images/logo.png"
+                src="/images/logo.png"
                 alt="TK Fireworks Logo"
                 className="h-24 w-auto mx-auto drop-shadow-lg"
               />
@@ -225,7 +225,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-lg text-gray-300 mb-8 leading-relaxed"
+              className="text-2xl text-orange-300 mb-8 font-semibold"
             >
               Where Every Spark Has a Story!
             </motion.p>
@@ -339,7 +339,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
           {/* Divider */}
           <div className="border-t border-white/10 mb-8" />
 
-          {/* Social Icons */}
+          {/* Social Icons - Latest icons only */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -349,6 +349,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             {[
               { icon: Facebook, label: 'Facebook', href: 'https://facebook.com' },
               { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
+              { icon: Twitter, label: 'X (Twitter)', href: 'https://twitter.com' },
+              { icon: MessageCircle, label: 'Threads', href: 'https://threads.net' },
+              { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
               { icon: Mail, label: 'Email', href: `mailto:${contactData.contact.email}` },
             ].map((social, idx) => {
               const Icon = social.icon;
@@ -361,6 +364,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   className="p-3 rounded-full bg-white/10 hover:bg-orange-500 text-gray-400 hover:text-white transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
+                  title={social.label}
                 >
                   <Icon className="w-5 h-5" />
                 </motion.a>
