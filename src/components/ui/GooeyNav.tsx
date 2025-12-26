@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './gooey-nav.css';
 
-interface GooeyNavProps {
+export interface GooeyNavProps {
   isOpen?: boolean;
   onToggle?: (open: boolean) => void;
 }

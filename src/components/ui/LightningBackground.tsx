@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './lightning-bg.css';
 
-interface LightningBackgroundProps {
+export interface LightningBackgroundProps {
   intensity?: 'low' | 'medium' | 'high';
   className?: string;
   animated?: boolean;

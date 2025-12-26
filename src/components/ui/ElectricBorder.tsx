@@ -3,7 +3,7 @@ import './electric-border.css';
 
 type BorderColor = 'gold' | 'cyan' | 'purple';
 
-interface ElectricBorderProps {
+export interface ElectricBorderProps {
   children: React.ReactNode;
   color?: BorderColor;
   continuous?: boolean;

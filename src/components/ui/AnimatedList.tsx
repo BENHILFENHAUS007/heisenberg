@@ -8,7 +8,7 @@ export interface AnimatedListItem {
   content: string | React.ReactNode;
 }
 
-interface AnimatedListProps {
+export interface AnimatedListProps {
   items: AnimatedListItem[];
   className?: string;
   defaultOpen?: string | number;

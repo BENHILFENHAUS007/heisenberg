@@ -12,7 +12,7 @@ export const useProducts = () => {
   const [videoOnly, setVideoOnly] = useState(false);
 
   const filteredAndSortedProducts = useMemo(() => {
-    let result = [...(productsData as Product[])];
+    let result = [...productsData.products];
 
     // Search filter
     if (searchTerm) {
@@ -67,7 +67,7 @@ export const useProducts = () => {
 
   return {
     products: filteredAndSortedProducts,
-    allProducts: productsData as Product[],
+    allProducts: productsData.products,
     categories: categoriesData,
     searchTerm,
     setSearchTerm,

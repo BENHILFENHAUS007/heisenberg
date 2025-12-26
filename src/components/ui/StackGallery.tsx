@@ -9,7 +9,7 @@ export interface StackItem {
   description?: string;
 }
 
-interface StackGalleryProps {
+export interface StackGalleryProps {
   items: StackItem[];
   className?: string;
   autoPlay?: boolean;
