@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getAssetPath } from '@/utils/getAssetPath';
 
 /**
  * PREMIUM HD COMET HERO
@@ -12,6 +13,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  * - Passes IN FRONT of text for drama
  * - MASSIVE text and logo
  * - BULLETPROOF logo loading from local path
+ * - ENVIRONMENT-AWARE path resolution (dev + prod)
  */
 
 interface CometHeroProps {
@@ -292,7 +294,7 @@ export const CometHero: React.FC<CometHeroProps> = ({ onComplete }) => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              {/* Logo - MASSIVE (240px) - BULLETPROOF LOCAL PATH */}
+              {/* Logo - MASSIVE (240px) - BULLETPROOF ENVIRONMENT-AWARE PATH */}
               <motion.div
                 className="flex justify-center mb-8"
                 initial={{ y: -50, opacity: 0 }}
@@ -310,7 +312,7 @@ export const CometHero: React.FC<CometHeroProps> = ({ onComplete }) => {
                 }}
               >
                 <img
-                  src="/images/logo.png"
+                  src={getAssetPath('/images/logo.png')}
                   alt="TK Fireworks Logo"
                   className="h-60 w-auto object-contain"
                   style={{
@@ -329,15 +331,14 @@ export const CometHero: React.FC<CometHeroProps> = ({ onComplete }) => {
                   }}
                   onLoad={() => {
                     setLogoLoaded(true);
+                    console.log('✅ CometHero logo loaded successfully');
                   }}
                   onError={(e) => {
-                    console.error('Logo load failed from /images/logo.png');
-                    // If it fails, try to show a fallback
+                    console.error('❌ CometHero logo load failed');
+                    // If it fails, show visual feedback
                     const img = e.currentTarget as HTMLImageElement;
-                    if (img.src.includes('/images/logo.png')) {
-                      img.style.backgroundColor = 'rgba(249, 115, 22, 0.2)';
-                      img.style.padding = '20px';
-                    }
+                    img.style.backgroundColor = 'rgba(249, 115, 22, 0.2)';
+                    img.style.padding = '20px';
                   }}
                   loading="eager"
                 />
