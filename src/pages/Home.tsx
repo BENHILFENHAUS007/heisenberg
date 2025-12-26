@@ -19,9 +19,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
   return (
     <div className="relative w-full min-h-screen bg-black z-0 overflow-visible">
-      {/* HERO SECTION - Force display with inline styles */}
+      {/* HERO SECTION - Clean header with title only */}
       <section 
-        className="relative w-full pt-40 pb-32 px-4 z-50"
+        className="relative w-full pt-20 pb-20 px-4 z-50"
         style={{
           display: 'block !important',
           position: 'relative',
@@ -29,42 +29,17 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
           backgroundColor: '#000000',
           overflow: 'visible',
           zIndex: 50,
-          minHeight: '100vh'
+          minHeight: 'auto'
         }}
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            {/* Logo Container - Force highest z-index */}
-            <div
-              style={{
-                position: 'relative',
-                display: 'block !important',
-                zIndex: 99999,
-                opacity: 1,
-                visibility: 'visible',
-                marginBottom: '1.5rem'
-              }}
-            >
-              <img
-                src="/images/logo.png"
-                alt="TK Fireworks Logo"
-                style={{
-                  display: 'block !important',
-                  position: 'relative',
-                  zIndex: 99999,
-                  opacity: 1,
-                  visibility: 'visible',
-                  margin: '0 auto',
-                  height: 'auto',
-                  maxWidth: '100px',
-                  width: 'auto'
-                }}
-              />
-            </div>
+            {/* LOGO - REMOVED (will show only in navbar) */}
+            {/* Use only in navbar, not in hero section */}
 
             {/* Title */}
             <motion.h1
@@ -152,11 +127,11 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* WELCOME SECTION */}
+      {/* WELCOME SECTION - Image appears HERE */}
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Animated Child Image */}
+            {/* Left: Animated Child Image - ONLY HERE */}
             <motion.div
               initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -204,7 +179,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                     }}
                   />
 
-                  {/* Particles */}
+                  {/* Particles - Only in Welcome section */}
                   {[0, 1, 2, 3, 4].map((idx) => (
                     <motion.div
                       key={idx}
@@ -330,7 +305,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative w-full bg-gradient-to-b from-black to-gray-900 border-t border-white/10 mt-20 z-20">
+      <footer className="relative w-full bg-gradient-to-b from-black to-gray-900 border-t border-white/10 mt-20 z-20" style={{ position: 'relative', display: 'block' }}>
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Content */}
           <motion.div
