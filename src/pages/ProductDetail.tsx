@@ -14,10 +14,10 @@ interface ProductDetailProps {
 export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const favorites = useFavorites();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const [showVideo, setShowVideo] = useState(false);
 
-  const product = (productsData as Product[]).find((p) => p.id === id);
+  const product = (productsData.products as Product[]).find((p) => p.id === id);
 
   if (!product) {
     return (
@@ -177,16 +177,16 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
-              onClick={() => favorites.toggleFavorite(product.id)}
+              onClick={() => toggleFavorite(product.id)}
               className="px-6 py-3 rounded-lg font-bold border-2 flex items-center justify-center gap-2 transition-all"
               style={{
                 borderColor: theme.primaryColor,
-                backgroundColor: favorites.isFavorite(product.id) ? theme.primaryColor : 'transparent',
+                backgroundColor: isFavorite(product.id) ? theme.primaryColor : 'transparent',
               }}
             >
               <Heart
                 size={20}
-                fill={favorites.isFavorite(product.id) ? 'currentColor' : 'none'}
+                fill={isFavorite(product.id) ? 'currentColor' : 'none'}
               />
             </motion.button>
           </div>
