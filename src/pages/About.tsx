@@ -9,6 +9,8 @@ interface AboutProps {
 }
 
 export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
+  const primaryColor = theme?.primaryColor || '#ff6b00';
+
   const values = [
     {
       icon: Award,
@@ -50,7 +52,7 @@ export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold" style={{ color: theme.primaryColor }}>Our Story</h2>
+            <h2 className="text-3xl font-bold" style={{ color: primaryColor }}>Our Story</h2>
             <p className="text-gray-300 leading-relaxed">
               TK Fireworks has been lighting up celebrations across India for years. What started as a small family business has grown into one of the most trusted names in the fireworks industry.
             </p>
@@ -64,7 +66,7 @@ export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
             animate={{ opacity: 1, x: 0 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-bold" style={{ color: theme.primaryColor }}>Our Mission</h2>
+            <h2 className="text-3xl font-bold" style={{ color: primaryColor }}>Our Mission</h2>
             <p className="text-gray-300 leading-relaxed">
               To make every celebration memorable by providing premium quality fireworks, exceptional customer service, and competitive pricing.
             </p>
@@ -75,7 +77,7 @@ export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
         </div>
 
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: theme.primaryColor }}>Our Values</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: primaryColor }}>Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <motion.div
@@ -85,7 +87,7 @@ export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
                 transition={{ delay: index * 0.1 }}
                 className="glass-effect p-6 rounded-xl text-center border hover:border-primary transition-all"
               >
-                <value.icon size={48} className="mx-auto mb-4" style={{ color: theme.primaryColor }} />
+                <value.icon size={48} className="mx-auto mb-4" style={{ color: primaryColor }} />
                 <h3 className="font-bold text-xl mb-2">{value.title}</h3>
                 <p className="text-gray-400 text-sm">{value.description}</p>
               </motion.div>
@@ -98,7 +100,7 @@ export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
           className="glass-effect p-8 rounded-xl border text-center"
-          style={{ borderColor: theme.primaryColor }}
+          style={{ borderColor: primaryColor }}
         >
           <h2 className="text-2xl font-bold mb-4">Visit Us Today!</h2>
           <p className="text-gray-300 mb-6">
@@ -107,7 +109,7 @@ export const About: React.FC<AboutProps> = ({ theme, activeMood }) => {
           <Link
             to="/contact"
             className="inline-block px-8 py-3 rounded-lg font-semibold text-white transition-all hover:scale-105"
-            style={{ backgroundColor: theme.primaryColor }}
+            style={{ backgroundColor: primaryColor }}
           >
             Get in Touch
           </Link>
