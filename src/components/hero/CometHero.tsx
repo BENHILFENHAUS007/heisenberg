@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  * - Dynamic timing (5 seconds total)
  * - Passes IN FRONT of text for drama
  * - MASSIVE text and logo
+ * - BULLETPROOF logo loading from local path
  */
 
 interface CometHeroProps {
@@ -20,6 +21,7 @@ interface CometHeroProps {
 export const CometHero: React.FC<CometHeroProps> = ({ onComplete }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [show, setShow] = useState(true);
+  const [logoLoaded, setLogoLoaded] = useState(false);
   const animationRef = useRef<number>();
 
   useEffect(() => {
@@ -256,36 +258,88 @@ export const CometHero: React.FC<CometHeroProps> = ({ onComplete }) => {
             ))}
           </div>
 
-          {/* Comet canvas (IN FRONT of text) */}
+          {/* Comet canvas (IN FRONT of text) - z-index: 50 */}
           <canvas
             ref={canvasRef}
             className="absolute inset-0"
-            style={{ zIndex: 50 }}
+            style={{
+              zIndex: 50,
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              pointerEvents: 'none',
+              display: 'block'
+            }}
           />
 
-          {/* Text content (BEHIND comet) */}
-          <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 10 }}>
+          {/* Text content (BEHIND comet) - z-index: 10 */}
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              zIndex: 10,
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0
+            }}
+          >
             <motion.div
               className="text-center px-6"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              {/* Logo - MASSIVE (240px) */}
+              {/* Logo - MASSIVE (240px) - BULLETPROOF LOCAL PATH */}
               <motion.div
                 className="flex justify-center mb-8"
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
+                style={{
+                  position: 'relative',
+                  zIndex: 11,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                  visibility: 'visible',
+                  opacity: 1
+                }}
               >
                 <img
-                  src="https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/logo.png"
-                  alt="TK Fireworks"
-                  className="h-60 w-auto object-contain drop-shadow-[0_0_50px_rgba(255,150,50,0.8)]"
-                  onError={(e) => {
-                    console.error('Logo load failed');
-                    e.currentTarget.style.display = 'none';
+                  src="/images/logo.png"
+                  alt="TK Fireworks Logo"
+                  className="h-60 w-auto object-contain"
+                  style={{
+                    display: 'block',
+                    maxWidth: '240px',
+                    height: 'auto',
+                    filter: 'drop-shadow(0 0 50px rgba(255,150,50,0.8))',
+                    opacity: 1,
+                    visibility: 'visible',
+                    pointerEvents: 'auto',
+                    position: 'relative',
+                    zIndex: 11,
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    WebkitFontSmoothing: 'antialiased'
                   }}
+                  onLoad={() => {
+                    setLogoLoaded(true);
+                  }}
+                  onError={(e) => {
+                    console.error('Logo load failed from /images/logo.png');
+                    // If it fails, try to show a fallback
+                    const img = e.currentTarget as HTMLImageElement;
+                    if (img.src.includes('/images/logo.png')) {
+                      img.style.backgroundColor = 'rgba(249, 115, 22, 0.2)';
+                      img.style.padding = '20px';
+                    }
+                  }}
+                  loading="eager"
                 />
               </motion.div>
 
@@ -295,12 +349,24 @@ export const CometHero: React.FC<CometHeroProps> = ({ onComplete }) => {
                 style={{
                   fontSize: 'clamp(3rem, 15vw, 12rem)',
                   textShadow: '0 0 80px rgba(255, 150, 50, 0.8), 0 0 40px rgba(255, 100, 0, 0.6), 0 4px 20px rgba(0, 0, 0, 0.8)',
+                  position: 'relative',
+                  zIndex: 11,
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: 1
                 }}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
               >
-                <span className="bg-gradient-to-b from-white via-orange-100 to-orange-200 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-b from-white via-orange-100 to-orange-200 bg-clip-text text-transparent"
+                  style={{
+                    display: 'block',
+                    visibility: 'visible',
+                    opacity: 1,
+                    WebkitFontSmoothing: 'antialiased'
+                  }}
+                >
                   TK FIREWORKS
                 </span>
               </motion.h1>
@@ -308,6 +374,13 @@ export const CometHero: React.FC<CometHeroProps> = ({ onComplete }) => {
               {/* Tagline */}
               <motion.p
                 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent"
+                style={{
+                  position: 'relative',
+                  zIndex: 11,
+                  display: 'block',
+                  visibility: 'visible',
+                  opacity: 1
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
