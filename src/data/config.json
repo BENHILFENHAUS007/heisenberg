@@ -104,5 +104,13 @@
   },
 
   "siteName": "TK Fireworks",
-  "primaryLanguage": "en"
+  "primaryLanguage": "en",
+
+  "__FLATTENED_ROOT_PROPERTIES__": "Added for easy direct access",
+  "whatsappNumber": "919876543210",
+  "email": "info@tkfireworks.com",
+  "ga4MeasurementId": "G-XXXXXXXXXX",
+  "primaryPhone": "+918888888888",
+  "whatsappDefaultMessage": "Hi, I'm interested in TK Fireworks products. Please assist.",
+  "getMessagesFromId": ""
 }
