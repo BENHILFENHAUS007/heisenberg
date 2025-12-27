@@ -294,7 +294,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({ theme }) => {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href={`mailto:${configData.whatsappNumber}`}
+                href={`mailto:${configData.email}`}
                 className="px-8 py-4 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all inline-flex items-center justify-center gap-2"
               >
                 <Mail size={20} /> Email Us
