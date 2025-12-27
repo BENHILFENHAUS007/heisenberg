@@ -1,34 +1,108 @@
 {
-  "siteName": "TK Fireworks",
-  "tagline": "🔥 3D Vibe Fireworks Display – Display Only",
-  "description": "Premium fireworks product showcase. Enquire via WhatsApp only.",
-  "whatsappNumber": "+919876543210",
-  "whatsappDefaultMessage": "Hi, I'm interested in TK Fireworks products. Please assist.",
-  "primaryLanguage": "en",
-  "branches": [
-    {
-      "id": "main",
-      "name": "TK Fireworks Main Store",
-      "address": "123 Festival Street, Celebration City, State 560001",
-      "landmark": "Near Central Plaza",
-      "phone": "+919876543210",
-      "mapUrl": "https://maps.google.com/?q=tk+fireworks"
+  "brand": {
+    "name": "TK Fireworks",
+    "tagline": "The Spark of Traditions",
+    "website": "https://tkfireworks.com",
+    "description": "Premium fireworks for safe, joyful celebrations"
+  },
+
+  "contact": {
+    "primaryPhone": "+918888888888",
+    "secondaryPhone": "+919876543210",
+    "email": "info@tkfireworks.com",
+    "whatsappNumber": "919876543210",
+    "whatsappDefaultMessage": "Hi, I'm interested in TK Fireworks products. Please assist."
+  },
+
+  "emergency": {
+    "fire": "101",
+    "ambulance": "102",
+    "police": "100",
+    "generalEmergency": "112"
+  },
+
+  "addresses": {
+    "corporate": {
+      "label": "Corporate Address",
+      "address": "TK Fireworks Corporate Office, Suite 200, Festival Street, Celebration City, State 560001",
+      "phone": "+918888888888",
+      "email": "corporate@tkfireworks.com",
+      "mapUrl": "https://maps.google.com/?q=tk+fireworks+corporate"
     },
-    {
-      "id": "branch-2",
-      "name": "TK Fireworks Express",
-      "address": "456 Sparkle Avenue, Joy Town, State 560002",
-      "landmark": "Near Star Junction",
-      "phone": "+919876543210",
-      "mapUrl": "https://maps.google.com/?q=tk+fireworks+express"
+    "registered": {
+      "label": "Registered Address",
+      "address": "TK Fireworks Registered Office, Suite 100, Business Park, Main Street, Celebration City, State 560001"
+    },
+    "communications": {
+      "label": "Communications Address",
+      "address": "TK Fireworks Communications, 7th Floor, Corporate Tower, Central Avenue, Celebration City, State 560001"
+    },
+    "branches": [
+      {
+        "id": "main",
+        "name": "TK Fireworks Main Store",
+        "address": "123 Festival Street, Celebration City, State 560001",
+        "landmark": "Near Central Plaza",
+        "phone": "+919876543210",
+        "mapUrl": "https://maps.google.com/?q=tk+fireworks"
+      },
+      {
+        "id": "branch-2",
+        "name": "TK Fireworks Express",
+        "address": "456 Sparkle Avenue, Joy Town, State 560002",
+        "landmark": "Near Star Junction",
+        "phone": "+919876543210",
+        "mapUrl": "https://maps.google.com/?q=tk+fireworks+express"
+      }
+    ]
+  },
+
+  "social": {
+    "facebook": "https://facebook.com/tkfireworks",
+    "instagram": "https://instagram.com/tkfireworks",
+    "youtube": "https://youtube.com/tkfireworks",
+    "whatsapp": "https://wa.me/919876543210",
+    "twitter": "https://twitter.com/tkfireworks",
+    "threads": "https://threads.net/tkfireworks",
+    "linkedin": "https://linkedin.com/company/tkfireworks"
+  },
+
+  "api": {
+    "baseUrl": "https://api.tkfireworks.com",
+    "timeout": 5000
+  },
+
+  "images": {
+    "basePath": "/images",
+    "productPath": "/images",
+    "logoSize": {
+      "mobile": 110,
+      "tablet": 160,
+      "desktop": 200
     }
-  ],
-  "ga4MeasurementId": "G-XXXXXXXXXX",
+  },
+
+  "features": {
+    "enableNotifications": true,
+    "enableWishlist": true,
+    "enableBulkOrders": true,
+    "enableGallery": true,
+    "enableFAQ": true
+  },
+
   "pwa": {
     "enabled": true,
     "appName": "TK Fireworks",
     "shortName": "TKFW",
     "themeColor": "#000000",
     "backgroundColor": "#000000"
-  }
+  },
+
+  "analytics": {
+    "ga4MeasurementId": "G-XXXXXXXXXX",
+    "enableAnalytics": true
+  },
+
+  "siteName": "TK Fireworks",
+  "primaryLanguage": "en"
 }
