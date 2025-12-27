@@ -11,10 +11,13 @@ declare global {
 export const useGA4 = () => {
   useEffect(() => {
     // Initialize GA4
-    if (configData.ga4MeasurementId && configData.ga4MeasurementId !== 'G-XXXXXXXXXX') {
+    // Support both root-level and nested property access
+    const measurementId = (configData as any).ga4MeasurementId || (configData as any).analytics?.ga4MeasurementId;
+    
+    if (measurementId && measurementId !== 'G-XXXXXXXXXX') {
       const script = document.createElement('script');
       script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${configData.ga4MeasurementId}`;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
       document.head.appendChild(script);
 
       window.dataLayer = window.dataLayer || [];
@@ -23,7 +26,7 @@ export const useGA4 = () => {
       }
       window.gtag = gtag;
       gtag('js', new Date());
-      gtag('config', configData.ga4MeasurementId);
+      gtag('config', measurementId);
     }
   }, []);
 
