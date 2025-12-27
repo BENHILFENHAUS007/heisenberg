@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import contactData from '../data/contact.json';
+import { getConfig } from '../types/config';
 
 interface ContactProps {
   theme: any;
@@ -11,6 +11,10 @@ interface ContactProps {
 export const Contact: React.FC<ContactProps> = ({ theme }) => {
   const [activeTab, setActiveTab] = useState<'business' | 'inquiry'>('business');
   const [loading, setLoading] = useState(false);
+  
+  const config = getConfig();
+  const { corporate, registered, communications } = config.addresses;
+  const { email, primaryPhone } = config.contact;
   
   const [businessForm, setBusinessForm] = useState({
     name: '',
@@ -78,10 +82,10 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
             <Phone className="w-10 h-10 text-orange-400 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Phone</h3>
             <a
-              href={`tel:${contactData.contact.phoneFormatted}`}
+              href={`tel:${primaryPhone}`}
               className="text-gray-400 hover:text-orange-400 transition"
             >
-              {contactData.contact.phone}
+              {primaryPhone}
             </a>
           </motion.div>
 
@@ -94,10 +98,10 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
             <Mail className="w-10 h-10 text-orange-400 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Email</h3>
             <a
-              href={`mailto:${contactData.contact.email}`}
+              href={`mailto:${email}`}
               className="text-gray-400 hover:text-orange-400 transition"
             >
-              {contactData.contact.email}
+              {email}
             </a>
           </motion.div>
 
@@ -109,7 +113,7 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
           >
             <MapPin className="w-10 h-10 text-orange-400 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Address</h3>
-            <p className="text-gray-400 text-sm">{contactData.corporate.address.split(',')[0]}</p>
+            <p className="text-gray-400 text-sm">{corporate.address.split(',')[0]}</p>
           </motion.div>
         </div>
 
@@ -299,27 +303,27 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
           <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
             <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-orange-400" />
-              {contactData.corporate.label}
+              {corporate.label}
             </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{contactData.corporate.address}</p>
+            <p className="text-gray-400 text-sm leading-relaxed">{corporate.address}</p>
           </div>
 
           {/* Registered Address */}
           <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
             <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-orange-400" />
-              {contactData.registered.label}
+              {registered.label}
             </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{contactData.registered.address}</p>
+            <p className="text-gray-400 text-sm leading-relaxed">{registered.address}</p>
           </div>
 
           {/* Communications Address */}
           <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
             <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-orange-400" />
-              {contactData.communications.label}
+              {communications.label}
             </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{contactData.communications.address}</p>
+            <p className="text-gray-400 text-sm leading-relaxed">{communications.address}</p>
           </div>
         </motion.div>
       </div>
