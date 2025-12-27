@@ -18,8 +18,8 @@
       "featured": true,
       "isFeatured": true,
       "isNew": false,
-      "hasVideo": false,
-      "videoUrl": "",
+      "hasVideo": true,
+      "videoUrl": "https://www.youtube.com/embed/_SI8diqCAFw",
       "durationSeconds": 30,
       "displayOrder": 1,
       "comingSoon": false
