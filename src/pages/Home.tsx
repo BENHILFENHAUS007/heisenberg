@@ -467,15 +467,15 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <h4 className="text-white font-semibold mb-1">Corporate Address</h4>
-                <p className="text-gray-400 text-sm">{configData.addresses.corporate}</p>
+                <p className="text-gray-400 text-sm">{configData.addresses.corporate.address}</p>
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Registered Address</h4>
-                <p className="text-gray-400 text-sm">{configData.addresses.registered}</p>
+                <p className="text-gray-400 text-sm">{configData.addresses.registered.address}</p>
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Communications Address</h4>
-                <p className="text-gray-400 text-sm">{configData.addresses.communications}</p>
+                <p className="text-gray-400 text-sm">{configData.addresses.communications.address}</p>
               </div>
             </div>
           </motion.div>
