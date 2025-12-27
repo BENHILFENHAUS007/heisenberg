@@ -41,7 +41,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   const handleImageError = () => {
-    setImgSrc('/images/coming-soon.png');
+    setImgSrc('/images/comingsoon.png');
+  };
+
+  const handleViewDemo = () => {
+    navigate(`/product/${product.id}`);
   };
 
   // Determine tag based on product properties
@@ -93,13 +97,31 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <div className="absolute inset-0 z-15 flex items-center justify-center bg-black/30 backdrop-blur-sm">
               <div className="flex flex-col items-center justify-center">
                 <img
-                  src="/images/coming-soon.png"
+                  src="/images/comingsoon.png"
                   alt="Coming Soon"
                   className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain drop-shadow-xl"
                   loading="lazy"
                 />
               </div>
             </div>
+          )}
+
+          {/* Video Play Button Overlay */}
+          {product.hasVideo && product.videoUrl && !product.comingSoon && (
+            <motion.button
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleViewDemo}
+              className="absolute inset-0 z-15 flex items-center justify-center bg-black/20 hover:bg-black/40 transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100"
+              aria-label="View product demo"
+            >
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors shadow-lg"
+              >
+                <Play size={28} className="text-black fill-black ml-1" />
+              </motion.div>
+            </motion.button>
           )}
 
           {/* Badges */}
