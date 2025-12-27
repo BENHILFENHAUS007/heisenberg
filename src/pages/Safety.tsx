@@ -9,33 +9,31 @@ interface SafetyProps {
 const safetyGuidelines = [
   {
     icon: AlertCircle,
-    title: 'Read Instructions Carefully',
-    description: 'Always read and understand the instructions printed on each firework before use. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title: 'Read Instructions',
+    description: 'Always follow the instructions printed on the packaging before use.',
   },
   {
     icon: Shield,
     title: 'Protective Equipment',
-    description: 'Wear safety glasses and hand protection when handling fireworks. Keep a safe distance from ignition point. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    description: 'Wear safety glasses and keep a safe distance while lighting fireworks.',
   },
   {
     icon: Zap,
     title: 'Proper Storage',
-    description: 'Store fireworks in a cool, dry place away from heat sources. Keep away from children and pets. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+    description: 'Store fireworks in a cool, dry place away from heat, children, and pets.',
   },
   {
     icon: CheckCircle,
-    title: 'Safe Use Environment',
-    description: 'Use fireworks in open spaces away from buildings and flammable materials. Never point fireworks at people or animals. Duis aute irure dolor in reprehenderit in voluptate.',
+    title: 'Safe Environment',
+    description: 'Use fireworks only in open outdoor spaces. Never aim at people, animals, or property.',
   },
 ];
 
 const warnings = [
-  'Do not attempt to relight a firework that has failed to ignite',
-  'Never hold a lit firework in your hand',
-  'Do not put fireworks in pockets or belts',
-  'Never throw fireworks at people or animals',
-  'Avoid using fireworks if you are under the influence of alcohol or drugs',
-  'Do not use fireworks in windy conditions without proper precautions',
+  'Do not relight failed fireworks',
+  'Never hold a lit firework',
+  'Do not use under alcohol or drug influence',
+  'Avoid use in strong wind conditions',
 ];
 
 export const Safety: React.FC<SafetyProps> = ({ theme }) => {
@@ -112,14 +110,14 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
           className="mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-            Safety Guidelines
+            Safety First. Always First.
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl">
-            Your safety is our top priority. Please follow these guidelines carefully when handling fireworks.
+            At TK Fireworks, safety is built into every spark.
           </p>
         </motion.div>
 
-        {/* TK FIREWORKS SAFETY PROMISE - Premium Section */}
+        {/* SAFETY PROMISE - Premium Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -137,13 +135,12 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
                 >
                   <Heart size={32} className="text-white" fill="white" />
                 </motion.div>
-                <h2 className="text-3xl md:text-4xl font-black text-white">At TK Fireworks</h2>
               </div>
 
               {/* Main Message */}
               <div className="space-y-6 text-gray-200 text-lg leading-relaxed">
-                <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-300 to-green-300 bg-clip-text">
-                  Our crackers are fully safe, kid-friendly, and crafted to bring joy — never fear.
+                <p className="text-xl font-semibold text-white">
+                  Our products are carefully engineered, thoroughly tested, and responsibly manufactured to deliver joyful celebrations with complete peace of mind.
                 </p>
                 
                 <div className="space-y-4">
@@ -172,31 +169,39 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
           </div>
         </motion.div>
 
-        {/* Main Guidelines */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {safetyGuidelines.map((guideline, idx) => {
-            const Icon = guideline.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="relative group"
-              >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
-                <div className="relative bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 h-full">
-                  <Icon className="w-12 h-12 text-yellow-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-3">{guideline.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{guideline.description}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+        {/* SAFETY GUIDELINES SECTION */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl font-bold text-white mb-8">Safety Guidelines</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {safetyGuidelines.map((guideline, idx) => {
+              const Icon = guideline.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
+                  <div className="relative bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 h-full">
+                    <Icon className="w-12 h-12 text-yellow-400 mb-4" />
+                    <h3 className="text-xl font-bold text-white mb-3">🔔 {guideline.title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{guideline.description}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
 
-        {/* Warnings Section */}
+        {/* IMPORTANT WARNINGS SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -217,38 +222,48 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
                 transition={{ delay: idx * 0.05 }}
                 className="flex items-start gap-3 text-gray-300"
               >
-                <span className="text-red-500 font-bold mt-1">•</span>
+                <span className="text-red-500 font-bold mt-1">●</span>
                 <span>{warning}</span>
               </motion.li>
             ))}
           </ul>
         </motion.div>
 
-        {/* Additional Info */}
+        {/* AGE AND HEALTH ADVISORY */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
         >
-          <div className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10">
-            <h3 className="text-lg font-bold text-white mb-3">Age Restrictions</h3>
-            <p className="text-gray-400 text-sm">
-              Individuals under 18 years of age should only use fireworks under adult supervision. Lorem ipsum dolor sit amet.
+          <div className="bg-blue-950/30 border-2 border-blue-500/50 rounded-2xl p-8 backdrop-blur-sm">
+            <h3 className="text-xl font-bold text-blue-400 mb-4">Age Requirement</h3>
+            <p className="text-gray-300">
+              Fireworks are for ages 18 and above. Those with medical conditions should avoid handling fireworks.
             </p>
           </div>
-          <div className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10">
-            <h3 className="text-lg font-bold text-white mb-3">Medical Conditions</h3>
-            <p className="text-gray-400 text-sm">
-              Individuals with certain medical conditions should avoid handling fireworks. Consult with a healthcare professional. Consectetur adipiscing.
-            </p>
+          <div className="bg-amber-950/30 border-2 border-amber-500/50 rounded-2xl p-8 backdrop-blur-sm">
+            <h3 className="text-xl font-bold text-amber-400 mb-4">Emergency Contact</h3>
+            <div className="space-y-2 text-gray-300">
+              <p><strong>Fire and Rescue Services:</strong> 101</p>
+              <p><strong>All Emergency Services:</strong> 112</p>
+            </div>
           </div>
-          <div className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10">
-            <h3 className="text-lg font-bold text-white mb-3">Emergency Contact</h3>
-            <p className="text-gray-400 text-sm">
-              In case of injuries or accidents, call emergency services immediately. Always keep first aid supplies nearby.
-            </p>
-          </div>
+        </motion.div>
+
+        {/* FINAL MESSAGE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <p className="text-2xl font-bold text-white mb-2">
+            Celebrate responsibly. Celebrate safely.
+          </p>
+          <p className="text-xl text-orange-400 font-semibold">
+            TK Fireworks.
+          </p>
         </motion.div>
       </div>
     </div>
