@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Heart, Play, MessageCircle } from 'lucide-react';
+import { Heart, Play, MessageCircle, Bell } from 'lucide-react';
 import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import configData from '../../data/config.json';
@@ -31,15 +31,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     );
   };
 
-  const handleImageError = () => {
-    setImgSrc('/heisenberg/images/coming soon.png');
+  const handleNotifyMe = () => {
+    const message = `Hey! Please notify me when ${product.name} launches!`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(
+      `https://wa.me/${configData.whatsappNumber}?text=${encodedMessage}`,
+      '_blank'
+    );
   };
 
-  // Determine tag based on product ID
+  const handleImageError = () => {
+    setImgSrc('/images/coming-soon.png');
+  };
+
+  // Determine tag based on product properties
   const getTag = () => {
-    if (product.id === 'TKF-MAGIC-PEACOCK') return { text: 'TRENDING', color: 'bg-orange-500' };
-    if (product.id === 'TKF-COMING-SOON-1') return { text: 'SURPRISE', color: 'bg-purple-500' };
-    if (product.id === 'TKF-COMING-SOON-2') return { text: 'FEATURE', color: 'bg-blue-500' };
+    if (product.tags?.includes('TRENDING')) return { text: 'TRENDING', color: 'bg-orange-500' };
+    if (product.tags?.includes('NEW')) return { text: 'NEW', color: 'bg-blue-500' };
+    if (product.tags?.includes('upcoming')) return { text: 'COMING SOON', color: 'bg-purple-500' };
     return null;
   };
 
@@ -67,7 +76,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
 
         {/* Image Container */}
-        <div className="relative overflow-hidden bg-black h-56">
+        <div className="relative overflow-hidden bg-black h-56 w-full">
           {/* Subtle glow on hover */}
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-pink-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
@@ -79,9 +88,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onError={handleImageError}
           />
 
+          {/* Coming Soon Badge Overlay - Responsive */}
+          {product.comingSoon && (
+            <div className="absolute inset-0 z-15 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+              <div className="flex flex-col items-center justify-center">
+                <img
+                  src="/images/coming-soon.png"
+                  alt="Coming Soon"
+                  className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain drop-shadow-xl"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          )}
+
           {/* Badges */}
           <div className="absolute top-3 left-3 flex gap-2 z-20">
-            {product.isNew && (
+            {product.isNew && !product.comingSoon && (
               <span className="px-3 py-1 rounded-full text-xs font-bold text-white shadow-md bg-orange-500">
                 NEW
               </span>
@@ -131,7 +154,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
 
           {/* Meta */}
-          {product.effectType !== 'mixed' && (
+          {!product.comingSoon && product.effectType && product.effectType.toLowerCase() !== 'mixed' && (
             <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
               <div className="bg-white/5 p-2 rounded-lg">
                 <p className="text-gray-400 mb-1">Effect</p>
@@ -146,23 +169,37 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           {/* Buttons */}
           <div className="flex gap-3">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate(`/product/${product.id}`)}
-              className="flex-1 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center gap-2 text-sm font-semibold text-white border border-white/20"
-            >
-              <Play size={16} /> Details
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={handleWhatsApp}
-              className="flex-1 py-2.5 rounded-lg font-semibold text-white flex items-center justify-center gap-2 text-sm transition-all shadow-lg"
-              style={{ backgroundColor: '#25D366' }}
-            >
-              <MessageCircle size={16} /> Ask
-            </motion.button>
+            {!product.comingSoon ? (
+              <>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => navigate(`/product/${product.id}`)}
+                  className="flex-1 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center gap-2 text-sm font-semibold text-white border border-white/20"
+                >
+                  <Play size={16} /> Details
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={handleWhatsApp}
+                  className="flex-1 py-2.5 rounded-lg font-semibold text-white flex items-center justify-center gap-2 text-sm transition-all shadow-lg"
+                  style={{ backgroundColor: '#25D366' }}
+                >
+                  <MessageCircle size={16} /> Ask
+                </motion.button>
+              </>
+            ) : (
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={handleNotifyMe}
+                className="w-full py-2.5 rounded-lg font-semibold text-white flex items-center justify-center gap-2 text-sm transition-all shadow-lg"
+                style={{ backgroundColor: '#25D366' }}
+              >
+                <Bell size={16} /> Notify Me
+              </motion.button>
+            )}
           </div>
         </div>
       </div>
