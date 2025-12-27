@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { AlertCircle, CheckCircle, Shield, Zap } from 'lucide-react';
+import { AlertCircle, CheckCircle, Shield, Zap, Heart } from 'lucide-react';
 import { useEffect } from 'react';
 
 interface SafetyProps {
@@ -117,6 +117,59 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
           <p className="text-gray-300 text-lg max-w-2xl">
             Your safety is our top priority. Please follow these guidelines carefully when handling fireworks.
           </p>
+        </motion.div>
+
+        {/* TK FIREWORKS SAFETY PROMISE - Premium Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="relative group">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500/30 via-blue-500/20 to-green-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+            <div className="relative bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl p-12 rounded-2xl border border-green-400/40 group-hover:border-green-400/70 transition-all duration-300">
+              {/* Icon and Title */}
+              <div className="flex items-center gap-4 mb-8">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg"
+                >
+                  <Heart size={32} className="text-white" fill="white" />
+                </motion.div>
+                <h2 className="text-3xl md:text-4xl font-black text-white">At TK Fireworks</h2>
+              </div>
+
+              {/* Main Message */}
+              <div className="space-y-6 text-gray-200 text-lg leading-relaxed">
+                <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-300 to-green-300 bg-clip-text">
+                  Our crackers are fully safe, kid-friendly, and crafted to bring joy — never fear.
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex gap-4 items-start">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 mt-2 flex-shrink-0"></div>
+                    <p>
+                      We design each product with the same care a parent has for their child.
+                    </p>
+                  </div>
+                  
+                  <div className="flex gap-4 items-start">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-cyan-500 mt-2 flex-shrink-0"></div>
+                    <p>
+                      Every single batch is checked, tested, and perfected to make sure it's safe to hold, safe to light, and safe to enjoy.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-l-4 border-green-400 p-6 rounded-lg">
+                  <p className="text-xl font-bold text-white">
+                    Because at TK Fireworks, safety isn't a rule — it's our only priority. 💚
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Main Guidelines */}
