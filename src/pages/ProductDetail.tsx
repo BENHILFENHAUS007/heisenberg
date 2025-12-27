@@ -264,17 +264,37 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
             className="mb-12"
           >
             <h2 className="text-4xl font-black text-white mb-6">Product Demo</h2>
-            <div className="bg-black rounded-xl overflow-hidden shadow-2xl w-full">
-              <div className="aspect-video w-full">
+            <div className="bg-black rounded-xl overflow-hidden shadow-2xl w-full border border-white/10">
+              <div className="aspect-video w-full bg-gray-900 relative">
                 {!showVideo ? (
                   <div
-                    className="w-full h-full flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity relative group"
-                    style={{ backgroundColor: primaryColor }}
+                    className="w-full h-full flex items-center justify-center cursor-pointer group relative bg-black"
                     onClick={() => setShowVideo(true)}
                   >
-                    <div className="text-center">
-                      <div className="text-8xl mb-4 group-hover:scale-110 transition-transform">▶️</div>
-                      <p className="text-2xl font-bold text-black">Watch Demo</p>
+                    {/* YouTube Thumbnail with Play Overlay */}
+                    <img
+                      src={`https://img.youtube.com/vi/${product.videoUrl?.split('/embed/')[1] || product.videoUrl?.split('?')[0]}/maxresdefault.jpg`}
+                      alt="Video thumbnail"
+                      className="w-full h-full object-cover group-hover:opacity-80 transition-opacity"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${product.videoUrl?.split('/embed/')[1] || product.videoUrl?.split('?')[0]}/hqdefault.jpg`;
+                      }}
+                    />
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center group-hover:bg-white transition-colors"
+                      >
+                        <div className="w-0 h-0 border-l-8 border-l-transparent border-r-0 border-t-5 border-t-transparent border-b-5 border-b-transparent" 
+                          style={{
+                            borderLeft: '12px solid rgb(0, 0, 0)',
+                            borderTop: '8px solid transparent',
+                            borderBottom: '8px solid transparent',
+                            marginLeft: '3px'
+                          }}
+                        />
+                      </motion.div>
                     </div>
                   </div>
                 ) : (
