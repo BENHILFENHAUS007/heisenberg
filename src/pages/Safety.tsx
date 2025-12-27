@@ -135,6 +135,7 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
                 >
                   <Heart size={32} className="text-white" fill="white" />
                 </motion.div>
+                <h2 className="text-3xl md:text-4xl font-black text-white">At TK Fireworks</h2>
               </div>
 
               {/* Main Message */}
@@ -192,7 +193,7 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur" />
                   <div className="relative bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 h-full">
                     <Icon className="w-12 h-12 text-yellow-400 mb-4" />
-                    <h3 className="text-xl font-bold text-white mb-3">🔔 {guideline.title}</h3>
+                    <h3 className="text-xl font-bold text-white mb-3">{guideline.title}</h3>
                     <p className="text-gray-400 leading-relaxed">{guideline.description}</p>
                   </div>
                 </motion.div>
