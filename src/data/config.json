@@ -9,6 +9,7 @@
   "contact": {
     "primaryPhone": "+918888888888",
     "secondaryPhone": "+919876543210",
+    "phoneFormatted": "+91-8888-888-888",
     "email": "info@tkfireworks.com",
     "whatsappNumber": "919876543210",
     "whatsappDefaultMessage": "Hi, I'm interested in TK Fireworks products. Please assist."
@@ -65,6 +66,23 @@
     "twitter": "https://twitter.com/tkfireworks",
     "threads": "https://threads.net/tkfireworks",
     "linkedin": "https://linkedin.com/company/tkfireworks"
+  },
+
+  "links": {
+    "facebook": "https://www.facebook.com/tkfireworks",
+    "instagram": "https://www.instagram.com/tkfireworks",
+    "twitter": "https://twitter.com/tkfireworks",
+    "youtube": "https://www.youtube.com/channel/tkfireworks",
+    "whatsapp": "https://wa.me/919876543210",
+    "threads": "https://www.threads.net/@tkfireworks",
+    "linkedin": "https://www.linkedin.com/company/tkfireworks"
+  },
+
+  "media": {
+    "youtube": {
+      "channelUrl": "https://www.youtube.com/channel/tkfireworks",
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    }
   },
 
   "api": {
