@@ -116,7 +116,7 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
           ))}
         </div>
 
-        {/* TK FIREWORKS SAFETY PROMISE - Premium Section */}
+        {/* GALLERY - THE CELEBRATION NEVER ENDS - Premium Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,44 +124,46 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
           className="mb-16"
         >
           <div className="relative group">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500/30 via-blue-500/20 to-green-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-            <div className="relative bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl p-12 rounded-2xl border border-green-400/40 group-hover:border-green-400/70 transition-all duration-300">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/30 via-pink-500/20 to-purple-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+            <div className="relative bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl p-12 rounded-2xl border border-purple-400/40 group-hover:border-purple-400/70 transition-all duration-300">
               {/* Icon and Title */}
               <div className="flex items-center gap-4 mb-8">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg"
+                  className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-lg"
                 >
                   <Heart size={32} className="text-white" fill="white" />
                 </motion.div>
-                <h2 className="text-3xl md:text-4xl font-black text-white">At TK Fireworks</h2>
               </div>
 
               {/* Main Message */}
               <div className="space-y-6 text-gray-200 text-lg leading-relaxed">
-                <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-300 to-green-300 bg-clip-text">
-                  Our crackers are fully safe, kid-friendly, and crafted to bring joy — never fear.
-                </p>
+                <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
+                  Gallery – The Celebration Never Ends
+                </h2>
                 
                 <div className="space-y-4">
-                  <div className="flex gap-4 items-start">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 mt-2 flex-shrink-0"></div>
-                    <p>
-                      We design each product with the same care a parent has for their child.
-                    </p>
-                  </div>
+                  <p className="text-xl text-white leading-relaxed">
+                    Welcome to the TK Fireworks gallery where lights dance and laughter echoes.
+                    Every photo here is a glimpse of joy, captured mid-celebration.
+                  </p>
                   
-                  <div className="flex gap-4 items-start">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-cyan-500 mt-2 flex-shrink-0"></div>
-                    <p>
-                      Every single batch is checked, tested, and perfected to make sure it's safe to hold, safe to light, and safe to enjoy.
+                  <div className="space-y-3 mt-6">
+                    <p className="text-lg text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text font-semibold">
+                      Bursts of color.
+                    </p>
+                    <p className="text-lg text-transparent bg-gradient-to-r from-pink-300 via-purple-300 to-pink-300 bg-clip-text font-semibold">
+                      Smiles in slow motion.
+                    </p>
+                    <p className="text-lg text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text font-semibold">
+                      Magic in every spark.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-l-4 border-green-400 p-6 rounded-lg">
+                <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-l-4 border-purple-400 p-6 rounded-lg mt-8">
                   <p className="text-xl font-bold text-white">
-                    Because at TK Fireworks, safety isn't a rule — it's our only priority. 💚
+                    Because no matter how many festivals come and go, the best moments always glow a little brighter with TK Fireworks.
                   </p>
                 </div>
               </div>
