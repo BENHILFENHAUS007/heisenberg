@@ -17,6 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, favoritesCount }) => {
 
   const navLinks = [
     { label: 'Home', path: '/' },
+    { label: 'About', path: '/about-us' },
     { label: 'Products', path: '/catalog' },
     { label: 'Gallery', path: '/gallery' },
     { label: 'Safety', path: '/safety' },
