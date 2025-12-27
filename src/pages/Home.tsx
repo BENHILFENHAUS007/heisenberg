@@ -12,6 +12,44 @@ interface HomeProps {
   theme: any;
 }
 
+// Animated particle component
+const AnimatedParticles = () => {
+  const particles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    delay: Math.random() * 3,
+    duration: 3 + Math.random() * 2,
+    left: Math.random() * 100,
+    size: Math.random() * 4 + 2,
+  }));
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          animate={{
+            y: ['0%', '-100%'],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: particle.duration,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: 'easeOut',
+          }}
+          className="absolute rounded-full bg-gradient-to-b from-orange-400 to-transparent blur-md"
+          style={{
+            left: `${particle.left}%`,
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            boxShadow: '0 0 10px rgba(249, 115, 22, 0.8)',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export const Home: React.FC<HomeProps> = ({ theme }) => {
   const navigate = useNavigate();
   const { favorites } = useFavorites();
@@ -22,24 +60,27 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
     <div className="relative w-full min-h-screen bg-black z-0 overflow-visible">
       {/* HERO SECTION - Logo + Title + Subtitle + Button */}
       <section 
-        className="relative w-full pt-16 pb-20 px-4 z-50"
+        className="relative w-full pt-16 pb-20 px-4 z-50 overflow-hidden"
         style={{
           display: 'block',
           position: 'relative',
           width: '100%',
           backgroundColor: '#000000',
-          overflow: 'visible',
+          overflow: 'hidden',
           zIndex: 50,
           minHeight: 'auto'
         }}
       >
-        <div className="max-w-7xl mx-auto">
+        {/* Animated particle background */}
+        <AnimatedParticles />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* MAIN HERO LOGO - Increased Size for Better Visibility */}
+            {/* MAIN HERO LOGO - Scaled Down Logo for Balance */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -56,7 +97,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               <img
                 src={getAssetPath('/images/logo.png')}
                 alt="TK Fireworks Logo"
-                className="h-40 w-auto md:h-56 lg:h-72"
+                className="h-28 w-auto md:h-40 lg:h-56"
                 style={{
                   display: 'block',
                   maxWidth: '90%',
@@ -123,25 +164,40 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* FEATURES SECTION - Updated Copy */}
-      <section className="w-full py-20 px-4 bg-white/5 relative z-40">
+      {/* FEATURES SECTION - Premium Enhanced Design */}
+      <section className="w-full py-32 px-4 bg-gradient-to-b from-black via-white/2 to-black relative z-40">
         <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Why Choose TK Fireworks</h2>
+            <div className="h-1 w-20 bg-gradient-to-r from-orange-400 to-pink-500 mx-auto rounded-full"></div>
+          </motion.div>
+
+          {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: Star,
                 title: 'Premium Quality',
                 desc: 'Expertly formulated fireworks engineered in-house for maximum brilliance.',
+                color: 'from-orange-400 to-orange-600',
               },
               {
                 icon: Shield,
                 title: 'Safety First',
                 desc: 'Engineered for safety. Designed for families. Our revolutionary heat-free formula changes the game—allowing you to "touch the fire" without the burn.',
+                color: 'from-blue-400 to-blue-600',
               },
               {
                 icon: Zap,
                 title: 'Wide Selection',
                 desc: 'Many varieties for every occasion with manufacturer-direct, budget-friendly pricing.',
+                color: 'from-pink-400 to-pink-600',
               },
             ].map((feature, idx) => {
               const Icon = feature.icon;
@@ -151,12 +207,36 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="text-center"
+                  transition={{ delay: idx * 0.15 }}
+                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                  className="group relative"
                 >
-                  <Icon className="w-12 h-12 text-orange-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{feature.desc}</p>
+                  {/* Gradient Background Card */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Card Content */}
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300 h-full">
+                    {/* Icon with gradient background */}
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className={`w-16 h-16 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-300`}
+                    >
+                      <Icon className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-pink-500 group-hover:bg-clip-text transition-all duration-300">
+                      {feature.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-300 leading-relaxed text-sm md:text-base group-hover:text-gray-200 transition-colors duration-300">
+                      {feature.desc}
+                    </p>
+
+                    {/* Accent Line */}
+                    <div className={`h-0.5 w-0 bg-gradient-to-r ${feature.color} mt-6 group-hover:w-full transition-all duration-500 rounded-full`}></div>
+                  </div>
                 </motion.div>
               );
             })}
@@ -213,7 +293,6 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                     loading="lazy"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      // Fallback: try with space in filename
                       if (target.src.includes('animated-image-on-home.png')) {
                         target.src = getAssetPath('/images/animated image on home.png');
                       }
@@ -256,7 +335,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               transition={{ duration: 0.8 }}
               className="text-center lg:text-left relative z-30"
             >
-              {/* Welcome Heading with Emoji Moved to Right */}
+              {/* Welcome Heading with Emoji */}
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
