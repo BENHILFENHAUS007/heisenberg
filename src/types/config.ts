@@ -1,6 +1,7 @@
 /**
  * TK Fireworks Configuration Type Definitions
  * Provides complete type safety for config.json access throughout the application
+ * SIMPLIFIED VERSION - No generic type issues, direct and safe
  */
 
 export interface BrandConfig {
@@ -119,41 +120,30 @@ export interface AppConfig {
   primaryLanguage: string;
 
   // Flattened root-level properties for easy direct access
-  // These duplicate values from nested structure for backward compatibility
   whatsappNumber: string;
   email: string;
   ga4MeasurementId: string;
   primaryPhone: string;
   whatsappDefaultMessage: string;
-  getMessagesFromId?: string; // Optional - for future message integration
-
-  // Internal marker for flattened properties
+  getMessagesFromId?: string;
   __FLATTENED_ROOT_PROPERTIES__?: string;
 }
 
 /**
- * Config getter utility with type safety
- * Usage: const config = getConfig(); config.whatsappNumber
+ * Config getter utility - Direct and simple
  */
 export const getConfig = (): AppConfig => {
-  // This is imported in components, TypeScript will catch access errors
-  const config = require('../data/config.json') as AppConfig;
-  return config;
+  return require('../data/config.json') as AppConfig;
 };
 
 /**
  * Utility function to safely access config with fallback
- * @param key - Config property key
- * @param fallback - Default value if not found
- * @returns Config value or fallback
+ * SIMPLIFIED: Direct value access without generic type issues
  */
-export const getConfigValue = <T = any>(
-  key: keyof AppConfig,
-  fallback?: T
-): T => {
+export const getConfigValue = (key: keyof AppConfig, fallback?: any): any => {
   const config = getConfig();
   const value = config[key];
-  return (value as T) || fallback;
+  return value !== undefined ? value : fallback;
 };
 
 /**
