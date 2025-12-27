@@ -80,7 +80,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* MAIN HERO LOGO - Scaled Down Logo for Balance */}
+            {/* MAIN HERO LOGO - Optimized Desktop Size 200px */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -97,7 +97,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               <img
                 src={getAssetPath('/images/logo.png')}
                 alt="TK Fireworks Logo"
-                className="h-28 w-auto md:h-40 lg:h-56"
+                className="h-28 w-auto md:h-40 lg:h-52"
                 style={{
                   display: 'block',
                   maxWidth: '90%',
