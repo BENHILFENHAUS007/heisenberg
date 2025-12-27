@@ -189,7 +189,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               {
                 icon: Shield,
                 title: 'Safety First',
-                desc: 'Engineered for safety. Designed for families. Our revolutionary heat-free formula changes the game—allowing you to "touch the fire" without the burn.',
+                desc: 'Engineered for safety. Designed for families. Our revolutionary heat-free formula changes the game allowing you to "touch the fire" without the burn.',
                 color: 'from-blue-400 to-blue-600',
               },
               {
