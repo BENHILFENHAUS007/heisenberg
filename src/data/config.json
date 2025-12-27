@@ -7,11 +7,11 @@
   },
 
   "contact": {
-    "primaryPhone": "+918888888888",
-    "secondaryPhone": "+919876543210",
-    "phoneFormatted": "+91-8888-888-888",
-    "email": "info@tkfireworks.com",
-    "whatsappNumber": "919876543210",
+    "primaryPhone": "+91 6374749585",
+    "secondaryPhone": "+91 6374749585",
+    "phoneFormatted": "+91-6374-749-585",
+    "email": "tkfirework@gmail.com",
+    "whatsappNumber": "916374749585",
     "whatsappDefaultMessage": "Hi, I'm interested in TK Fireworks products. Please assist."
   },
 
@@ -26,8 +26,8 @@
     "corporate": {
       "label": "Corporate Address",
       "address": "TK Fireworks Corporate Office, Suite 200, Festival Street, Celebration City, State 560001",
-      "phone": "+918888888888",
-      "email": "corporate@tkfireworks.com",
+      "phone": "+91 6374749585",
+      "email": "tkfirework@gmail.com",
       "mapUrl": "https://maps.google.com/?q=tk+fireworks+corporate"
     },
     "registered": {
@@ -38,13 +38,18 @@
       "label": "Communications Address",
       "address": "TK Fireworks Communications, 7th Floor, Corporate Tower, Central Avenue, Celebration City, State 560001"
     },
+    "factory": {
+      "label": "Factory Location",
+      "address": "TK FIREWORKS FACTORY, RANGASAMUDRAM GUDIYATHAM VELLORE TAMIL NADU 632602",
+      "phone": "+91 6374749585"
+    },
     "branches": [
       {
         "id": "main",
         "name": "TK Fireworks Main Store",
         "address": "123 Festival Street, Celebration City, State 560001",
         "landmark": "Near Central Plaza",
-        "phone": "+919876543210",
+        "phone": "+91 6374749585",
         "mapUrl": "https://maps.google.com/?q=tk+fireworks"
       },
       {
@@ -52,7 +57,7 @@
         "name": "TK Fireworks Express",
         "address": "456 Sparkle Avenue, Joy Town, State 560002",
         "landmark": "Near Star Junction",
-        "phone": "+919876543210",
+        "phone": "+91 6374749585",
         "mapUrl": "https://maps.google.com/?q=tk+fireworks+express"
       }
     ]
@@ -62,7 +67,7 @@
     "facebook": "https://facebook.com/tkfireworks",
     "instagram": "https://instagram.com/tkfireworks",
     "youtube": "https://youtube.com/tkfireworks",
-    "whatsapp": "https://wa.me/919876543210",
+    "whatsapp": "https://wa.me/916374749585",
     "twitter": "https://twitter.com/tkfireworks",
     "threads": "https://threads.net/tkfireworks",
     "linkedin": "https://linkedin.com/company/tkfireworks"
@@ -73,7 +78,7 @@
     "instagram": "https://www.instagram.com/tkfireworks",
     "twitter": "https://twitter.com/tkfireworks",
     "youtube": "https://www.youtube.com/channel/tkfireworks",
-    "whatsapp": "https://wa.me/919876543210",
+    "whatsapp": "https://wa.me/916374749585",
     "threads": "https://www.threads.net/@tkfireworks",
     "linkedin": "https://www.linkedin.com/company/tkfireworks"
   },
@@ -81,7 +86,7 @@
   "media": {
     "youtube": {
       "channelUrl": "https://www.youtube.com/channel/tkfireworks",
-      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      "videoUrl": "https://www.youtube.com/embed/iUtnZpzkbG8"
     }
   },
 
@@ -125,10 +130,11 @@
   "primaryLanguage": "en",
 
   "__FLATTENED_ROOT_PROPERTIES__": "Added for easy direct access",
-  "whatsappNumber": "919876543210",
-  "email": "info@tkfireworks.com",
+  "whatsappNumber": "916374749585",
+  "email": "tkfirework@gmail.com",
   "ga4MeasurementId": "G-XXXXXXXXXX",
-  "primaryPhone": "+918888888888",
+  "primaryPhone": "+91 6374749585",
   "whatsappDefaultMessage": "Hi, I'm interested in TK Fireworks products. Please assist.",
+  "integrationEmail": "tkfireworks8999@gmail.com",
   "getMessagesFromId": ""
 }
