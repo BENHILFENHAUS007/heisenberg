@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Heart, Play, MessageCircle, Bell } from 'lucide-react';
+import { Heart, MessageCircle, Bell } from 'lucide-react';
 import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import configData from '../../data/config.json';
@@ -42,10 +42,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   const handleImageError = () => {
     setImgSrc('/images/comingsoon.png');
-  };
-
-  const handleViewDemo = () => {
-    navigate(`/product/${product.id}`);
   };
 
   // Determine tag based on product properties
@@ -104,24 +100,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 />
               </div>
             </div>
-          )}
-
-          {/* Video Play Button Overlay */}
-          {product.hasVideo && product.videoUrl && !product.comingSoon && (
-            <motion.button
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleViewDemo}
-              className="absolute inset-0 z-15 flex items-center justify-center bg-black/20 hover:bg-black/40 transition-all backdrop-blur-sm opacity-0 group-hover:opacity-100"
-              aria-label="View product demo"
-            >
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition-colors shadow-lg"
-              >
-                <Play size={28} className="text-black fill-black ml-1" />
-              </motion.div>
-            </motion.button>
           )}
 
           {/* Badges */}
@@ -199,7 +177,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   onClick={() => navigate(`/product/${product.id}`)}
                   className="flex-1 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center gap-2 text-sm font-semibold text-white border border-white/20"
                 >
-                  <Play size={16} /> Details
+                  Details
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.03 }}
