@@ -2,19 +2,25 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { getConfig } from '../types/config';
+import { getSafeContactInfo } from '../types/config';
 
 interface ContactProps {
   theme: any;
 }
 
+/**
+ * Contact Page Component
+ * Fully defensive against missing or undefined config values
+ * Includes error handling, fallbacks, and null checks
+ */
 export const Contact: React.FC<ContactProps> = ({ theme }) => {
   const [activeTab, setActiveTab] = useState<'business' | 'inquiry'>('business');
   const [loading, setLoading] = useState(false);
   
-  const config = getConfig();
-  const { corporate, registered, communications } = config.addresses;
-  const { email, primaryPhone } = config.contact;
+  // Get contact info with safe fallbacks
+  const contactInfo = getSafeContactInfo();
+  const { phone, email, addresses } = contactInfo;
+  const { corporate, registered, communications } = addresses;
   
   const [businessForm, setBusinessForm] = useState({
     name: '',
@@ -73,6 +79,7 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {/* Contact Info Cards */}
+          {/* Phone Card - With Null Check and Fallback */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -81,14 +88,19 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
           >
             <Phone className="w-10 h-10 text-orange-400 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Phone</h3>
-            <a
-              href={`tel:${primaryPhone}`}
-              className="text-gray-400 hover:text-orange-400 transition"
-            >
-              {primaryPhone}
-            </a>
+            {phone ? (
+              <a
+                href={`tel:${phone}`}
+                className="text-gray-400 hover:text-orange-400 transition"
+              >
+                {phone}
+              </a>
+            ) : (
+              <p className="text-gray-500 italic">Phone number not available</p>
+            )}
           </motion.div>
 
+          {/* Email Card - With Null Check and Fallback */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -97,14 +109,19 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
           >
             <Mail className="w-10 h-10 text-orange-400 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Email</h3>
-            <a
-              href={`mailto:${email}`}
-              className="text-gray-400 hover:text-orange-400 transition"
-            >
-              {email}
-            </a>
+            {email ? (
+              <a
+                href={`mailto:${email}`}
+                className="text-gray-400 hover:text-orange-400 transition"
+              >
+                {email}
+              </a>
+            ) : (
+              <p className="text-gray-500 italic">Email not available</p>
+            )}
           </motion.div>
 
+          {/* Address Card - With Null Check and Fallback */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -113,7 +130,13 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
           >
             <MapPin className="w-10 h-10 text-orange-400 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Address</h3>
-            <p className="text-gray-400 text-sm">{corporate.address.split(',')[0]}</p>
+            {corporate?.address ? (
+              <p className="text-gray-400 text-sm">
+                {corporate.address.split(',')[0]}
+              </p>
+            ) : (
+              <p className="text-gray-500 italic">Address not available</p>
+            )}
           </motion.div>
         </div>
 
@@ -292,39 +315,57 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
           </div>
         </motion.div>
 
-        {/* Address Cards */}
+        {/* Address Cards - With Null Checks and Safe Rendering */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
         >
-          {/* Corporate Address */}
-          <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
-            <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-orange-400" />
-              {corporate.label}
-            </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{corporate.address}</p>
-          </div>
+          {/* Corporate Address - Safe Rendering */}
+          {corporate && (
+            <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+              <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-orange-400" />
+                {corporate.label || 'Corporate Address'}
+              </h4>
+              {corporate.address ? (
+                <p className="text-gray-400 text-sm leading-relaxed">{corporate.address}</p>
+              ) : (
+                <p className="text-gray-500 italic text-sm">Address not available</p>
+              )}
+            </div>
+          )}
 
-          {/* Registered Address */}
-          <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
-            <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-orange-400" />
-              {registered.label}
-            </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{registered.address}</p>
-          </div>
+          {/* Registered Address - Safe Rendering */}
+          {registered && (
+            <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+              <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-orange-400" />
+                {registered.label || 'Registered Address'}
+              </h4>
+              {registered.address ? (
+                <p className="text-gray-400 text-sm leading-relaxed">{registered.address}</p>
+              ) : (
+                <p className="text-gray-500 italic text-sm">Address not available</p>
+              )}
+            </div>
+          )}
 
-          {/* Communications Address */}
-          <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
-            <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-orange-400" />
-              {communications.label}
-            </h4>
-            <p className="text-gray-400 text-sm leading-relaxed">{communications.address}</p>
-          </div>
+          {/* Communications Address - Safe Rendering */}
+          {communications && (
+            <div className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+              <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-orange-400" />
+                {communications.label || 'Communications Address'}
+              </h4>
+              {communications.address ? (
+                <p className="text-gray-400 text-sm leading-relaxed">{communications.address}</p>
+              ) : (
+                <p className="text-gray-500 italic text-sm">Address not available</p>
+              )}
+            </div>
+          )}
         </motion.div>
       </div>
     </div>
