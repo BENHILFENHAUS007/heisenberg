@@ -15,6 +15,7 @@ import { ProductDetail } from './pages/ProductDetail';
 import { Gallery } from './pages/Gallery';
 import { FAQ } from './pages/FAQ';
 import { Safety } from './pages/Safety';
+import { AboutUs } from './pages/AboutUs';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Shortlist } from './pages/Shortlist';
@@ -58,6 +59,7 @@ function App() {
         <div className="relative z-10">
           <Routes>
             <Route path="/" element={<Home theme={theme} />} />
+            <Route path="/about-us" element={<AboutUs theme={theme} />} />
             <Route path="/catalog" element={<Catalog theme={theme} />} />
             <Route path="/product/:id" element={<ProductDetail theme={theme} />} />
             <Route path="/gallery" element={<Gallery theme={theme} />} />
