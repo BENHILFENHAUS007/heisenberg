@@ -1,8 +1,7 @@
 /**
  * TK Fireworks Configuration Type Definitions
  * Provides complete type safety for config.json access throughout the application
- * SIMPLIFIED VERSION - No generic type issues, direct and safe
- * ROBUST VERSION - Added safe getters with fallbacks and error handling
+ * FINAL VERSION - All properties defined, type-safe, production-ready
  */
 
 export interface BrandConfig {
@@ -61,6 +60,25 @@ export interface SocialConfig {
   linkedin: string;
 }
 
+export interface LinksConfig {
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  youtube: string;
+  whatsapp: string;
+  threads: string;
+  linkedin: string;
+}
+
+export interface YouTubeConfig {
+  channelUrl: string;
+  videoUrl: string;
+}
+
+export interface MediaConfig {
+  youtube: YouTubeConfig;
+}
+
 export interface ApiConfig {
   baseUrl: string;
   timeout: number;
@@ -101,7 +119,7 @@ export interface AnalyticsConfig {
 
 /**
  * Main Config Interface
- * Includes both nested structure (for organization) and flattened root-level properties (for easy access)
+ * Complete type definition for entire config.json structure
  */
 export interface AppConfig {
   // Nested structures (organized by domain)
@@ -110,6 +128,8 @@ export interface AppConfig {
   emergency: EmergencyConfig;
   addresses: AddressesConfig;
   social: SocialConfig;
+  links: LinksConfig;
+  media: MediaConfig;
   api: ApiConfig;
   images: ImagesConfig;
   features: FeaturesConfig;
@@ -142,15 +162,21 @@ export const getConfig = (): AppConfig => {
  * SIMPLIFIED: Direct value access without generic type issues
  */
 export const getConfigValue = (key: keyof AppConfig, fallback?: any): any => {
-  const config = getConfig();
-  const value = config[key];
-  return value !== undefined ? value : fallback;
+  try {
+    const config = getConfig();
+    const value = config[key];
+    return value !== undefined ? value : fallback;
+  } catch (error) {
+    console.error('Error accessing config value:', error);
+    return fallback;
+  }
 };
 
 /**
  * SAFE: Contact info getter with type safety AND fallbacks
  * Handles missing config, undefined values, and async loading
  * Perfect for Contact page and footer components
+ * GUARANTEED to never crash
  */
 export const getSafeContactInfo = () => {
   try {
@@ -213,23 +239,37 @@ export const getSafeContactInfo = () => {
 };
 
 /**
- * Analytics getter with type safety
+ * Analytics getter with type safety and fallbacks
  */
 export const getAnalyticsConfig = () => {
-  const config = getConfig();
-  return {
-    ga4MeasurementId: config.ga4MeasurementId || config.analytics.ga4MeasurementId,
-    enableAnalytics: config.analytics.enableAnalytics,
-  };
+  try {
+    const config = getConfig();
+    return {
+      ga4MeasurementId: config?.ga4MeasurementId || config?.analytics?.ga4MeasurementId || 'G-XXXXXXXXXX',
+      enableAnalytics: config?.analytics?.enableAnalytics || false,
+    };
+  } catch (error) {
+    console.error('Error loading analytics config:', error);
+    return {
+      ga4MeasurementId: 'G-XXXXXXXXXX',
+      enableAnalytics: false,
+    };
+  }
 };
 
 /**
  * SAFE: Get social links with fallbacks
+ * Returns links config or falls back to social config
  */
 export const getSafeSocialLinks = () => {
   try {
     const config = getConfig();
-    return config?.links || config?.social || {};
+    // Try links first (preferred), then fall back to social
+    return (config?.links && Object.keys(config.links).length > 0) 
+      ? config.links 
+      : (config?.social && Object.keys(config.social).length > 0)
+        ? config.social
+        : {};
   } catch (error) {
     console.error('Error loading social links:', error);
     return {};
@@ -238,6 +278,7 @@ export const getSafeSocialLinks = () => {
 
 /**
  * SAFE: Get YouTube links with fallbacks
+ * Returns media.youtube or default values
  */
 export const getSafeYoutubeLinks = () => {
   try {
@@ -252,5 +293,18 @@ export const getSafeYoutubeLinks = () => {
       channelUrl: 'https://www.youtube.com/tkfireworks',
       videoUrl: ''
     };
+  }
+};
+
+/**
+ * SAFE: Get all config with fallbacks
+ * Returns full config or defaults
+ */
+export const getSafeFullConfig = (): AppConfig | null => {
+  try {
+    return getConfig();
+  } catch (error) {
+    console.error('Error loading full config:', error);
+    return null;
   }
 };
