@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Star, Shield, Zap, Facebook, Instagram, Mail, Twitter, MessageCircle, Linkedin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import configData from '../data/config.json';
-import contactData from '../data/contact.json';
 import { useGA4 } from '../hooks/useGA4';
 import { useFavorites } from '../hooks/useFavorites';
 import { getAssetPath } from '@/utils/getAssetPath';
@@ -140,7 +139,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 WebkitFontSmoothing: 'antialiased'
               }}
             >
-              {contactData.subtitle}
+              {configData.brand.tagline}
             </motion.p>
 
             {/* CTA Button */}
@@ -444,21 +443,21 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
           >
             {/* Brand Section */}
             <div>
-              <h3 className="text-2xl font-bold text-white mb-4">{contactData.company}</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">{configData.brand.name}</h3>
               <p className="text-gray-400 mb-6 leading-relaxed">
                 Soft sparks. Peaceful vibes. Perfect for home & family celebrations
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="text-orange-400 font-bold">📞</span>
-                  <a href={`tel:${contactData.contact.phoneFormatted}`} className="text-gray-400 hover:text-orange-400 transition">
-                    {contactData.contact.phone}
+                  <a href={`tel:${configData.contact.primaryPhone}`} className="text-gray-400 hover:text-orange-400 transition">
+                    {configData.contact.primaryPhone}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-orange-400 font-bold">✉️</span>
-                  <a href={`mailto:${contactData.contact.email}`} className="text-gray-400 hover:text-orange-400 transition">
-                    {contactData.contact.email}
+                  <a href={`mailto:${configData.contact.email}`} className="text-gray-400 hover:text-orange-400 transition">
+                    {configData.contact.email}
                   </a>
                 </div>
               </div>
@@ -468,15 +467,15 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <h4 className="text-white font-semibold mb-1">Corporate Address</h4>
-                <p className="text-gray-400 text-sm">{contactData.corporate.address}</p>
+                <p className="text-gray-400 text-sm">{configData.addresses.corporate}</p>
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Registered Address</h4>
-                <p className="text-gray-400 text-sm">{contactData.registered.address}</p>
+                <p className="text-gray-400 text-sm">{configData.addresses.registered}</p>
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Communications Address</h4>
-                <p className="text-gray-400 text-sm">{contactData.communications.address}</p>
+                <p className="text-gray-400 text-sm">{configData.addresses.communications}</p>
               </div>
             </div>
           </motion.div>
@@ -497,7 +496,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               { icon: Twitter, label: 'X (Twitter)', href: 'https://twitter.com' },
               { icon: MessageCircle, label: 'Threads', href: 'https://threads.net' },
               { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-              { icon: Mail, label: 'Email', href: `mailto:${contactData.contact.email}` },
+              { icon: Mail, label: 'Email', href: `mailto:${configData.contact.email}` },
             ].map((social, idx) => {
               const Icon = social.icon;
               return (
@@ -519,7 +518,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
           {/* Bottom */}
           <div className="text-center text-gray-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} {contactData.company}. All rights reserved. | Designed & Developed with ♥</p>
+            <p>&copy; {new Date().getFullYear()} {configData.brand.name}. All rights reserved. | Designed & Developed with ♥</p>
           </div>
         </div>
       </footer>
