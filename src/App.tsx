@@ -81,10 +81,14 @@ function App() {
 /* ---------------- Premium Floating WhatsApp Button ---------------- */
 
 const PremiumWhatsAppButton: React.FC = () => {
+  // Support both flattened (root-level) and nested config access
+  const whatsappNumber = (configData as any).whatsappNumber || (configData as any).contact?.whatsappNumber || '919876543210';
+  const defaultMessage = (configData as any).whatsappDefaultMessage || (configData as any).contact?.whatsappDefaultMessage || 'Hi, I\'m interested in TK Fireworks products. Please assist.';
+
   const handleClick = () => {
-    const message = encodeURIComponent(configData.whatsappDefaultMessage);
+    const message = encodeURIComponent(defaultMessage);
     window.open(
-      `https://wa.me/${configData.whatsappNumber}?text=${message}`,
+      `https://wa.me/${whatsappNumber}?text=${message}`,
       '_blank'
     );
   };
