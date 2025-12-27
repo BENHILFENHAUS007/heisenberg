@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, MessageCircle, Heart } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Heart, Bell } from 'lucide-react';
 import productsData from '../data/products.json';
 import configData from '../data/config.json';
 import { useFavorites } from '../hooks/useFavorites';
@@ -26,6 +26,7 @@ interface Product {
   isNew?: boolean;
   isFeatured?: boolean;
   displayOrder: number;
+  comingSoon?: boolean;
 }
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
@@ -40,12 +41,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
+          <h1 className="text-4xl font-bold mb-4 text-white">Product Not Found</h1>
           <button
             onClick={() => navigate('/catalog')}
-            className="btn-primary"
+            className="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg transition-all"
           >
             Back to Catalog
           </button>
@@ -63,153 +64,234 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
     );
   };
 
+  const handleNotifyMe = () => {
+    const message = `Hey! Please notify me when ${product.name} launches!`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(
+      `https://wa.me/${configData.whatsappNumber}?text=${encodedMessage}`,
+      '_blank'
+    );
+  };
+
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen bg-black pb-20">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="max-w-6xl mx-auto px-4 py-8"
+        className="max-w-7xl mx-auto px-4 py-8"
       >
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-primary hover:text-primary-dark mb-8 transition-colors"
+          className="flex items-center gap-2 text-orange-400 hover:text-orange-300 mb-8 transition-colors font-semibold"
         >
           <ArrowLeft size={20} /> Back
         </button>
       </motion.div>
 
-      {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {/* Image & Video */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="space-y-4"
-        >
-          <div className="bg-dark-surface rounded-xl overflow-hidden h-96">
-            <img
-              src={product.thumbnail3D}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {product.hasVideo && product.videoUrl && (
-            <div className="bg-dark-surface rounded-xl overflow-hidden h-96 relative">
-              {!showVideo ? (
-                <div
-                  className="w-full h-full flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: primaryColor }}
-                  onClick={() => setShowVideo(true)}
-                >
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">▶️</div>
-                    <p className="text-lg font-bold text-black">Watch Video</p>
-                  </div>
-                </div>
-              ) : (
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={`${product.videoUrl}?autoplay=1&mute=0`}
-                  title={product.name}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              )}
-            </div>
-          )}
-        </motion.div>
-
-        {/* Details */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="space-y-6"
-        >
-          <div>
-            <p className="text-sm text-primary mb-2">{product.categoryId.toUpperCase()}</p>
-            <h1 className="text-4xl font-black mb-2">{product.name}</h1>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {product.isNew && (
-                <span
-                  className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ backgroundColor: primaryColor }}
-                >
-                  NEW
-                </span>
-              )}
-              {product.isFeatured && (
-                <span
-                  className="px-3 py-1 rounded-full text-xs font-bold"
-                  style={{ backgroundColor: accentColor, color: '#000' }}
-                >
-                  FEATURED
-                </span>
-              )}
-            </div>
-          </div>
-
-          <div className="glass-effect p-6 rounded-lg space-y-4">
-            <p className="text-lg text-gray-300 leading-relaxed">{product.descriptionLong}</p>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Effect Type</p>
-                <p className="font-bold capitalize">{product.effectType}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Noise Level</p>
-                <p className="font-bold capitalize">{product.noiseLevel}</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Duration</p>
-                <p className="font-bold">{product.durationSeconds}s</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Status</p>
-                <p className="font-bold">{product.hasVideo ? '✓ With Video' : 'Image Only'}</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <p className="text-sm text-gray-500 mb-3">Tags</p>
-            <div className="flex flex-wrap gap-2">
-              {product.tags.map((tag: string) => (
-                <span key={tag} className="px-3 py-1 bg-dark-surface rounded-full text-sm">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex gap-3 pt-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              onClick={handleWhatsApp}
-              className="flex-1 py-3 rounded-lg font-bold text-white flex items-center justify-center gap-2 text-lg transition-all"
-              style={{ backgroundColor: '#25D366' }}
-            >
-              <MessageCircle size={20} /> WhatsApp Enquiry
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              onClick={() => toggleFavorite(product.id)}
-              className="px-6 py-3 rounded-lg font-bold border-2 flex items-center justify-center gap-2 transition-all"
-              style={{
-                borderColor: primaryColor,
-                backgroundColor: isFavorite(product.id) ? primaryColor : 'transparent',
-              }}
-            >
-              <Heart
-                size={20}
-                fill={isFavorite(product.id) ? 'currentColor' : 'none'}
+      {/* Main Content - 40% Image / 60% Content Layout */}
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
+          {/* Left: Image (40% on desktop, 100% on mobile) */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="lg:col-span-2 flex flex-col gap-4"
+          >
+            {/* Main Product Image */}
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden w-full aspect-square flex items-center justify-center">
+              <img
+                src={product.thumbnail3D}
+                alt={product.name}
+                className="w-full h-full object-cover"
               />
-            </motion.button>
-          </div>
-        </motion.div>
+            </div>
+
+            {/* Coming Soon Badge on Image */}
+            {product.comingSoon && (
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden w-full aspect-square flex items-center justify-center relative">
+                <img
+                  src={product.thumbnail3D}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+                  <img
+                    src="/images/coming-soon.png"
+                    alt="Coming Soon"
+                    className="w-40 h-40 object-contain drop-shadow-2xl"
+                  />
+                </div>
+              </div>
+            )}
+          </motion.div>
+
+          {/* Right: Details (60% on desktop, 100% on mobile) */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="lg:col-span-3 space-y-6"
+          >
+            {/* Title Section */}
+            <div>
+              <p className="text-sm text-orange-400 font-semibold mb-2 uppercase tracking-widest">
+                {product.categoryId.replace(/-/g, ' ')}
+              </p>
+              <h1 className="text-5xl md:text-6xl font-black mb-4 text-white leading-tight">
+                {product.name}
+              </h1>
+              
+              {/* Badges */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {product.isNew && !product.comingSoon && (
+                  <span
+                    className="px-4 py-2 rounded-full text-sm font-bold text-white shadow-lg"
+                    style={{ backgroundColor: primaryColor }}
+                  >
+                    NEW
+                  </span>
+                )}
+                {product.isFeatured && (
+                  <span
+                    className="px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+                    style={{ backgroundColor: accentColor, color: '#000' }}
+                  >
+                    FEATURED
+                  </span>
+                )}
+                {product.comingSoon && (
+                  <span className="px-4 py-2 rounded-full text-sm font-bold text-white shadow-lg bg-purple-600">
+                    COMING SOON
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Description Section */}
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg space-y-4">
+              <p className="text-lg text-gray-300 leading-relaxed">
+                {product.descriptionLong}
+              </p>
+            </div>
+
+            {/* Specifications */}
+            {!product.comingSoon && (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
+                  <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Effect Type</p>
+                  <p className="text-xl font-bold text-white capitalize">{product.effectType}</p>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
+                  <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Noise Level</p>
+                  <p className="text-xl font-bold text-white capitalize">{product.noiseLevel}</p>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
+                  <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Duration</p>
+                  <p className="text-xl font-bold text-white">{product.durationSeconds}s</p>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-lg">
+                  <p className="text-xs text-gray-500 mb-2 uppercase font-semibold">Status</p>
+                  <p className="text-xl font-bold text-white">Ready</p>
+                </div>
+              </div>
+            )}
+
+            {/* Tags */}
+            <div>
+              <p className="text-sm text-gray-500 mb-3 uppercase font-semibold">Tags</p>
+              <div className="flex flex-wrap gap-2">
+                {product.tags.map((tag: string) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm capitalize font-semibold text-gray-300 hover:bg-white/20 transition-all"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 pt-4">
+              {!product.comingSoon ? (
+                <>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleWhatsApp}
+                    className="flex-1 py-4 rounded-lg font-bold text-white flex items-center justify-center gap-2 text-lg transition-all shadow-xl"
+                    style={{ backgroundColor: '#25D366' }}
+                  >
+                    <MessageCircle size={22} /> WhatsApp Enquiry
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleFavorite(product.id)}
+                    className="px-6 py-4 rounded-lg font-bold border-2 flex items-center justify-center gap-2 transition-all"
+                    style={{
+                      borderColor: primaryColor,
+                      backgroundColor: isFavorite(product.id) ? primaryColor : 'transparent',
+                    }}
+                  >
+                    <Heart
+                      size={22}
+                      fill={isFavorite(product.id) ? 'currentColor' : 'none'}
+                    />
+                  </motion.button>
+                </>
+              ) : (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleNotifyMe}
+                  className="w-full py-4 rounded-lg font-bold text-white flex items-center justify-center gap-2 text-lg transition-all shadow-xl"
+                  style={{ backgroundColor: '#25D366' }}
+                >
+                  <Bell size={22} /> Notify Me When Launched
+                </motion.button>
+              )}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* YouTube Video Section - Full Width Below */}
+        {product.hasVideo && product.videoUrl && !product.comingSoon && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl font-black text-white mb-6">Product Demo</h2>
+            <div className="bg-black rounded-xl overflow-hidden shadow-2xl w-full">
+              <div className="aspect-video w-full">
+                {!showVideo ? (
+                  <div
+                    className="w-full h-full flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity relative group"
+                    style={{ backgroundColor: primaryColor }}
+                    onClick={() => setShowVideo(true)}
+                  >
+                    <div className="text-center">
+                      <div className="text-8xl mb-4 group-hover:scale-110 transition-transform">▶️</div>
+                      <p className="text-2xl font-bold text-black">Watch Demo</p>
+                    </div>
+                  </div>
+                ) : (
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`${product.videoUrl}?autoplay=1&mute=0`}
+                    title={product.name}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
