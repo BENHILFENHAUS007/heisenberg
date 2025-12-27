@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Shield, Zap, Facebook, Instagram, Mail, Twitter, MessageCircle, Linkedin } from 'lucide-react';
+import { Star, Shield, Zap, Facebook, Instagram, Mail, Twitter, Youtube, Linkedin, MapPin, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import configData from '../data/config.json';
 import { useGA4 } from '../hooks/useGA4';
@@ -431,71 +431,149 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="relative w-full bg-gradient-to-b from-black to-gray-900 border-t border-white/10 mt-20 z-20" style={{ position: 'relative', display: 'block' }}>
+      {/* REDESIGNED FOOTER - Beautiful & Enhanced */}
+      <footer className="relative w-full bg-gradient-to-b from-black via-gray-900 to-black border-t border-orange-500/20 mt-20 z-20">
         <div className="max-w-7xl mx-auto px-4 py-16">
-          {/* Main Content */}
+          {/* Main Content - Enhanced Layout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12"
           >
-            {/* Brand Section */}
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">{configData.brand.name}</h3>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+            {/* Brand Section - Left Column */}
+            <div className="space-y-6">
+              <h3 className="text-3xl font-black text-transparent bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text">
+                {configData.brand.name}
+              </h3>
+              <p className="text-gray-300 text-lg leading-relaxed">
                 Soft sparks. Peaceful vibes. Perfect for home & family celebrations
               </p>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-orange-400 font-bold">📞</span>
-                  <a href={`tel:${configData.contact.primaryPhone}`} className="text-gray-400 hover:text-orange-400 transition">
+              
+              {/* Contact Info with Icons */}
+              <div className="space-y-4">
+                <motion.div 
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-3 group cursor-pointer"
+                >
+                  <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20 group-hover:from-orange-500/30 group-hover:to-pink-500/30 transition-all">
+                    <Phone size={20} className="text-orange-400" />
+                  </div>
+                  <a 
+                    href={`tel:${configData.contact.primaryPhone}`} 
+                    className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
+                  >
                     {configData.contact.primaryPhone}
                   </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-orange-400 font-bold">✉️</span>
-                  <a href={`mailto:${configData.contact.email}`} className="text-gray-400 hover:text-orange-400 transition">
+                </motion.div>
+                
+                <motion.div 
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-3 group cursor-pointer"
+                >
+                  <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20 group-hover:from-orange-500/30 group-hover:to-pink-500/30 transition-all">
+                    <Mail size={20} className="text-orange-400" />
+                  </div>
+                  <a 
+                    href={`mailto:${configData.contact.email}`} 
+                    className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
+                  >
                     {configData.contact.email}
                   </a>
-                </div>
+                </motion.div>
+              </div>
+
+              {/* Email Integration Note */}
+              <div className="bg-white/5 backdrop-blur-sm border border-orange-500/20 rounded-lg p-4">
+                <p className="text-xs text-gray-400 mb-1">For inquiries & integrations:</p>
+                <a 
+                  href="mailto:tkfireworks8999@gmail.com" 
+                  className="text-orange-400 hover:text-orange-300 transition-colors text-sm font-medium"
+                >
+                  tkfireworks8999@gmail.com
+                </a>
               </div>
             </div>
 
-            {/* Addresses */}
-            <div className="grid grid-cols-1 gap-4">
-              <div>
-                <h4 className="text-white font-semibold mb-1">Corporate Address</h4>
-                <p className="text-gray-400 text-sm">{configData.addresses.corporate.address}</p>
+            {/* Factory Address - Right Column with Beautiful Design */}
+            <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-orange-500/30 transition-all duration-300">
+              <div className="flex items-start gap-3 mb-4">
+                <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20">
+                  <MapPin size={24} className="text-orange-400" />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold text-lg mb-1">Factory Location</h4>
+                  <p className="text-orange-400 text-sm">Where the magic happens ✨</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-white font-semibold mb-1">Registered Address</h4>
-                <p className="text-gray-400 text-sm">{configData.addresses.registered.address}</p>
-              </div>
-              <div>
-                <h4 className="text-white font-semibold mb-1">Communications Address</h4>
-                <p className="text-gray-400 text-sm">{configData.addresses.communications.address}</p>
+              
+              <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                TK FIREWORKS FACTORY<br />
+                RANGASAMUDRAM GUDIYATHAM<br />
+                VELLORE TAMILNADU 632602
+              </p>
+              
+              {/* Quick Links Section */}
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <p className="text-xs text-gray-400 mb-3">Quick Access</p>
+                <div className="flex flex-wrap gap-2">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate('/catalog')}
+                    className="px-3 py-1.5 text-xs bg-white/5 hover:bg-orange-500/20 text-gray-300 hover:text-orange-400 rounded-lg transition-all border border-white/10 hover:border-orange-500/30"
+                  >
+                    Products
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate('/safety')}
+                    className="px-3 py-1.5 text-xs bg-white/5 hover:bg-orange-500/20 text-gray-300 hover:text-orange-400 rounded-lg transition-all border border-white/10 hover:border-orange-500/30"
+                  >
+                    Safety
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => window.open('https://wa.me/' + configData.whatsappNumber, '_blank')}
+                    className="px-3 py-1.5 text-xs bg-white/5 hover:bg-orange-500/20 text-gray-300 hover:text-orange-400 rounded-lg transition-all border border-white/10 hover:border-orange-500/30"
+                  >
+                    Bulk Order
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => window.open(configData.media.youtube.channelUrl || 'https://youtube.com/@tkfireworks', '_blank')}
+                    className="px-3 py-1.5 text-xs bg-white/5 hover:bg-orange-500/20 text-gray-300 hover:text-orange-400 rounded-lg transition-all border border-white/10 hover:border-orange-500/30"
+                  >
+                    🎥 YouTube
+                  </motion.button>
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Divider */}
-          <div className="border-t border-white/10 mb-8" />
+          {/* Divider with Gradient */}
+          <div className="relative mb-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gradient-to-r from-transparent via-orange-500/30 to-transparent"></div>
+            </div>
+          </div>
 
-          {/* Social Icons */}
+          {/* Social Icons - Enhanced Design */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex justify-center gap-6 mb-8"
+            className="flex justify-center gap-4 mb-8"
           >
             {[
-              { icon: Facebook, label: 'Facebook', href: 'https://facebook.com' },
-              { icon: Instagram, label: 'Instagram', href: 'https://instagram.com' },
-              { icon: Twitter, label: 'X (Twitter)', href: 'https://twitter.com' },
-              { icon: MessageCircle, label: 'Threads', href: 'https://threads.net' },
-              { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
+              { icon: Facebook, label: 'Facebook', href: configData.social.facebook || 'https://facebook.com/tkfireworks' },
+              { icon: Instagram, label: 'Instagram', href: configData.social.instagram || 'https://instagram.com/tkfireworks' },
+              { icon: Twitter, label: 'X (Twitter)', href: configData.social.twitter || 'https://twitter.com/tkfireworks' },
+              { icon: Youtube, label: 'YouTube', href: configData.media.youtube.channelUrl || 'https://youtube.com/@tkfireworks' },
+              { icon: Linkedin, label: 'LinkedIn', href: configData.social.linkedin || 'https://linkedin.com/company/tkfireworks' },
               { icon: Mail, label: 'Email', href: `mailto:${configData.contact.email}` },
             ].map((social, idx) => {
               const Icon = social.icon;
@@ -505,8 +583,8 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-white/10 hover:bg-orange-500 text-gray-400 hover:text-white transition-all duration-300"
-                  whileHover={{ scale: 1.1 }}
+                  className="p-3 rounded-full bg-gradient-to-br from-white/10 to-white/5 hover:from-orange-500 hover:to-pink-500 text-gray-400 hover:text-white transition-all duration-300 backdrop-blur-sm border border-white/10 hover:border-orange-500/50"
+                  whileHover={{ scale: 1.15, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                   title={social.label}
                 >
@@ -516,9 +594,21 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             })}
           </motion.div>
 
-          {/* Bottom */}
-          <div className="text-center text-gray-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} {configData.brand.name}. All rights reserved. | Designed & Developed with ♥</p>
+          {/* Bottom - Copyright with Developer Credit */}
+          <div className="text-center space-y-2">
+            <p className="text-gray-400 text-sm">
+              &copy; 2026 {configData.brand.name}. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-xs">
+              Designed & Developed with ❤️ by{' '}
+              <a 
+                href="mailto:shiryxz@gmail.com" 
+                className="text-orange-400 hover:text-orange-300 transition-colors font-semibold"
+                title="Contact Developer"
+              >
+                shiruvvvv 🧑‍💻
+              </a>
+            </p>
           </div>
         </div>
       </footer>
