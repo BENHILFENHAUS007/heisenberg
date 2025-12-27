@@ -14,6 +14,7 @@ export interface Product {
   isNew: boolean;
   isFeatured: boolean;
   displayOrder: number;
+  comingSoon: boolean;
 }
 
 export interface Category {
