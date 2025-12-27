@@ -39,7 +39,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* MAIN HERO LOGO - Environment-aware path */}
+            {/* MAIN HERO LOGO - Increased Size for Better Visibility */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -56,10 +56,10 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               <img
                 src={getAssetPath('/images/logo.png')}
                 alt="TK Fireworks Logo"
-                className="h-24 w-auto"
+                className="h-40 w-auto md:h-56 lg:h-72"
                 style={{
                   display: 'block',
-                  maxWidth: '120px',
+                  maxWidth: '90%',
                   height: 'auto',
                   opacity: 1,
                   visibility: 'visible',
@@ -123,7 +123,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
+      {/* FEATURES SECTION - Updated Copy */}
       <section className="w-full py-20 px-4 bg-white/5 relative z-40">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -131,17 +131,17 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               {
                 icon: Star,
                 title: 'Premium Quality',
-                desc: 'Hand-selected fireworks from certified manufacturers',
+                desc: 'Expertly formulated fireworks engineered in-house for maximum brilliance.',
               },
               {
                 icon: Shield,
                 title: 'Safety First',
-                desc: 'All products meet international safety standards',
+                desc: 'Engineered for safety. Designed for families. Our revolutionary heat-free formula changes the game—allowing you to "touch the fire" without the burn.',
               },
               {
                 icon: Zap,
                 title: 'Wide Selection',
-                desc: '500+ varieties for every occasion and budget',
+                desc: 'Many varieties for every occasion with manufacturer-direct, budget-friendly pricing.',
               },
             ].map((feature, idx) => {
               const Icon = feature.icon;
@@ -156,7 +156,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 >
                   <Icon className="w-12 h-12 text-orange-400 mx-auto mb-4" />
                   <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.desc}</p>
+                  <p className="text-gray-400 leading-relaxed">{feature.desc}</p>
                 </motion.div>
               );
             })}
@@ -256,6 +256,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               transition={{ duration: 0.8 }}
               className="text-center lg:text-left relative z-30"
             >
+              {/* Welcome Heading with Emoji Moved to Right */}
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -263,7 +264,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 transition={{ delay: 0.1, duration: 0.6 }}
                 className="text-4xl md:text-5xl font-black mb-8 text-white"
               >
-                🎉 Welcome to TK Fireworks
+                welcome to TK Fireworks <span className="inline-block ml-2">🎉</span>
               </motion.h2>
 
               <motion.p
