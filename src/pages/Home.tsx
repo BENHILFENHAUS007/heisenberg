@@ -79,7 +79,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* MAIN HERO LOGO - Optimized Desktop Size 200px */}
+            {/* MAIN HERO LOGO - CRITICAL: EAGER LOADING + DIMENSIONS */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -107,7 +107,10 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden'
                 }}
-                loading="eager"
+                loading="eager"              // Critical above-fold image
+                decoding="async"             // Non-blocking
+                width={208}                  // lg:h-52 = 208px
+                height={208}
               />
             </motion.div>
 
@@ -247,7 +250,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Animated Child Image - Fixed fallback */}
+            {/* Left: Animated Child Image - LAZY LOADING (below fold) */}
             <motion.div
               initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -267,7 +270,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 }}
                 className="relative w-full max-w-sm"
               >
-                {/* Main Image - Fixed: No more faulty onError fallback */}
+                {/* Main Image - LAZY LOADING + ASYNC DECODE */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.3 }}
@@ -287,9 +290,13 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                       height: 'auto',
                       borderRadius: '1rem',
                       backfaceVisibility: 'hidden',
-                      WebkitBackfaceVisibility: 'hidden'
+                      WebkitBackfaceVisibility: 'hidden',
+                      aspectRatio: '384 / 512'  // Approximate 3:4 ratio
                     }}
-                    loading="lazy"
+                    loading="lazy"              // Below fold - lazy load
+                    decoding="async"            // Non-blocking
+                    width={384}                 // max-w-sm = 384px
+                    height={512}
                   />
 
                   {/* Particles */}
@@ -548,7 +555,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             </div>
           </motion.div>
 
-          {/* FIX 3: Divider with Enhanced Spacing */}
+          {/* Divider with Enhanced Spacing */}
           <div className="relative mb-8 py-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gradient-to-r from-transparent via-orange-500/30 to-transparent"></div>
