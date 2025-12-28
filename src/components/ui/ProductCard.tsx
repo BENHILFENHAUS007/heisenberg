@@ -83,11 +83,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Subtle glow on hover */}
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-pink-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
+          {/* FIX 2: Enhanced image with lazy loading, async decoding, and dimensions */}
           <img
             src={imgSrc}
             alt={product.name}
             className="relative z-10 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
+            decoding="async"
+            width={280}
+            height={224}
+            style={{
+              width: '100%',
+              height: 'auto',
+              aspectRatio: '280 / 224',
+              display: 'block'
+            }}
             onError={handleImageError}
           />
 
@@ -100,6 +110,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   alt="Coming Soon"
                   className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain drop-shadow-xl"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
