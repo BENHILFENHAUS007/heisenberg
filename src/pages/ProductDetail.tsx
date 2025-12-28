@@ -6,12 +6,10 @@ import {
   Heart,
   Share2,
   MessageCircle,
-  Play,
   Shield,
   Zap,
   Clock,
   Volume2,
-  Star,
   AlertCircle,
   Bell,
 } from 'lucide-react';
@@ -215,7 +213,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
                     <Clock size={20} />
                     <p className="text-sm font-semibold">DURATION</p>
                   </div>
-                  <p className="text-white font-bold">{product.duration}</p>
+                  <p className="text-white font-bold">{product.durationSeconds}s</p>
                 </div>
 
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
@@ -223,7 +221,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
                     <Shield size={20} />
                     <p className="text-sm font-semibold">STATUS</p>
                   </div>
-                  <p className="text-white font-bold capitalize">{product.status}</p>
+                  <p className="text-white font-bold capitalize">Ready</p>
                 </div>
               </div>
             )}
@@ -284,8 +282,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
           </motion.div>
         </div>
 
-        {/* Product Demo Video */}
-        {product.videoDemo && (
+        {/* Product Demo Video - RESTORED */}
+        {product.videoUrl && product.videoUrl !== '' && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -294,14 +292,18 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ theme }) => {
           >
             <h2 className="text-3xl font-black text-white mb-8">Product Demo</h2>
             <div className="relative rounded-2xl overflow-hidden aspect-video bg-gradient-to-br from-gray-900 to-gray-800">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  className="p-6 rounded-full bg-orange-500 hover:bg-orange-600 transition-colors"
-                >
-                  <Play size={32} className="text-white" fill="white" />
-                </motion.button>
-              </div>
+              <iframe
+                src={product.videoUrl}
+                title={`${product.name} Demo Video`}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                style={{
+                  border: 'none',
+                  display: 'block'
+                }}
+              />
             </div>
           </motion.div>
         )}
