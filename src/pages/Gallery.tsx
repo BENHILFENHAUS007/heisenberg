@@ -55,7 +55,7 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
           </p>
         </motion.div>
 
-        {/* Gallery Grid with STACK ANIMATION */}
+        {/* Gallery Grid with STACK ANIMATION + Optimized Images */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {galleryImages.map((image, idx) => (
             <motion.div
@@ -90,12 +90,21 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
                     </>
                   )}
                   
-                  {/* Main Image */}
+                  {/* Main Image - OPTIMIZED with performance attributes */}
                   <img
                     src={loadedImages[image.id] || image.src}
                     alt={image.alt}
                     className="relative z-10 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
+                    decoding="async"              // Non-blocking image decode
+                    width={800}                   // Explicit width for aspect-video (16:9)
+                    height={450}                  // Explicit height for aspect-video
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      aspectRatio: '16 / 9',      // Reserves space before load
+                      display: 'block'
+                    }}
                     onError={() => handleImageError(image.id, image.fallback)}
                   />
                 </div>
@@ -172,7 +181,7 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
         </motion.div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal - OPTIMIZED */}
       {selectedImage && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -193,6 +202,13 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
             className="max-w-full max-h-full object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
             onError={() => handleImageError(selectedImage.id, selectedImage.fallback)}
+            loading="eager"              // Eager loading for lightbox (visible immediately)
+            decoding="async"             // Non-blocking decode
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              display: 'block'
+            }}
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', damping: 20 }}
