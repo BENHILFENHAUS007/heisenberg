@@ -1,0 +1,87 @@
+name: Convert Gallery Images to JPEG
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fix/gallery-image-format
+    paths:
+      - 'scripts/convert-images.sh'
+      - 'public/images/gallery*.png'
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 🛠️ Install ImageMagick
+        run: |
+          echo "📦 Installing ImageMagick..."
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq imagemagick
+          echo "✅ ImageMagick installed"
+          convert -version
+          
+      - name: 🎨 Convert PNG to JPEG
+        run: |
+          chmod +x scripts/convert-images.sh
+          bash scripts/convert-images.sh
+          
+      - name: 📊 Show converted files
+        run: |
+          echo "📁 Converted files:"
+          ls -lh public/images/gallery*.jpeg || echo "No JPEG files found"
+          echo ""
+          echo "📊 Size comparison:"
+          echo "PNG files:"
+          ls -lh public/images/gallery2.png public/images/gallery3.png 2>/dev/null || echo "No PNG files"
+          echo ""
+          echo "JPEG files:"
+          ls -lh public/images/gallery2.jpeg public/images/gallery3.jpeg 2>/dev/null || echo "No JPEG files"
+          
+      - name: 💾 Commit converted images
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          if [ -f "public/images/gallery2.jpeg" ] || [ -f "public/images/gallery3.jpeg" ]; then
+            git add public/images/gallery*.jpeg
+            git commit -m "feat: add converted JPEG gallery images
+            
+            - Converted gallery2.png to gallery2.jpeg
+            - Converted gallery3.png to gallery3.jpeg
+            - Optimized to 85% quality
+            - Reduced file sizes for better performance"
+            
+            echo "✅ Changes committed"
+          else
+            echo "⚠️  No JPEG files to commit"
+            exit 1
+          fi
+          
+      - name: 🚀 Push changes
+        run: |
+          git push
+          echo "✅ JPEG images pushed to repository"
+          
+      - name: 📢 Summary
+        run: |
+          echo "## ✨ Image Conversion Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Converted Files" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ gallery2.jpeg" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ gallery3.jpeg" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. Create Pull Request" >> $GITHUB_STEP_SUMMARY
+          echo "2. Merge to main" >> $GITHUB_STEP_SUMMARY
+          echo "3. Images will appear in gallery" >> $GITHUB_STEP_SUMMARY
