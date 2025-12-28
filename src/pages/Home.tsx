@@ -548,8 +548,8 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             </div>
           </motion.div>
 
-          {/* Divider with Gradient */}
-          <div className="relative mb-8">
+          {/* FIX 3: Divider with Enhanced Spacing */}
+          <div className="relative mb-8 py-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gradient-to-r from-transparent via-orange-500/30 to-transparent"></div>
             </div>
@@ -560,7 +560,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex justify-center gap-4 mb-8"
+            className="flex justify-center gap-4 mb-12"
           >
             {[
               { icon: Facebook, label: 'Facebook', href: configData.social.facebook || 'https://facebook.com/tkfireworks' },
