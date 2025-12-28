@@ -3,17 +3,14 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig(({ command, mode }) => {
-  // Determine base path based on environment
-  // - Development (npm run dev): use '/'
-  // - Production (npm run build): use '/heisenberg/' for GitHub Pages
-  const base = command === 'build' && mode === 'production' 
-    ? '/heisenberg/' 
-    : '/';
+  // FOR NETLIFY CUSTOM DOMAIN: Always use '/'
+  // GitHub Pages needs '/heisenberg/', but Netlify custom domain needs '/'
+  const base = '/';
 
   return {
     plugins: [react()],
 
-    // Dynamic base path
+    // Root base path for Netlify custom domain
     base,
 
     // Shadcn path resolution
@@ -23,7 +20,7 @@ export default defineConfig(({ command, mode }) => {
       },
     },
 
-    // Build optimizations to prevent timeout
+    // Build optimizations
     build: {
       outDir: 'dist',
       sourcemap: false,
@@ -31,14 +28,14 @@ export default defineConfig(({ command, mode }) => {
       // Faster & safer build
       minify: 'esbuild',
 
-      // Disable heavy code splitting (fixes hang / timeout)
+      // Disable heavy code splitting
       rollupOptions: {
         output: {
           manualChunks: undefined,
         },
       },
 
-      // Avoid warning spam & large chunk stalls
+      // Avoid warning spam
       chunkSizeWarningLimit: 1500,
     },
 
@@ -48,11 +45,9 @@ export default defineConfig(({ command, mode }) => {
       open: true,
     },
 
-    // Preview (useful for GH Pages testing)
+    // Preview
     preview: {
       port: 4173,
-      // Also use /heisenberg/ for preview to simulate GitHub Pages
-      base: '/heisenberg/',
     },
   };
 });
