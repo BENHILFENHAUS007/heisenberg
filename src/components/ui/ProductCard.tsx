@@ -4,6 +4,7 @@ import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import configData from '../../data/config.json';
 import { useState } from 'react';
+import { getAssetPath } from '../../utils/getAssetPath';
 
 interface ProductCardProps {
   product: Product;
@@ -19,7 +20,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   theme,
 }) => {
   const navigate = useNavigate();
-  const [imgSrc, setImgSrc] = useState(product.thumbnail3D);
+  // Fix: Use getAssetPath for proper base URL handling on GitHub Pages
+  const [imgSrc, setImgSrc] = useState(getAssetPath(product.thumbnail3D));
   const primaryColor = theme?.primaryColor || '#ff6b00';
 
   const handleWhatsApp = () => {
@@ -41,7 +43,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   const handleImageError = () => {
-    setImgSrc('/images/comingsoon.png');
+    // Fix: Use getAssetPath for fallback image too
+    setImgSrc(getAssetPath('/images/comingsoon.png'));
   };
 
   // Determine tag based on product properties
@@ -93,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <div className="absolute inset-0 z-15 flex items-center justify-center bg-black/30 backdrop-blur-sm">
               <div className="flex flex-col items-center justify-center">
                 <img
-                  src="/images/comingsoon.png"
+                  src={getAssetPath('/images/comingsoon.png')}
                   alt="Coming Soon"
                   className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain drop-shadow-xl"
                   loading="lazy"
