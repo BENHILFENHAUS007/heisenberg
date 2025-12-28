@@ -247,7 +247,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Animated Child Image - Environment-aware path */}
+            {/* Left: Animated Child Image - Fixed fallback */}
             <motion.div
               initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -267,7 +267,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 }}
                 className="relative w-full max-w-sm"
               >
-                {/* Main Image */}
+                {/* Main Image - Fixed: No more faulty onError fallback */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.3 }}
@@ -290,12 +290,6 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                       WebkitBackfaceVisibility: 'hidden'
                     }}
                     loading="lazy"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      if (target.src.includes('animated-image-on-home.png')) {
-                        target.src = getAssetPath('/images/animated image on home.png');
-                      }
-                    }}
                   />
 
                   {/* Particles */}
