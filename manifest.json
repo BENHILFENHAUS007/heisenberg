@@ -1,34 +1,17 @@
 {
-  "name": "TK Fireworks - Premium 3D Fireworks Showcase",
-  "short_name": "TK Fireworks",
-  "description": "Display-only premium fireworks product catalog with WhatsApp enquiry integration",
-  "start_url": "/tk-fireworks-showcase/",
-  "scope": "/tk-fireworks-showcase/",
+  "name": "Heisenberg",
+  "short_name": "Heisenberg",
+  "description": "Premium Product Showcase",
+  "start_url": "/heisenberg/",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#0a0a0a",
   "theme_color": "#ff6b00",
-  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23ff6b00' width='192' height='192'/><text x='96' y='140' font-size='120' text-anchor='middle' fill='%23fff'>🔥</text></svg>",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23ff6b00' width='512' height='512'/><text x='256' y='380' font-size='320' text-anchor='middle' fill='%23fff'>🔥</text></svg>",
-      "sizes": "512x512",
+      "src": "/heisenberg/logo.svg",
+      "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
-    }
-  ],
-  "categories": ["shopping", "lifestyle"],
-  "screenshots": [
-    {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%230a0a0a' width='540' height='720'/><text x='270' y='360' font-size='80' text-anchor='middle' fill='%23ff6b00' font-weight='bold'>TK Fireworks</text></svg>",
-      "sizes": "540x720",
-      "type": "image/svg+xml",
-      "form_factor": "narrow"
     }
   ]
 }

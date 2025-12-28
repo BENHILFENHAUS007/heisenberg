@@ -1,84 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Basic Meta -->
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="TK Fireworks – Premium 3D Fireworks Product Showcase"
-    />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="TK Fireworks" />
-    <meta
-      property="og:description"
-      content="Display-only premium fireworks product catalog with WhatsApp enquiry integration"
-    />
-    <meta property="og:type" content="website" />
-
-    <!-- Apple PWA -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="TK Fireworks" />
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/tk-fireworks-showcase/manifest.json" />
-
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      href="data:image/svg+xml,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-        <text y='75' font-size='75'>🔥</text>
-      </svg>"
-    />
-
-    <title>TK Fireworks | Premium 3D Fireworks Showcase</title>
-    <script type="module" crossorigin src="/tk-fireworks-showcase/assets/index-CXLzmqyC.js"></script>
-    <link rel="stylesheet" crossorigin href="/tk-fireworks-showcase/assets/index-DlGESEaC.css">
+    <title>TK Fireworks</title>
+    
+    <!-- Google Fonts - Bebas Neue for bold stylish headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="./assets/index-Be1ztzVT.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BcmBS0cb.css">
   </head>
-
-  <body class="bg-dark-bg text-white">
-    <!-- ================= EMERGENCY CLEANUP ================= -->
-    <!-- Runs ONCE to fix broken SW / cache issues -->
-    <script>
-      (async () => {
-        if ('serviceWorker' in navigator) {
-          const registrations = await navigator.serviceWorker.getRegistrations()
-          for (const reg of registrations) {
-            await reg.unregister()
-            console.log('🗑️ Service Worker unregistered')
-          }
-        }
-
-        if ('caches' in window) {
-          const cacheNames = await caches.keys()
-          await Promise.all(cacheNames.map(name => caches.delete(name)))
-          console.log('🧹 Cache storage cleared')
-        }
-      })()
-    </script>
-    <!-- ===================================================== -->
-
-    <!-- React App Root -->
+  <body>
     <div id="root"></div>
-
-    <!-- App Entry -->
-
-    <!-- ================= OPTIONAL PWA ================= -->
-    <!-- ENABLE ONLY AFTER CONFIRMING APP IS STABLE -->
-    <!--
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-          .register('/tk-fireworks-showcase/service-worker.js')
-          .then(() => console.log('✅ PWA Service Worker registered'))
-          .catch(err => console.error('❌ SW registration failed:', err))
-      }
-    </script>
-    -->
-    <!-- ================================================= -->
   </body>
 </html>
