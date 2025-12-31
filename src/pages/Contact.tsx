@@ -10,7 +10,7 @@ interface ContactProps {
 
 /**
  * Contact Page Component
- * Streamlined with Factory Location only
+ * Streamlined with Factory Location and Phone Numbers
  * Email integration with tkfireworks8999@gmail.com
  */
 export const Contact: React.FC<ContactProps> = ({ theme }) => {
@@ -18,7 +18,11 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
   const [loading, setLoading] = useState(false);
   
   // Get contact info from config
-  const phone = configData.contact.primaryPhone || '+91 6374749585';
+  const phoneNumbers = [
+    '6374749585',
+    '6374044372',
+    '9486056488'
+  ];
   const displayEmail = configData.contact.email || 'tkfirework@gmail.com';
   const integrationEmail = configData.integrationEmail || 'tkfireworks8999@gmail.com';
   const factoryAddress = configData.addresses.factory.address || 'TK FIREWORKS FACTORY, RANGASAMUDRAM GUDIYATHAM VELLORE TAMILNADU 632602';
@@ -105,8 +109,7 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          {/* Contact Info Cards */}
-          {/* Phone Card */}
+          {/* Phone Numbers Card - UPDATED WITH 3 NUMBERS */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -114,13 +117,14 @@ export const Contact: React.FC<ContactProps> = ({ theme }) => {
             className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-orange-500/30 transition-all duration-300"
           >
             <Phone className="w-10 h-10 text-orange-400 mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">Phone</h3>
-            <a
-              href={`tel:${phone}`}
-              className="text-gray-400 hover:text-orange-400 transition text-lg"
-            >
-              {phone}
-            </a>
+            <h3 className="text-xl font-bold text-white mb-4">Phone Numbers</h3>
+            <div className="space-y-3">
+              {phoneNumbers.map((number, idx) => (
+                <div key={idx} className="text-gray-400 hover:text-orange-400 transition text-lg">
+                  {number}
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           {/* Email Card */}
