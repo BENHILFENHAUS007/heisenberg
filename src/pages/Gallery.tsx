@@ -1,19 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, Heart } from 'lucide-react';
+import { X, Heart, Play } from 'lucide-react';
 
 interface GalleryProps {
   theme: any;
 }
 
+// TASK 8: UPDATED - Removed gallery1.png and gallery3.png
 const galleryImages = [
-  {
-    id: 1,
-    src: '/heisenberg/images/gallery1.png',
-    fallback: 'https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/gallery1.png',
-    alt: 'Spectacular Fireworks Display',
-    title: 'Spectacular Show',
-  },
   {
     id: 2,
     src: '/heisenberg/images/gallery2.png',
@@ -21,12 +15,23 @@ const galleryImages = [
     alt: 'Night Sky Magic',
     title: 'Night Sky Magic',
   },
+];
+
+// TASK 8: NEW - YouTube Trailers
+const videoTrailers = [
   {
-    id: 3,
-    src: '/heisenberg/images/gallery3.png',
-    fallback: 'https://raw.githubusercontent.com/BENHILFENHAUS007/heisenberg/main/public/images/gallery3.png',
-    alt: 'Festival Celebration',
-    title: 'Festival Celebration',
+    id: 'trailer-eng',
+    title: 'TK Fireworks Trailer - English Version',
+    youtubeId: 'irqv2ZtRNOw',
+    embedUrl: 'https://www.youtube.com/embed/irqv2ZtRNOw',
+    language: 'English',
+  },
+  {
+    id: 'trailer-tamil',
+    title: 'TK Fireworks Trailer - Tamil Version',
+    youtubeId: 'idr2ZQKiyl0',
+    embedUrl: 'https://www.youtube.com/embed/idr2ZQKiyl0',
+    language: 'Tamil',
   },
 ];
 
@@ -51,78 +56,147 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
             Gallery
           </h1>
           <p className="text-gray-400 text-lg">
-            Explore our stunning fireworks displays and celebrations
+            Explore our stunning fireworks displays, trailers, and celebrations
           </p>
         </motion.div>
 
-        {/* Gallery Grid with STACK ANIMATION + Optimized Images */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {galleryImages.map((image, idx) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.15 }}
-              whileHover={{ y: -8 }} // Stack effect - cards lift on hover
-              className="group cursor-pointer"
-              onHoverStart={() => setHoveredCard(image.id)}
-              onHoverEnd={() => setHoveredCard(null)}
-              onClick={() => setSelectedImage(image)}
-            >
-              <div className="relative rounded-2xl overflow-hidden aspect-video shadow-lg">
-                {/* Image Container with Stack Background */}
-                <div className="relative w-full h-full">
-                  {/* Stack layer effect - creates depth */}
-                  {hoveredCard === image.id && (
-                    <>
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-500/30 to-pink-500/30 -translate-y-2 -translate-x-2"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-500/20 to-pink-500/20 -translate-y-1 -translate-x-1"
-                        initial={{ opacity: 0, scale: 0.97 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.2, delay: 0.1 }}
-                      />
-                    </>
-                  )}
-                  
-                  {/* Main Image - OPTIMIZED with performance attributes */}
-                  <img
-                    src={loadedImages[image.id] || image.src}
-                    alt={image.alt}
-                    className="relative z-10 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                    decoding="async"              // Non-blocking image decode
-                    width={800}                   // Explicit width for aspect-video (16:9)
-                    height={450}                  // Explicit height for aspect-video
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      aspectRatio: '16 / 9',      // Reserves space before load
-                      display: 'block'
-                    }}
-                    onError={() => handleImageError(image.id, image.fallback)}
-                  />
-                </div>
-                
-                {/* Overlay */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 rounded-2xl z-20"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                >
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1">{image.title}</h3>
-                    <p className="text-sm text-gray-300">Click to view full size</p>
+        {/* TASK 8: NEW - YouTube Video Trailers Section */}
+        <div className="mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-2 flex items-center gap-3">
+              <Play className="text-orange-400" size={32} />
+              Product Trailers
+            </h2>
+            <p className="text-gray-400">Watch our latest fireworks in action</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            {videoTrailers.map((video, idx) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.15 }}
+                whileHover={{ y: -5 }}
+                className="group"
+              >
+                <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/10 hover:border-orange-500/50 transition-all duration-300 p-6">
+                  {/* Video Title */}
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-white mb-1">{video.title}</h3>
+                    <p className="text-sm text-orange-400 font-medium">Language: {video.language}</p>
                   </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
+
+                  {/* YouTube Embed - Same size as product demo videos */}
+                  <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
+                    <iframe
+                      src={video.embedUrl}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full rounded-lg"
+                      style={{
+                        border: 'none',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Gradient Accent */}
+                  <div className="h-1 w-0 bg-gradient-to-r from-orange-400 to-pink-500 mt-4 group-hover:w-full transition-all duration-500 rounded-full"></div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Gallery Grid with STACK ANIMATION + Optimized Images */}
+        <div className="mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
+              Photo Gallery
+            </h2>
+            <p className="text-gray-400">Captured moments from our celebrations</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {galleryImages.map((image, idx) => (
+              <motion.div
+                key={image.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.15 }}
+                whileHover={{ y: -8 }}
+                className="group cursor-pointer"
+                onHoverStart={() => setHoveredCard(image.id)}
+                onHoverEnd={() => setHoveredCard(null)}
+                onClick={() => setSelectedImage(image)}
+              >
+                <div className="relative rounded-2xl overflow-hidden aspect-video shadow-lg">
+                  {/* Image Container with Stack Background */}
+                  <div className="relative w-full h-full">
+                    {/* Stack layer effect */}
+                    {hoveredCard === image.id && (
+                      <>
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-500/30 to-pink-500/30 -translate-y-2 -translate-x-2"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-500/20 to-pink-500/20 -translate-y-1 -translate-x-1"
+                          initial={{ opacity: 0, scale: 0.97 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.2, delay: 0.1 }}
+                        />
+                      </>
+                    )}
+                    
+                    {/* Main Image */}
+                    <img
+                      src={loadedImages[image.id] || image.src}
+                      alt={image.alt}
+                      className="relative z-10 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                      decoding="async"
+                      width={800}
+                      height={450}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        aspectRatio: '16 / 9',
+                        display: 'block'
+                      }}
+                      onError={() => handleImageError(image.id, image.fallback)}
+                    />
+                  </div>
+                  
+                  {/* Overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 rounded-2xl z-20"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-1">{image.title}</h3>
+                      <p className="text-sm text-gray-300">Click to view full size</p>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* GALLERY - THE CELEBRATION NEVER ENDS - Premium Section */}
@@ -202,8 +276,8 @@ export const Gallery: React.FC<GalleryProps> = ({ theme }) => {
             className="max-w-full max-h-full object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
             onError={() => handleImageError(selectedImage.id, selectedImage.fallback)}
-            loading="eager"              // Eager loading for lightbox (visible immediately)
-            decoding="async"             // Non-blocking decode
+            loading="eager"
+            decoding="async"
             style={{
               maxWidth: '100%',
               maxHeight: '100%',
