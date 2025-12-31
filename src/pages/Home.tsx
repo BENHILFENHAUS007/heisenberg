@@ -57,7 +57,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
 
   return (
     <div className="relative w-full min-h-screen bg-black z-0 overflow-visible">
-      {/* HERO SECTION - Logo + Title + Subtitle + Button */}
+      {/* HERO SECTION - Logo + Title + Subtitle + Buttons */}
       <section 
         className="relative w-full pt-16 pb-20 px-4 z-50 overflow-hidden"
         style={{
@@ -79,7 +79,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* MAIN HERO LOGO - CRITICAL: EAGER LOADING + DIMENSIONS */}
+            {/* TASK 1: UPDATED LOGO - newlogo.png */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -94,7 +94,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               }}
             >
               <img
-                src={getAssetPath('/images/logo.png')}
+                src={getAssetPath('/images/newlogo.png')}
                 alt="TK Fireworks Logo"
                 className="h-28 w-auto md:h-40 lg:h-52"
                 style={{
@@ -107,9 +107,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden'
                 }}
-                loading="eager"              // Critical above-fold image
-                decoding="async"             // Non-blocking
-                width={208}                  // lg:h-52 = 208px
+                loading="eager"
+                decoding="async"
+                width={208}
                 height={208}
               />
             </motion.div>
@@ -145,23 +145,43 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               {configData.brand.tagline}
             </motion.p>
 
-            {/* CTA Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              onClick={() => navigate('/catalog')}
-              className="px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 relative z-50 cursor-pointer"
-              style={{
-                border: 'none',
-                WebkitAppearance: 'none',
-                appearance: 'none'
-              }}
-            >
-              Explore Our Collection
-            </motion.button>
+            {/* CTA Buttons Container */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              {/* Primary CTA Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                onClick={() => navigate('/catalog')}
+                className="px-10 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 relative z-50 cursor-pointer"
+                style={{
+                  border: 'none',
+                  WebkitAppearance: 'none',
+                  appearance: 'none'
+                }}
+              >
+                Explore Our Collection
+              </motion.button>
+
+              {/* TASK 6: VIEW TRAILER BUTTON - Navigate to Gallery */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                onClick={() => navigate('/gallery')}
+                className="px-10 py-4 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 relative z-50 cursor-pointer"
+                style={{
+                  WebkitAppearance: 'none',
+                  appearance: 'none'
+                }}
+              >
+                View Trailer
+              </motion.button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -192,13 +212,15 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               {
                 icon: Shield,
                 title: 'Safety First',
-                desc: 'Engineered for safety. Designed for families. Our revolutionary heat-free formula changes the game allowing you to "touch the fire" without the burn.',
+                // TASK 2: UPDATED SAFETY TEXT
+                desc: 'Our crackers are fully safe, kid-friendly, and crafted to bring joy - never fear. We design each product with the same care a parent has for their child. Every single batch is checked, tested, and perfected to make sure it\'s safe to hold, safe to light, and safe to enjoy.',
                 color: 'from-blue-400 to-blue-600',
               },
               {
+                // TASK 3: UPDATED - Many varieties for every occasion
                 icon: Zap,
-                title: 'Wide Selection',
-                desc: 'Many varieties for every occasion with manufacturer-direct, budget-friendly pricing.',
+                title: 'Many Varieties for Every Occasion',
+                desc: 'Wide selection with manufacturer-direct, budget-friendly pricing.',
                 color: 'from-pink-400 to-pink-600',
               },
             ].map((feature, idx) => {
@@ -250,7 +272,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Animated Child Image - LAZY LOADING (below fold) */}
+            {/* TASK 5: UPDATED HERO IMAGE - COVER.jpg */}
             <motion.div
               initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -270,15 +292,15 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 }}
                 className="relative w-full max-w-sm"
               >
-                {/* Main Image - LAZY LOADING + ASYNC DECODE */}
+                {/* Main Image - UPDATED TO COVER.jpg */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.3 }}
                   className="relative z-30"
                 >
                   <img
-                    src={getAssetPath('/images/animated-image-on-home.png')}
-                    alt="Child with Fireworks - TK Fireworks"
+                    src={getAssetPath('/images/COVER.jpg')}
+                    alt="TK Fireworks Celebration"
                     style={{
                       filter: 'drop-shadow(0 0 30px rgba(249, 115, 22, 0.3))',
                       opacity: 1,
@@ -290,12 +312,11 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                       height: 'auto',
                       borderRadius: '1rem',
                       backfaceVisibility: 'hidden',
-                      WebkitBackfaceVisibility: 'hidden',
-                      aspectRatio: '384 / 512'  // Approximate 3:4 ratio
+                      WebkitBackfaceVisibility: 'hidden'
                     }}
-                    loading="lazy"              // Below fold - lazy load
-                    decoding="async"            // Non-blocking
-                    width={384}                 // max-w-sm = 384px
+                    loading="lazy"
+                    decoding="async"
+                    width={384}
                     height={512}
                   />
 
@@ -432,7 +453,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* REDESIGNED FOOTER - Beautiful & Enhanced */}
+      {/* TASK 4: UPDATED FOOTER WITH PHONE NUMBERS */}
       <footer className="relative w-full bg-gradient-to-b from-black via-gray-900 to-black border-t border-orange-500/20 mt-20 z-20">
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Content - Enhanced Layout */}
@@ -451,21 +472,50 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 Soft sparks. Peaceful vibes. Perfect for home & family celebrations
               </p>
               
-              {/* Contact Info with Icons */}
+              {/* Contact Info with Icons - UPDATED WITH 3 PHONE NUMBERS */}
               <div className="space-y-4">
+                {/* Primary Phone - WhatsApp Integrated */}
                 <motion.div 
                   whileHover={{ x: 5 }}
-                  className="flex items-center gap-3 group cursor-pointer"
+                  className="flex items-center gap-3 group"
                 >
                   <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20 group-hover:from-orange-500/30 group-hover:to-pink-500/30 transition-all">
                     <Phone size={20} className="text-orange-400" />
                   </div>
                   <a 
-                    href={`tel:${configData.contact.primaryPhone}`} 
+                    href={`https://wa.me/916374749585`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
                   >
-                    {configData.contact.primaryPhone}
+                    6374749585 (WhatsApp)
                   </a>
+                </motion.div>
+
+                {/* Additional Phone 1 - Display Only */}
+                <motion.div 
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-3 group"
+                >
+                  <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20">
+                    <Phone size={20} className="text-orange-400" />
+                  </div>
+                  <span className="text-gray-300 font-medium">
+                    6374044372
+                  </span>
+                </motion.div>
+
+                {/* Additional Phone 2 - Display Only */}
+                <motion.div 
+                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-3 group"
+                >
+                  <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20">
+                    <Phone size={20} className="text-orange-400" />
+                  </div>
+                  <span className="text-gray-300 font-medium">
+                    9486056488
+                  </span>
                 </motion.div>
                 
                 <motion.div 
@@ -537,7 +587,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => window.open('https://wa.me/' + configData.whatsappNumber, '_blank')}
+                    onClick={() => window.open('https://wa.me/916374749585', '_blank')}
                     className="px-3 py-1.5 text-xs bg-white/5 hover:bg-orange-500/20 text-gray-300 hover:text-orange-400 rounded-lg transition-all border border-white/10 hover:border-orange-500/30"
                   >
                     Bulk Order
