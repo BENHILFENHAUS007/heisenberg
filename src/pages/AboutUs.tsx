@@ -33,7 +33,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* MAIN STORY SECTION */}
+      {/* TASK 7: UPDATED MAIN STORY SECTION */}
       <section className="w-full py-20 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -43,14 +43,12 @@ export const AboutUs: React.FC<AboutUsProps> = ({ theme }) => {
             className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-12 md:p-16"
           >
             <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
-              <p className="text-2xl font-bold text-white mb-6">Our Story</p>
-              
               <p>
-                Every brand has a story. Ours began with a few dreamers who weren't afraid to get a little burnt while chasing bright ideas. 😄
+                Born from years of hard work, crazy ideas, and endless testing, TK Fireworks isn't just a brand — it's a bunch of dreamers who decided that festivals should never be boring!
               </p>
               
-              <p>
-                We weren't born experts — we became them through smoke, sweat, and a thousand "oops" moments that taught us exactly how not to make a cracker 💥😂. But every spark, every setback, and every sleepless night built the brand you see today — <span className="font-bold text-orange-400">TK Fireworks</span>, the name that stands for fun, colour, and complete safety.
+              <p className="text-xl font-bold text-orange-400">
+                — TK Fireworks, the name that stands for fun, colour, and complete safety.
               </p>
             </div>
           </motion.div>
@@ -276,7 +274,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({ theme }) => {
               </p>
             </div>
 
-            {/* Contact CTA */}
+            {/* Contact CTA - TASK 7: UPDATED BUTTON TEXT */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -289,7 +287,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({ theme }) => {
                 onClick={() => navigate('/contact')}
                 className="px-8 py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-orange-500/50 transition-all"
               >
-                Become a Partner
+                Become a Member
               </motion.button>
               <motion.a
                 whileHover={{ scale: 1.05 }}
