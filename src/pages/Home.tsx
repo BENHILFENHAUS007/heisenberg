@@ -160,7 +160,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   border: 'none',
                   WebkitAppearance: 'none',
                   appearance: 'none'
-                }}
+                } as any}
               >
                 Explore Our Collection
               </motion.button>
@@ -175,9 +175,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 onClick={() => navigate('/gallery')}
                 className="px-10 py-4 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 relative z-50 cursor-pointer"
                 style={{
-                  WebKitAppearance: 'none',
+                  WebkitAppearance: 'none',
                   appearance: 'none'
-                }}
+                } as any}
               >
                 View Trailer
               </motion.button>
@@ -442,7 +442,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   border: '2px solid rgb(249, 115, 22)',
                   WebkitAppearance: 'none',
                   appearance: 'none'
-                }}
+                } as any}
               >
                 View All Products
               </motion.button>
