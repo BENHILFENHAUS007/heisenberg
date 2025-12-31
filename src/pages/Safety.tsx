@@ -230,25 +230,17 @@ export const Safety: React.FC<SafetyProps> = ({ theme }) => {
           </ul>
         </motion.div>
 
-        {/* AGE AND HEALTH ADVISORY */}
+        {/* EMERGENCY CONTACT SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
+          className="bg-amber-950/30 border-2 border-amber-500/50 rounded-2xl p-8 mb-16 backdrop-blur-sm"
         >
-          <div className="bg-blue-950/30 border-2 border-blue-500/50 rounded-2xl p-8 backdrop-blur-sm">
-            <h3 className="text-xl font-bold text-blue-400 mb-4">Age Requirement</h3>
-            <p className="text-gray-300">
-              Fireworks are for ages 18 and above. Those with medical conditions should avoid handling fireworks.
-            </p>
-          </div>
-          <div className="bg-amber-950/30 border-2 border-amber-500/50 rounded-2xl p-8 backdrop-blur-sm">
-            <h3 className="text-xl font-bold text-amber-400 mb-4">Emergency Contact</h3>
-            <div className="space-y-2 text-gray-300">
-              <p><strong>Fire and Rescue Services:</strong> 101</p>
-              <p><strong>All Emergency Services:</strong> 112</p>
-            </div>
+          <h3 className="text-xl font-bold text-amber-400 mb-4">Emergency Contact</h3>
+          <div className="space-y-2 text-gray-300">
+            <p><strong>Fire and Rescue Services:</strong> 101</p>
+            <p><strong>All Emergency Services:</strong> 112</p>
           </div>
         </motion.div>
 
