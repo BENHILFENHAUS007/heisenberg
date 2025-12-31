@@ -2,12 +2,12 @@
   "products": [
     {
       "id": "mp-8a2f-4k9p-7x3m",
-      "name": "Magic Peacock",
+      "name": "DUM DUM PEACOCK",
       "description": "Magnificent peacock-inspired fireworks with cascading colors that mesmerize crowds. A stunning display of nature's beauty captured in brilliant lights.",
       "descriptionShort": "Magnificent peacock-inspired fireworks with cascading colors that mesmerize crowds",
       "descriptionLong": "Magnificent peacock-inspired fireworks with cascading colors that mesmerize crowds. A stunning display of nature's beauty captured in brilliant lights.",
-      "image": "/images/little-peacock.png",
-      "thumbnail3D": "/images/little-peacock.png",
+      "image": "/images/DUM.jpg",
+      "thumbnail3D": "/images/DUM.jpg",
       "tag": "TRENDING",
       "tagStyle": "trending",
       "tags": ["TRENDING", "NEW"],
@@ -19,9 +19,33 @@
       "isFeatured": true,
       "isNew": false,
       "hasVideo": true,
-      "videoUrl": "https://www.youtube.com/embed/iUtnZpzkbG8",
+      "videoUrl": "https://www.youtube.com/embed/E3zs_Kty_mk",
       "durationSeconds": 30,
       "displayOrder": 1,
+      "comingSoon": false
+    },
+    {
+      "id": "pp-2b3c-5k6l-9m8n",
+      "name": "PEACOCK PARTY",
+      "description": "Magnificent peacock-inspired fireworks with cascading colors that mesmerize crowds. A stunning display of nature's beauty captured in brilliant lights.",
+      "descriptionShort": "Magnificent peacock-inspired fireworks with cascading colors that mesmerize crowds",
+      "descriptionLong": "Magnificent peacock-inspired fireworks with cascading colors that mesmerize crowds. A stunning display of nature's beauty captured in brilliant lights.",
+      "image": "/images/PARTY.jpg",
+      "thumbnail3D": "/images/PARTY.jpg",
+      "tag": "NEW",
+      "tagStyle": "new",
+      "tags": ["NEW", "POPULAR"],
+      "category": "Fancy Items",
+      "categoryId": "fancy",
+      "effectType": "Mixed",
+      "noiseLevel": "Medium",
+      "featured": true,
+      "isFeatured": true,
+      "isNew": true,
+      "hasVideo": true,
+      "videoUrl": "https://www.youtube.com/embed/2zwFMFQz8OY",
+      "durationSeconds": 30,
+      "displayOrder": 2,
       "comingSoon": false
     },
     {
@@ -45,7 +69,7 @@
       "hasVideo": false,
       "videoUrl": "",
       "durationSeconds": 45,
-      "displayOrder": 2,
+      "displayOrder": 3,
       "comingSoon": true
     },
     {
@@ -69,7 +93,7 @@
       "hasVideo": false,
       "videoUrl": "",
       "durationSeconds": 0,
-      "displayOrder": 3,
+      "displayOrder": 4,
       "comingSoon": true
     }
   ],
