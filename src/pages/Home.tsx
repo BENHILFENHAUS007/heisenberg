@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Shield, Zap, Facebook, Instagram, Mail, Twitter, Youtube, Linkedin, MapPin, Phone } from 'lucide-react';
+import { Star, Shield, Zap, Facebook, Instagram, Mail, Youtube, MapPin, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import configData from '../data/config.json';
 import { useGA4 } from '../hooks/useGA4';
@@ -79,7 +79,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            {/* TASK 1: UPDATED LOGO - newlogo.png */}
+            {/* FIX 1: LOGO PATH - CHANGED TO new.png */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -94,7 +94,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               }}
             >
               <img
-                src={getAssetPath('/images/newlogo.png')}
+                src={getAssetPath('/images/new.png')}
                 alt="TK Fireworks Logo"
                 className="h-28 w-auto md:h-40 lg:h-52"
                 style={{
@@ -165,7 +165,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 Explore Our Collection
               </motion.button>
 
-              {/* TASK 6: VIEW TRAILER BUTTON - Navigate to Gallery */}
+              {/* VIEW TRAILER BUTTON - Navigate to Gallery */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -175,7 +175,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 onClick={() => navigate('/gallery')}
                 className="px-10 py-4 border-2 border-orange-500 text-orange-500 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-all duration-300 relative z-50 cursor-pointer"
                 style={{
-                  WebkitAppearance: 'none',
+                  WebKitAppearance: 'none',
                   appearance: 'none'
                 }}
               >
@@ -212,12 +212,10 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
               {
                 icon: Shield,
                 title: 'Safety First',
-                // TASK 2: UPDATED SAFETY TEXT
                 desc: 'Our crackers are fully safe, kid-friendly, and crafted to bring joy - never fear. We design each product with the same care a parent has for their child. Every single batch is checked, tested, and perfected to make sure it\'s safe to hold, safe to light, and safe to enjoy.',
                 color: 'from-blue-400 to-blue-600',
               },
               {
-                // TASK 3: UPDATED - Many varieties for every occasion
                 icon: Zap,
                 title: 'Many Varieties for Every Occasion',
                 desc: 'Wide selection with manufacturer-direct, budget-friendly pricing.',
@@ -268,11 +266,11 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* WELCOME SECTION */}
+      {/* WELCOME SECTION - WITH DESKTOP SIZE INCREASE FOR COVER.jpg */}
       <section className="w-full py-32 px-4 relative z-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* TASK 5: UPDATED HERO IMAGE - COVER.jpg */}
+            {/* HERO IMAGE - INCREASED SIZE ON DESKTOP ONLY */}
             <motion.div
               initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -290,9 +288,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   repeat: Infinity,
                   ease: 'easeInOut',
                 }}
-                className="relative w-full max-w-sm"
+                className="relative w-full max-w-sm lg:max-w-lg"
               >
-                {/* Main Image - UPDATED TO COVER.jpg */}
+                {/* Main Image - COVER.jpg */}
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.3 }}
@@ -453,7 +451,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
         </div>
       </section>
 
-      {/* TASK 4: UPDATED FOOTER WITH PHONE NUMBERS */}
+      {/* FOOTER - UPDATED PHONE NUMBERS (REMOVED "(WhatsApp)"), FACEBOOK LINK, REMOVED TWITTER/LINKEDIN */}
       <footer className="relative w-full bg-gradient-to-b from-black via-gray-900 to-black border-t border-orange-500/20 mt-20 z-20">
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Content - Enhanced Layout */}
@@ -472,27 +470,22 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                 Soft sparks. Peaceful vibes. Perfect for home & family celebrations
               </p>
               
-              {/* Contact Info with Icons - UPDATED WITH 3 PHONE NUMBERS */}
+              {/* Contact Info with Icons - UPDATED: REMOVED (WhatsApp) LABEL */}
               <div className="space-y-4">
-                {/* Primary Phone - WhatsApp Integrated */}
+                {/* Phone 1 - Display Only (NO WhatsApp label) */}
                 <motion.div 
                   whileHover={{ x: 5 }}
                   className="flex items-center gap-3 group"
                 >
-                  <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20 group-hover:from-orange-500/30 group-hover:to-pink-500/30 transition-all">
+                  <div className="p-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-pink-500/20">
                     <Phone size={20} className="text-orange-400" />
                   </div>
-                  <a 
-                    href={`https://wa.me/916374749585`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
-                  >
-                    6374749585 (WhatsApp)
-                  </a>
+                  <span className="text-gray-300 font-medium">
+                    6374749585
+                  </span>
                 </motion.div>
 
-                {/* Additional Phone 1 - Display Only */}
+                {/* Phone 2 - Display Only */}
                 <motion.div 
                   whileHover={{ x: 5 }}
                   className="flex items-center gap-3 group"
@@ -505,7 +498,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
                   </span>
                 </motion.div>
 
-                {/* Additional Phone 2 - Display Only */}
+                {/* Phone 3 - Display Only */}
                 <motion.div 
                   whileHover={{ x: 5 }}
                   className="flex items-center gap-3 group"
@@ -612,7 +605,7 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             </div>
           </div>
 
-          {/* Social Icons - Enhanced Design */}
+          {/* Social Icons - REMOVED Twitter & LinkedIn */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -620,11 +613,9 @@ export const Home: React.FC<HomeProps> = ({ theme }) => {
             className="flex justify-center gap-4 mb-12"
           >
             {[
-              { icon: Facebook, label: 'Facebook', href: configData.social.facebook || 'https://facebook.com/tkfireworks' },
+              { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/1CqV97T9Js/' },
               { icon: Instagram, label: 'Instagram', href: configData.social.instagram || 'https://instagram.com/tkfireworks' },
-              { icon: Twitter, label: 'X (Twitter)', href: configData.social.twitter || 'https://twitter.com/tkfireworks' },
               { icon: Youtube, label: 'YouTube', href: configData.media.youtube.channelUrl || 'https://youtube.com/@tkfireworks' },
-              { icon: Linkedin, label: 'LinkedIn', href: configData.social.linkedin || 'https://linkedin.com/company/tkfireworks' },
               { icon: Mail, label: 'Email', href: `mailto:${configData.contact.email}` },
             ].map((social, idx) => {
               const Icon = social.icon;
